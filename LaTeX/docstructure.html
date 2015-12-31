@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Document Structure &mdash; Introduction to Data Analysis for Physics</title>
+    
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0-rc1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0-rc1/css/bootstrap-glyphicons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="../_static/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.js"></script>
+    <script type="text/javascript" src="../_static/builtin.js"></script>
+    <script type="text/javascript" src="../_static/assess.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="../_static/lib/lis.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0-rc1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/rangy-core.js"></script>
+    <script type="text/javascript" src="../_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="../_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <link rel="top" title="Introduction to Data Analysis for Physics" href="../index.html" />
+    <link rel="next" title="Commands and Special Characters" href="commands.html" />
+    <link rel="prev" title="Introduction" href="latex.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'data_analysis';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-fixed-top" style="z-index:9999999">
+
+  <div class="container">
+
+    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+    <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div>
+      <a href="../index.html">
+      <img title="Data Analysis for Physics" src="../_static/img/logo_small.png"
+       style="max-width:60px; max-height:60px;float:left"></a>
+      <a class="navbar-brand" href="../index.html">Introduction to Data Analysis for Physics</a>
+    </div>
+
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Document Structure</a><ul>
+<li><a class="reference internal" href="#document-classes">Document Classes</a></li>
+<li><a class="reference internal" href="#the-preamble">The Preamble</a><ul>
+<li><a class="reference internal" href="#packages">Packages</a></li>
+<li><a class="reference internal" href="#new-commands">New Commands</a></li>
+<li><a class="reference internal" href="#formatting">Formatting</a></li>
+<li><a class="reference internal" href="#miscellaneous-actions">Miscellaneous Actions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#body">Body</a><ul>
+<li><a class="reference internal" href="#sections-subsections-and-subsubsections-oh-my">Sections, Subsections, and Subsubsections, Oh My!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#page-breaking">Page Breaking</a></li>
+<li><a class="reference internal" href="#the-bibliography">The Bibliography</a></li>
+<li><a class="reference internal" href="#after-the-end-document">After the \end{document}</a><ul>
+<li><a class="reference internal" href="#debugging-and-testing">Debugging and Testing</a></li>
+<li><a class="reference internal" href="#code-storage">Code Storage</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Introduction" data-toggle="tooltip">
+    <a href="latex.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+      <p style=";max-width:130px;">Introduction</p>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - Commands and Special Characters' data-toggle="tooltip" >
+    <a href="commands.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+      <p style=";max-width:130px;">Commands and Special Characters</p>
+    </a>
+  </li>
+  <li style="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="mainbody" class="container">
+  
+  <div class="section" id="document-structure">
+<h1>Document Structure<a class="headerlink" href="#document-structure" title="Permalink to this headline">¶</a></h1>
+<p>LaTeX documents have two main parts: the <strong>preamble</strong> and the <strong>body</strong>.</p>
+<p>The preamble is optional, but can make your life much easier. It acts much
+like a style sheet or a header file, allowing you to define things which can
+be called later or import commands without having to define them yourself.
+Here you can define commands, styles and environments which you will later use.</p>
+<p>The <strong>body</strong> has the structure and content of the document. This is where
+exposition, lists, figures, and nearly everything else in the document goes.</p>
+<div class="section" id="document-classes">
+<h2>Document Classes<a class="headerlink" href="#document-classes" title="Permalink to this headline">¶</a></h2>
+<p>There is one required command for every LaTeX document, <tt class="code docutils literal"><span class="pre">\documentclass{}</span></tt>. Specifying the class of the document tells LaTeX the basic formatting desired for the document. Very few commands will work before the document class is declared, so it should be done as early as possible. There are many document classes available for LaTeX. Each can be edited heavily, but one must be used as the basis for any document. Below are some of the most common:</p>
+<table border="1" class="docutils">
+<caption><strong>Table 1: Document Classes</strong></caption>
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Class</strong></th>
+<th class="head"><strong>Use</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>article</td>
+<td>By far the most common document class. Formats the document for use in publications.</td>
+</tr>
+<tr class="row-odd"><td>report</td>
+<td>For articles that need more structure, especially if they are longer.</td>
+</tr>
+<tr class="row-even"><td>book</td>
+<td>Formats the document to be printed as a book.</td>
+</tr>
+<tr class="row-odd"><td>letter</td>
+<td>Makes very professional-looking letters.</td>
+</tr>
+<tr class="row-even"><td>beamer</td>
+<td>A class for creating presentations in LaTeX.</td>
+</tr>
+</tbody>
+</table>
+<p>To declare the class of a document to be <tt class="code docutils literal"><span class="pre">article</span></tt>, use <tt class="code docutils literal"><span class="pre">\documentclass{article}</span></tt> in the preamble. Document classes also include many options which can be changed when the class is declared. These are optional, and so are declared in the optional argument of the <tt class="code docutils literal"><span class="pre">\documentclass</span></tt> command. Below, the standard setting for <tt class="code docutils literal"><span class="pre">article</span></tt> is italicized among some of the other possible options. If you wish to use the default setting, do not bother specifying it.</p>
+<table border="1" class="docutils">
+<caption><strong>Table 2: Document Class Options</strong></caption>
+<colgroup>
+<col width="9%" />
+<col width="21%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Option</strong></th>
+<th class="head"><strong>Possible Settings</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Font Size</td>
+<td>10pt, <em>11pt</em>, 12pt</td>
+<td>The size of standard text</td>
+</tr>
+<tr class="row-odd"><td>Paper Type</td>
+<td>a4paper, <em>letterpaper</em></td>
+<td>The type of paper for printing</td>
+</tr>
+<tr class="row-even"><td>Title Page</td>
+<td>titlepage, <em>notitlepage</em></td>
+<td>Whether to force a new page after the title</td>
+</tr>
+<tr class="row-odd"><td>Columns</td>
+<td><em>onecolumn</em>, twocolumn</td>
+<td>The number of columns in the document</td>
+</tr>
+<tr class="row-even"><td>Page Sides</td>
+<td><em>oneside</em>, twoside</td>
+<td>Whether the document is intended to be printed single- or double-sided</td>
+</tr>
+<tr class="row-odd"><td>Orientation</td>
+<td><em>portrait</em>, landscape</td>
+<td>How the document is oriented on paper</td>
+</tr>
+<tr class="row-even"><td>Draft</td>
+<td>draft</td>
+<td>Makes typesetting problems apparent with a mark in the right margin; disables images</td>
+</tr>
+</tbody>
+</table>
+<p>The order of the options is arbitrary. So a letter with 10 point font on A4 paper to be printed with the landscape orientation is specified with</p>
+<div class="highlight-python"><pre>\documentclass[10pt, landscape, a4paper]{letter}</pre>
+</div>
+<p>A more thourough treatment is available on <a class="reference external" href="http://en.wikibooks.org/wiki/LaTeX/Document_Structure#Document_classes">the LaTeX wikibook</a>.</p>
+</div>
+<div class="section" id="the-preamble">
+<h2>The Preamble<a class="headerlink" href="#the-preamble" title="Permalink to this headline">¶</a></h2>
+<p>Having a preamble is completely optional. However, having a good preamble can
+save a lot of time with formatting. Ideally, it should function like a
+stylesheet for a webpage. The body of the document should have as little
+formatting as possible, made possible by the preamble.</p>
+<p>The preamble contains packages, new commands, and formatting information.
+Packages include new commands, environments, symbols, and generally increase the
+functionality of LaTeX far beyond the bare minimum it natively includes. New
+commands make life easier by creating shortcuts for calling symbols and oft-used
+symbol and information patterns.</p>
+<div class="section" id="packages">
+<h3>Packages<a class="headerlink" href="#packages" title="Permalink to this headline">¶</a></h3>
+<p>Once LaTeX knows what kind of document you are working in, relevant packages
+should be loaded. The order of packages loaded can matter, particularly if they
+alter some of the same settings. In this case, the package loaded last usually
+gets the final say.</p>
+<p>Packages are loaded with the <tt class="code docutils literal"><span class="pre">\usepackage{thepackage}</span></tt> command. The
+<tt class="code docutils literal"><span class="pre">usepackage</span></tt> command also takes an optional argument which allows for
+changing some settings on the package. For example, the <tt class="code docutils literal"><span class="pre">geometry</span></tt> package
+allows margins to be set using this method. If you want your document to have
+margins of 1 inch rather than the default by loading the package with
+<tt class="code docutils literal"><span class="pre">\usepackage[margin=1in]{geometry}</span></tt>.</p>
+<p>More information on packages is included in the <a class="reference external" href="packages.html">Packages</a> page.</p>
+</div>
+<div class="section" id="new-commands">
+<h3>New Commands<a class="headerlink" href="#new-commands" title="Permalink to this headline">¶</a></h3>
+<p>New commands are declared with <tt class="code docutils literal"><span class="pre">\newcommand{}{}</span></tt>, a command which has two
+mandatory arguments. The first argument specifies how the command is called, and
+the second are how LaTeX should interpret the command. Say we like the way
+<span class="math">\(\varepsilon\)</span> looks better than <span class="math">\(\epsilon\)</span>, but don&#8217;t want to have
+to type <tt class="code docutils literal"><span class="pre">\varepsilon</span></tt> every time. By using
+<tt class="code docutils literal"><span class="pre">\newcommand{\e}{\varepsilon}</span></tt>, we can create <span class="math">\(\varepsilon\)</span> by just
+typing <tt class="code docutils literal"><span class="pre">\e</span></tt>.</p>
+<p>The <tt class="code docutils literal"><span class="pre">\newcommand{}{}</span></tt> also takes an optional argument which specifies the
+number of arguments. More information on new commands is available in the
+<a class="reference external" href="newcommand.html">New Command</a> lesson.</p>
+</div>
+<div class="section" id="formatting">
+<h3>Formatting<a class="headerlink" href="#formatting" title="Permalink to this headline">¶</a></h3>
+<p>Generally, the last part of the preamble should be formatting. Now that packages
+are loaded and new commands have been created, there are many options to fiddle
+with and none will be overridden by loading packages after specifying custom
+formatting. Everything in LaTeX can be customized. Fortunately, specifying the
+document class prevents declaring the base formatting from being necessary.
+Sometimes, packages allow for easier access to formatting, such as creating
+custom list levels and formatting. More information on formatting is in the
+formatting lesson.</p>
+</div>
+<div class="section" id="miscellaneous-actions">
+<h3>Miscellaneous Actions<a class="headerlink" href="#miscellaneous-actions" title="Permalink to this headline">¶</a></h3>
+<p>There are many, many more things that can be useful to have in the preamble.
+These include declaring new operators, having an external preamble (to act as a
+stylesheet or collection of common commands for many documents), and even
+creating new environments.</p>
+</div>
+</div>
+<div class="section" id="body">
+<h2>Body<a class="headerlink" href="#body" title="Permalink to this headline">¶</a></h2>
+<p>The body of a document begins with the <tt class="code docutils literal"><span class="pre">\begin{document}</span></tt> command and ends
+with the <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> command. LaTeX treats everything between those
+<tt class="code docutils literal"><span class="pre">\begin</span></tt> and <tt class="code docutils literal"><span class="pre">\end</span></tt> statements as the <tt class="code docutils literal"><span class="pre">document</span></tt> environment.
+Make sure to always include these commands - otherwise LaTeX will not typeset
+the document.</p>
+<p>As indicated by the way it is called, <tt class="code docutils literal"><span class="pre">document</span></tt> is actually considered
+an <em>environment</em> within LaTeX. See the environments lesson for more
+information. Except comments, everything written the body of a LaTeX document
+will be processed during typesetting.</p>
+<div class="section" id="sections-subsections-and-subsubsections-oh-my">
+<h3>Sections, Subsections, and Subsubsections, Oh My!<a class="headerlink" href="#sections-subsections-and-subsubsections-oh-my" title="Permalink to this headline">¶</a></h3>
+<p>LaTeX provides many commands which make it easy to organize the body of the
+document using headings. These built-in commands also automatically provide
+content for the table of contents (should you choose to have one).</p>
+<p>The table of contents is placed in the document with the command
+<tt class="code docutils literal"><span class="pre">\tableofcontents</span></tt>. Because of the way LaTeX handles document struture,
+it does not immediately reflect the changes made to the document upon
+typesetting. If you change something and want the table of contents to update
+correctly, just typeset the document twice.</p>
+<p>The most common section command is <tt class="code docutils literal"><span class="pre">\section{Section</span> <span class="pre">Name}</span></tt>, with &#8220;Section
+Name&#8221; replaced with whatever you want the section to be called. These can be
+further divided with <tt class="code docutils literal"><span class="pre">\subsection{}</span></tt>, and <tt class="code docutils literal"><span class="pre">\subsubsection{}</span></tt>. For
+document class <tt class="code docutils literal"><span class="pre">article</span></tt>, these are generally the only ones you will need
+to use. If you are typesetting a <tt class="code docutils literal"><span class="pre">book</span></tt> or a <tt class="code docutils literal"><span class="pre">report</span></tt>, there is a
+heading level above section, <tt class="code docutils literal"><span class="pre">\chapter{}</span></tt>. The largest section heading
+level is <tt class="code docutils literal"><span class="pre">\part{}</span></tt>, and can be used in nearly any document.</p>
+<p>You should start with the highest level your document needs and work your way
+down. For most documents, sections, subsection, and subsubsection will be
+sufficient.</p>
+<p>There are <tt class="code docutils literal"><span class="pre">\paragraph{}</span></tt> and <tt class="code docutils literal"><span class="pre">\subparagraph{}</span></tt> commands. They allow
+paragraphs to have titles, and look like this:</p>
+<div class="highlight-python"><pre>\paragraph{Paragraphs}
+I'm a paragraph!
+\subparagraph{Hey, }
+I'm just a subparagraph.</pre>
+</div>
+<img alt="../_images/pars.jpg" src="../_images/pars.jpg" />
+<p>Using these commands to specify paragraphs is generally unnecessary since most
+documents don&#8217;t need to be this structured. A paragraph break can be specified
+by inserting a blank line between paragraphs. If you want to keep the paragraph
+heading styling, but want to start the paragraph on it&#8217;s own line, just insert
+a new line as so:</p>
+<div class="highlight-python"><pre>\paragraph{Another Paragraph} \hspace{0pt} \\
+I started on a new line!</pre>
+</div>
+<p>If you want a section/subsection/subsubsection to not have a number, insert an
+asterisk in the command as so: <tt class="code docutils literal"><span class="pre">\section*{Unnumbered}</span></tt>.</p>
+</div>
+</div>
+<div class="section" id="page-breaking">
+<h2>Page Breaking<a class="headerlink" href="#page-breaking" title="Permalink to this headline">¶</a></h2>
+<p>To start the following material on a new page, the <tt class="code docutils literal"><span class="pre">\newpage</span></tt> or the <tt class="code docutils literal"><span class="pre">\clearpage</span></tt> command may be used. <tt class="code docutils literal"><span class="pre">\newpage</span></tt> starts the succeeding material on the next page, while <tt class="code docutils literal"><span class="pre">\clearpage</span></tt> typesets all figures and tables before starting a new page. This distinction is required because normally LaTeX calcualtes optimal positions for tables and figures, usually placing them out of sequence with their position in the text, and sometimes pages before or after their location might indicate from the text in the code. So using <tt class="code docutils literal"><span class="pre">\clearpage</span></tt> ensures all figures and tables are typeset and the succeeding text acts as a coherent block.</p>
+<p>If creating a double-sided document, it can be useful to use <tt class="code docutils literal"><span class="pre">\cleardoublepage</span></tt>, which acts like <tt class="code docutils literal"><span class="pre">\clearpage</span></tt>, but waits until the next odd-numbered page to begin typesetting more material. If used on an even-numbered page, this means it just starts on the next page. If used on an odd-numbered page, LaTeX will make the following even page blank, and then begin typesetting material on the next odd page.</p>
+<p>Sometimes LaTeX chooses odd places for page breaks. To suggest a better place, use <tt class="code docutils literal"><span class="pre">\pagebreak</span></tt>. The command takes an optional argument which says how insistent you are that there may be a page break there, with 0 being a slight suggestion and 4 forcing LaTeX to create a new page. Especially in longer documents, using these generously between paragraphs can give you a lot of control over how LaTeX chooses page location. I generally go with <tt class="code docutils literal"><span class="pre">\pagebreak[2]</span></tt> between paragraphs if I do not want LaTeX to break up any paragraphs across pages.</p>
+<p>If there is a place you specifically do not want LaTeX to create a page break, use <tt class="code docutils literal"><span class="pre">\nopagebreak</span></tt> in much the similar way as <tt class="code docutils literal"><span class="pre">\pagebreak</span></tt>, as it takes an optional argument from 0 to 4. This can be useful to ensure sets of equations are all set on the same page.</p>
+</div>
+<div class="section" id="the-bibliography">
+<h2>The Bibliography<a class="headerlink" href="#the-bibliography" title="Permalink to this headline">¶</a></h2>
+<p>In LaTeX, including a bibliography can be a beast of its own. Even when doing
+it the right way it can be finnicky. It is recommended to start the
+bibliography early and not when you are in a rush. If you are in a
+rush, there are ways to fake it. See the bibliography lesson for more details on
+both.</p>
+</div>
+<div class="section" id="after-the-end-document">
+<h2>After the \end{document}<a class="headerlink" href="#after-the-end-document" title="Permalink to this headline">¶</a></h2>
+<p>Nothing after <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> is used in the output. Common reasons for
+having code after <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> include debugging, testing, and
+temporary code storage.</p>
+<div class="section" id="debugging-and-testing">
+<h3>Debugging and Testing<a class="headerlink" href="#debugging-and-testing" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes, LaTeX gives obscure errors and references lines which don&#8217;t
+actually contain errors. This is because LaTeX usually doesn&#8217;t encounter the
+errors until it tries to piece together code, such as at the end of an
+environment, most commonly when writing math.</p>
+<p>Putting <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> inside of an environment does cause an error
+itself. However, LaTeX will have processed all code up to that point so the
+original error will still cause an issue. This is because when LaTeX encounters
+<tt class="code docutils literal"><span class="pre">\end</span></tt>, it will typeset everything up to that point. If the only error is
+that <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> is inside an environment, then
+<tt class="code docutils literal"><span class="pre">\end{document}</span></tt> is before the error. If not, then <tt class="code docutils literal"><span class="pre">\end{document}</span></tt>
+is after the error. This allows for a line-by-line search to find the bug.</p>
+</div>
+<div class="section" id="code-storage">
+<h3>Code Storage<a class="headerlink" href="#code-storage" title="Permalink to this headline">¶</a></h3>
+<p>Sometimes there is part of a document that doesn&#8217;t fit anywhere inside the
+document currently, but might later. Rather than deleting the code or storing
+it somewhere else, placing it after <tt class="code docutils literal"><span class="pre">\end{document}</span></tt> allows for safe
+storage.</p>
+<p>For larger projects, it is a better idea to learn and use version control so
+nothing valuable will be lost.</p>
+</div>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>
+    <!--
+        &copy; Copyright 2013, University of Texas at Austin Society of Physics Students and Sigma Pi Sigma.-->
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    //$(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    //$(document).ready(getNumUsers);
+    //$(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  $("#mainbody").children().first().css("margin-top",
+    $("#navbar").css("height"))
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'../_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-small btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-small btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-small btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-small btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Assignments &mdash; Introduction to Data Analysis for Physics</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0-rc1/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="_static/css/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="_static/lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.0.0-rc1/css/bootstrap-glyphicons.css" type="text/css" />
+    <link rel="stylesheet" href="_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/poll.js"></script>
+    <script type="text/javascript" src="_static/js/d3.v2.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="_static/js/pytutor.js"></script>
+    <script type="text/javascript" src="_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="_static/codemirror.js"></script>
+    <script type="text/javascript" src="_static/python.js"></script>
+    <script type="text/javascript" src="_static/activecode.js"></script>
+    <script type="text/javascript" src="_static/skulpt.js"></script>
+    <script type="text/javascript" src="_static/builtin.js"></script>
+    <script type="text/javascript" src="_static/assess.js"></script>
+    <script type="text/javascript" src="_static/animationbase.js"></script>
+    <script type="text/javascript" src="_static/lib/jquery.min.js"></script>
+    <script type="text/javascript" src="_static/lib/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/lib/prettify.js"></script>
+    <script type="text/javascript" src="_static/lib/underscore-min.js"></script>
+    <script type="text/javascript" src="_static/lib/lis.js"></script>
+    <script type="text/javascript" src="_static/parsons.js"></script>
+    <script type="text/javascript" src="_static/parsons-noconflict.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.0.0-rc1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="_static/rangy-core.js"></script>
+    <script type="text/javascript" src="_static/rangy-textrange.js"></script>
+    <script type="text/javascript" src="_static/rangy-cssclassapplier.js"></script>
+    <script type="text/javascript" src="_static/user-highlights.js"></script>
+    <script type="text/javascript" src="_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="_static/jquery.hotkey.js"></script>
+    <link rel="top" title="Introduction to Data Analysis for Physics" href="index.html" />
+    <link rel="prev" title="Miscellaneous Math" href="Math/misc.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'http://127.0.0.1:8000' ? 'http://127.0.0.1:8000' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'data_analysis';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false
+  eBookConfig.isLoggedIn = false;
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+  </head>
+  <body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-fixed-top" style="z-index:9999999">
+
+  <div class="container">
+
+    <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+    <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+
+    <div>
+      <a href="index.html">
+      <img title="Data Analysis for Physics" src="_static/img/logo_small.png"
+       style="max-width:60px; max-height:60px;float:left"></a>
+      <a class="navbar-brand" href="index.html">Introduction to Data Analysis for Physics</a>
+    </div>
+
+    <div class="nav-collapse collapse navbar-responsive-collapse">
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"><ul>
+<li><a class="reference internal" href="#">Assignments</a><ul>
+<li><a class="reference internal" href="#week-one-jan-16">Week One (Jan. 16)</a><ul>
+<li><a class="reference internal" href="#introduction-to-mathematica">&#8220;Introduction to <em>Mathematica</em>&#8220;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-two-jan-23">Week Two (Jan. 23)</a><ul>
+<li><a class="reference internal" href="#introduction-to-mathematica-simple-programs-graphing">&#8220;Introduction to <em>Mathematica</em>: Simple programs, graphing&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-three-jan-30">Week Three (Jan. 30)</a><ul>
+<li><a class="reference internal" href="#introduction-to-mathematica-simple-programs">&#8220;Introduction to <em>Mathematica</em>: Simple programs&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-four-feb-6">Week Four (Feb. 6)</a><ul>
+<li><a class="reference internal" href="#mathematica-reading-in-data-simple-analysis">&#8220;<em>Mathematica</em>: Reading in data, simple analysis&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-five-feb-13">Week Five (Feb. 13)</a><ul>
+<li><a class="reference internal" href="#mathematica-more-advanced-data-analysis">&#8220;<em>Mathematica</em>: More advanced data analysis&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-six-feb-20">Week Six (Feb. 20)</a><ul>
+<li><a class="reference internal" href="#id4">&#8220;<em>Mathematica</em>: More advanced data analysis&#8221;</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-seven-feb-27">Week Seven (Feb. 27)</a><ul>
+<li><a class="reference internal" href="#intro-to-latex">Intro to LaTeX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-eight-mar-6">Week Eight (Mar. 6)</a><ul>
+<li><a class="reference internal" href="#id5">Mathematics in LaTeX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-nine-mar-20">Week Nine (Mar. 20)</a><ul>
+<li><a class="reference internal" href="#new-commands-and-figures">New Commands and Figures</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-ten-mar-27">Week Ten (Mar. 27)</a><ul>
+<li><a class="reference internal" href="#id6">Tables, Arrays, and Matrices</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-eleven-apr-3">Week Eleven (Apr. 3)</a><ul>
+<li><a class="reference internal" href="#units-and-chemistry">Units and Chemistry</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-twelve-apr-10">Week Twelve (Apr. 10)</a><ul>
+<li><a class="reference internal" href="#bibtex">BibTeX</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#week-thirteen-apr-17">Week Thirteen (Apr. 17)</a><ul>
+<li><a class="reference internal" href="#z-scores-p-values-confidence-intervals-model-fits">Z-Scores, P-Values, Confidence Intervals, Model Fits</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#final-project-may-2">Final Project (May 2)</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        
+          
+  <li id="relations-prev" title="Previous Chapter - Miscellaneous Math" data-toggle="tooltip">
+    <a href="Math/misc.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+      <p style=";max-width:130px;">Miscellaneous Math</p>
+    </a>
+  </li>
+  
+    <li class="divider-vertical"></li>
+  
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="mainbody" class="container">
+  
+  <div class="section" id="assignments">
+<h1>Assignments<a class="headerlink" href="#assignments" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the course! This page has the homework assignments and will be updated
+throughout the semester. As stated in the syllabus, homework assignments are due
+the Wednesday before class at 5pm</p>
+<div class="section" id="week-one-jan-16">
+<h2>Week One (Jan. 16)<a class="headerlink" href="#week-one-jan-16" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction-to-mathematica">
+<h3>&#8220;Introduction to <em>Mathematica</em>&#8220;<a class="headerlink" href="#introduction-to-mathematica" title="Permalink to this headline">¶</a></h3>
+<p>There&#8217;s a lot of reading this week, but don&#8217;t feel like you have to master any of it
+yet. We want to get you started quickly on topics, but we have to introduce a lot
+before you can do anything interesting. You&#8217;ll likely be reviewing this material through
+January 22 to complete the homework for that week. Go ahead and look at the homework
+for next week so you can get a feel for how much you&#8217;ll need to comprehend this week
+from the material. We&#8217;ll return to sections later as we need them, and will often
+list them as part of the required reading.</p>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="intro.html">Introduction</a></li>
+<li><a class="reference external" href="syllabus.html">Syllabus</a></li>
+<li><a class="reference external" href="Mathematica/mathematica.html">Mathematica Introduction</a></li>
+<li>Sections from <a class="reference external" href="Mathematica/structure.html">Mathematica Document Structure and Syntax</a>:<ul>
+<li><a class="reference external" href="Mathematica/structure.html#basic-constructs">Basic Constructs</a></li>
+<li><a class="reference external" href="Mathematica/structure.html#order-matters">Order Matters</a></li>
+<li><a class="reference external" href="Mathematica/structure.html#other-constructs">Other Constructs</a></li>
+</ul>
+</li>
+<li><a class="reference external" href="Mathematica/lists.html#lists">Lists</a></li>
+<li><a class="reference external" href="Mathematica/functions_graphs.html#functions">Functions</a><ul>
+<li>You can ignore the &#8220;dummy variable&#8221; sidebar (that&#8217;s why it&#8217;s a sidebar)</li>
+</ul>
+</li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> Only the reading! Might browse through the whole book
+if you want to see what&#8217;s ahead, and to see some pretty examples.</p>
+<p><strong>Presentation:</strong> <a class="reference download internal" href="_downloads/Week1.pdf"><tt class="xref download docutils literal"><span class="pre">Week1.pdf</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-two-jan-23">
+<h2>Week Two (Jan. 23)<a class="headerlink" href="#week-two-jan-23" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction-to-mathematica-simple-programs-graphing">
+<h3>&#8220;Introduction to <em>Mathematica</em>: Simple programs, graphing&#8221;<a class="headerlink" href="#introduction-to-mathematica-simple-programs-graphing" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="Mathematica/structure.html">Mathematica Document Structure and Syntax</a></li>
+<li><a class="reference external" href="Mathematica/lists.html#lists-tables-and-matrices">Lists, Tables, and Matrices</a></li>
+<li>Sections from <a class="reference external" href="Mathematica/functions_graphs.html">Functions and Graphing</a><ul>
+<li><a class="reference external" href="Mathematica/functions_graphs.html#functions">Functions</a></li>
+<li><a class="reference external" href="Mathematica/functions_graphs.html#introduction-to-graphing">Introduction to Graphing</a></li>
+<li><a class="reference external" href="Mathematica/functions_graphs.html#basic-2d-graphs">Basic 2D Graphs</a></li>
+</ul>
+</li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/assignment1.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">1</span></tt></a>.</p>
+<p><strong>Presentation:</strong> <a class="reference download internal" href="_downloads/Week2.pdf"><tt class="xref download docutils literal"><span class="pre">Week2.pdf</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-three-jan-30">
+<h2>Week Three (Jan. 30)<a class="headerlink" href="#week-three-jan-30" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction-to-mathematica-simple-programs">
+<h3>&#8220;Introduction to <em>Mathematica</em>: Simple programs&#8221;<a class="headerlink" href="#introduction-to-mathematica-simple-programs" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="Mathematica/assumptions.html">Applying Assumptions</a></li>
+<li><a class="reference external" href="Mathematica/import.html">Importing Data</a></li>
+<li><a class="reference external" href="Mathematica/export.html">Exporting Data</a></li>
+<li><a class="reference external" href="Mathematica/functions_graphs.html">Functions and Graphing</a></li>
+<li><a class="reference external" href="Mathematica/animations.html">Animations</a></li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/assignment2.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">2</span></tt></a>.</p>
+<p><strong>Presentation:</strong> <a class="reference download internal" href="_downloads/Week3.pdf"><tt class="xref download docutils literal"><span class="pre">Week3.pdf</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-four-feb-6">
+<h2>Week Four (Feb. 6)<a class="headerlink" href="#week-four-feb-6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mathematica-reading-in-data-simple-analysis">
+<h3>&#8220;<em>Mathematica</em>: Reading in data, simple analysis&#8221;<a class="headerlink" href="#mathematica-reading-in-data-simple-analysis" title="Permalink to this headline">¶</a></h3>
+<p>This weeks marks the brief shift into applying the structures we&#8217;ve learned about with
+<em>Mathematica</em> to real problems rather than little toys. Most assignments (including the
+one due this week) that have a <em>Mathematica</em> component will now have some data associated with
+them that you will then use to perform analysis. This week, the assignment is more about graphing
+the raw data, but we&#8217;ll soon move to applying fits to the data, plotting those, plotting
+error bars, etc. We&#8217;ll take a break from <em>Mathematica</em> in a couple weeks to learn about
+<em>LaTeX</em> so we can present our results in a more formal way.</p>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="Analysis/curve_fit.html">Curve Fitting</a></li>
+<li><a class="reference external" href="Analysis/approximations.html">Approximations</a></li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/assignment3.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">3</span></tt></a>.</p>
+<p><strong>Data file for assignment (9 MB):</strong> <a class="reference download internal" href="_downloads/assignment3data.csv"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">3</span> <span class="pre">Data</span></tt></a>.</p>
+<p><strong>Presentation:</strong> <a class="reference download internal" href="_downloads/Week4.pdf"><tt class="xref download docutils literal"><span class="pre">Week4.pdf</span></tt></a></p>
+<p><strong>Examples from class:</strong> <a class="reference download internal" href="_downloads/Week4Examples.nb"><tt class="xref download docutils literal"><span class="pre">Week4Examples.nb</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-five-feb-13">
+<h2>Week Five (Feb. 13)<a class="headerlink" href="#week-five-feb-13" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mathematica-more-advanced-data-analysis">
+<h3>&#8220;<em>Mathematica</em>: More advanced data analysis&#8221;<a class="headerlink" href="#mathematica-more-advanced-data-analysis" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="Analysis/error.html">Error Analysis</a></li>
+<li><a class="reference external" href="Mathematica/functions_graphs.html#error-bars">Error Bars</a></li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/assignment4.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">4</span></tt></a>.</p>
+<p><strong>Data file for assignment (600 KB):</strong> <a class="reference download internal" href="_downloads/halley_data.csv"><tt class="xref download docutils literal"><span class="pre">Halley's</span> <span class="pre">Comet</span> <span class="pre">Data</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="week-six-feb-20">
+<h2>Week Six (Feb. 20)<a class="headerlink" href="#week-six-feb-20" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id4">
+<h3>&#8220;<em>Mathematica</em>: More advanced data analysis&#8221;<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p>This is the last week of <em>Mathematica</em> for a while (not last week - sorry)! We&#8217;ll begin looking at LaTeX next!</p>
+<p><strong>Reading due by class:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="LaTeX/installation.html">Installation</a></li>
+<li><a class="reference external" href="LaTeX/latex.html">Introduction to LaTeX</a></li>
+<li><a class="reference external" href="LaTeX/docstructure.html">Document Structure</a></li>
+<li><a class="reference external" href="LaTeX/commands.html">Commands and Special Characters</a></li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/assignment5.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">5</span></tt></a>.</p>
+<p><strong>Data file for assignment (600 KB):</strong> <a class="reference download internal" href="_downloads/halley_data.csv"><tt class="xref download docutils literal"><span class="pre">Halley's</span> <span class="pre">Comet</span> <span class="pre">Data</span></tt></a>.</p>
+</div>
+</div>
+<div class="section" id="week-seven-feb-27">
+<h2>Week Seven (Feb. 27)<a class="headerlink" href="#week-seven-feb-27" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="intro-to-latex">
+<h3>Intro to LaTeX<a class="headerlink" href="#intro-to-latex" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reading due by clas:</strong></p>
+<ul class="simple">
+<li><a class="reference external" href="LaTeX/packages.html">Packages</a></li>
+<li><a class="reference external" href="LaTeX/math.html">Mathematics in LaTeX</a></li>
+<li><a class="reference external" href="LaTeX/tables.html">Tables, Arrays, and Matrices</a></li>
+</ul>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/Assignment6.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">6</span> <span class="pre">PDF</span></tt></a> (<a class="reference download internal" href="_downloads/Assignment6.tex"><tt class="xref download docutils literal"><span class="pre">Source</span></tt></a>)</p>
+<p>Try typesetting the source before beginning the assignment - if it doesn&#8217;t let me know because you won&#8217;t be able to complete the assignment otherwise.</p>
+</div>
+</div>
+<div class="section" id="week-eight-mar-6">
+<h2>Week Eight (Mar. 6)<a class="headerlink" href="#week-eight-mar-6" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id5">
+<h3>Mathematics in LaTeX<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
+<p>The start of doing mathematics in LaTeX. Here&#8217;s the <a class="reference external" href="http://web.mit.edu/rsi/www/pdfs/advmath.pdf">MIT lecture</a> with nearly everything you need to know for the assignment.</p>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/Assignment7.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">7</span> <span class="pre">PDF</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-nine-mar-20">
+<h2>Week Nine (Mar. 20)<a class="headerlink" href="#week-nine-mar-20" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="new-commands-and-figures">
+<h3>New Commands and Figures<a class="headerlink" href="#new-commands-and-figures" title="Permalink to this headline">¶</a></h3>
+<p>Lecture on new commands and figures: <a class="reference download internal" href="_downloads/Week8.pdf"><tt class="xref download docutils literal"><span class="pre">Lecture</span> <span class="pre">8</span> <span class="pre">PDF</span></tt></a></p>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/Assignment8.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">8</span> <span class="pre">PDF</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-ten-mar-27">
+<h2>Week Ten (Mar. 27)<a class="headerlink" href="#week-ten-mar-27" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id6">
+<h3>Tables, Arrays, and Matrices<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
+<p>Lecture on new commands and figures: <a class="reference download internal" href="_downloads/Lecture10.pdf"><tt class="xref download docutils literal"><span class="pre">Lecture</span> <span class="pre">10</span> <span class="pre">PDF</span></tt></a></p>
+<p><strong>Assignment due before class this week:</strong> None</p>
+</div>
+</div>
+<div class="section" id="week-eleven-apr-3">
+<h2>Week Eleven (Apr. 3)<a class="headerlink" href="#week-eleven-apr-3" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="units-and-chemistry">
+<h3>Units and Chemistry<a class="headerlink" href="#units-and-chemistry" title="Permalink to this headline">¶</a></h3>
+<p>Installation Problems?</p>
+<p>(Evan here) I had trouble getting <tt class="code docutils literal"><span class="pre">siunitx</span></tt> and <tt class="code docutils literal"><span class="pre">mhchem</span></tt> to work. If
+you&#8217;re using MiKTeX (Windows), then you can use the package manager (in Windows 7 start menu,
+that&#8217;s &#8220;MiKTeX &lt;version&gt;/Maintenance (Admin)/Package Manager (Admin)&#8221;). You&#8217;ll need to
+install <tt class="code docutils literal"><span class="pre">l3kernel</span></tt> and <tt class="code docutils literal"><span class="pre">l3packages</span></tt> then <tt class="code docutils literal"><span class="pre">siunitx</span></tt> and <tt class="code docutils literal"><span class="pre">mhchem</span></tt>
+(just search for them by name - you might need to use the menu &#8220;Repository &gt; Synchronize&#8221;
+to update the listings - then click them and click the &#8220;+&#8221;).
+After that, things compiled normally. I had a lot of difficulty trying to download packages
+directly from CTAN.</p>
+<p>Lecture on new commands and figures: <a class="reference download internal" href="_downloads/Lecture11.pdf"><tt class="xref download docutils literal"><span class="pre">Lecture</span> <span class="pre">11</span> <span class="pre">PDF</span></tt></a></p>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/Assignment9.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">9</span> <span class="pre">PDF</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-twelve-apr-10">
+<h2>Week Twelve (Apr. 10)<a class="headerlink" href="#week-twelve-apr-10" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="bibtex">
+<h3>BibTeX<a class="headerlink" href="#bibtex" title="Permalink to this headline">¶</a></h3>
+<p>Interactive lesson on BibTeX.</p>
+<p><strong>Assignment due before class this week:</strong> <a class="reference download internal" href="_downloads/Assignment10.pdf"><tt class="xref download docutils literal"><span class="pre">Assignment</span> <span class="pre">10</span> <span class="pre">PDF</span></tt></a></p>
+<p>Sample working BibTeX example: <a class="reference download internal" href="_downloads/example.tex"><tt class="xref download docutils literal"><span class="pre">TeX</span> <span class="pre">file</span></tt></a> <a class="reference download internal" href="_downloads/biblio.bib"><tt class="xref download docutils literal"><span class="pre">bibliography</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="week-thirteen-apr-17">
+<h2>Week Thirteen (Apr. 17)<a class="headerlink" href="#week-thirteen-apr-17" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="z-scores-p-values-confidence-intervals-model-fits">
+<h3>Z-Scores, P-Values, Confidence Intervals, Model Fits<a class="headerlink" href="#z-scores-p-values-confidence-intervals-model-fits" title="Permalink to this headline">¶</a></h3>
+<p><strong>Reading</strong>:</p>
+<ul class="simple">
+<li><a class="reference external" href="Analysis/gaussian.html#combining-distributions">Combining Distributions</a></li>
+<li><a class="reference external" href="Analysis/gaussian.html#z-scores-p-values-and-confidence-intervals-oh-my">Z-scores</a></li>
+<li><a class="reference external" href="Analysis/curve_fit.html#mathematica-fitting-functions">Fitting Functions</a></li>
+</ul>
+<p><strong>PDF from last week:</strong> <a class="reference download internal" href="_downloads/Week12.pdf"><tt class="xref download docutils literal"><span class="pre">Week</span> <span class="pre">12</span></tt></a></p>
+<p><strong>PDF for this week:</strong> <a class="reference download internal" href="_downloads/Week13.pdf"><tt class="xref download docutils literal"><span class="pre">Week</span> <span class="pre">13</span></tt></a></p>
+</div>
+</div>
+<div class="section" id="final-project-may-2">
+<h2>Final Project (May 2)<a class="headerlink" href="#final-project-may-2" title="Permalink to this headline">¶</a></h2>
+<p>The final projects are here! There are three options. The first is about basketball scores
+and is generally the more &#8220;fun&#8221; application of our techniques (which shows how versatile
+they are!). The second more closely resembles a Modern Lab project. You&#8217;ll use simulated
+spectral data to look at the Hubble constant. Finally, the third option is an open-ended
+assignment to essentially produce, as we have done, a set of data, a <em>Mathematica</em> script
+to analyze it, and a <span class="math">\(\LaTeX\)</span> document detailing what you did. Please review the
+assignment carefully, but feel free to contact us with any questions.</p>
+<p><strong>Assignment information is here:</strong> <a class="reference download internal" href="_downloads/final_project.pdf"><tt class="xref download docutils literal"><span class="pre">Final</span> <span class="pre">Project</span></tt></a></p>
+<p><strong>Basketball data is here:</strong> <a class="reference download internal" href="_downloads/basketball.csv"><tt class="xref download docutils literal"><span class="pre">basketball.csv</span></tt></a></p>
+<p><strong>Hubble law data is here:</strong> <a class="reference download internal" href="_downloads/hubble.csv"><tt class="xref download docutils literal"><span class="pre">hubble.csv</span></tt></a></p>
+</div>
+</div>
+
+
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>
+    <!--
+        &copy; Copyright 2013, University of Texas at Austin Society of Physics Students and Sigma Pi Sigma.-->
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </p>
+  </div>
+</footer>
+
+<script type="text/javascript" charset="utf-8">
+    //$(document).ready(addUserToFooter);
+    $(document).ready(addNavbarLoginLink);
+    $(document).ready(createEditors);
+    //$(document).ready(getNumUsers);
+    //$(document).ready(getOnlineUsers);
+    $(document).ready(createScratchActivecode());
+    $(document).ready(styleUnittestResults());
+</script>
+
+<script type="text/javascript">
+  $("#mainbody").children().first().css("margin-top",
+    $("#navbar").css("height"))
+</script>
+
+<script type="text/javascript">
+  // add the video play button overlay image
+  $(".video-play-overlay").each(function() {
+    $(this).css('background-image', "url(\'_static/play_overlay_icon.png\')")
+    });
+
+  // This function is needed to allow the dropdown search bar to work;
+  // The default behaviour is that the dropdown menu closes when something in
+  // it (like the search bar) is clicked
+  $(function() {
+    // Fix input element click problem
+    $('.dropdown input, .dropdown label').click(function(e) {
+      e.stopPropagation();
+      });
+  });
+
+  // style codelens buttons (doing it here because PyTutor is a submodule owned by someone else
+  $(function() {
+    $(".ExecutionVisualizer").each(function() {
+      $(this).find("#jmpFirstInstr").addClass('btn btn-small btn-default');
+      $(this).find("#jmpStepBack").addClass('btn btn-small btn-danger');
+      $(this).find("#jmpStepFwd").addClass('btn btn-small btn-success');
+      $(this).find("#jmpLastInstr").addClass('btn btn-small btn-default');
+      });
+  });
+
+</script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+
+  </body>
+</html>
