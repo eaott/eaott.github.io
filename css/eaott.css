@@ -1,0 +1,7 @@
+/* http://stackoverflow.com/a/15660723 */
+.carousel-inner > .item > img {
+    margin: 0 auto;
+}
+.carousel-inner > .item > a > img {
+    margin: 0 auto;
+}
