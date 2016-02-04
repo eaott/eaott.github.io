@@ -5,3 +5,38 @@
 .carousel-inner > .item > a > img {
     margin: 0 auto;
 }
+.mainBody {
+  padding-left: 10px;
+  padding-right:10px;
+  min-width: 50%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+p {
+  font-size: 16px;
+  line-height: 140%;
+}
+
+/* For the Quick Ventures page, change the basic CSS*/
+.feedburnerFeedBlock > ul > li > span{
+    font-size: 20px;
+}
+.date {
+  font-size: 14px;
+}
+
+.feedburnerFeedBlock > ul {
+  list-style: none;
+  -webkit-padding-start: 0px;
+}
+.feedburnerFeedBlock > ul > li > div {
+  font-size: 16px;
+  line-height: 140%;
+  -webkit-padding-start: 20px;
+}
+.feedburnerFeedBlock {
+  border-left: -10px;
+}
+#creditfooter {
+  display: none;
+}
