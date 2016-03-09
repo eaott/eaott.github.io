@@ -38,9 +38,7 @@
       xfbml      : true,
       version    : 'v2.5'
     });
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
+    basicAPIRequest();
   };
 
   function basicAPIRequest() {
@@ -68,8 +66,6 @@
 
   <h1>Get your Facebook profile picture ready for RezWeek 2016!</h1>
 
-  <fb:login-button scope="public_profile" onlogin="checkLoginState();">
-</fb:login-button>
 
 <div id="status">
 </div>
