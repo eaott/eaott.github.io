@@ -70,6 +70,7 @@
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/d68412a8-2e55-42ca-b734-1e5bbcb4d192?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
       htmlToAdd = htmlToAdd + '<h3>Greater Than Fear</h3>';
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
+      htmlToAdd = htmlToAdd + '<br><br><p>Made with Wolfram Mathematica</p>';
 
       document.getElementById('status').innerHTML = htmlToAdd;
     });
@@ -112,8 +113,21 @@
     <div class="mainBody">
       <h1>Get ready for RezWeek 2016!</h1>
 
+      <h2>Upload your own photo</h2>
+      <p>
+        RezWeek 2016:
+        <a href="https://www.wolframcloud.com/objects/12ee30c3-7dd2-46fd-b3a1-fd7c574df784" target="_blank">
+          <img src="img/rezweek/rezweek_btn.png" width="300">
+        </a>
+        <br>
+        Greater Than Fear:
+        <a href="https://www.wolframcloud.com/objects/6f09dc02-94a8-4d02-a1ab-8366ba1b3a7b" target="_blank">
+          <img src="img/rezweek/fear_btn.png" width="300">
+        </a>
 
+      </p>
 
+      <h2>Use your FB profile picture</h2>
       <div id="status">
         Please wait while we process your profile picture...
       </div>
