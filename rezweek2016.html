@@ -63,9 +63,9 @@
   function basicAPIRequest() {
     FB.api('/me?fields=picture.height(100000)', function(response) {
       htmlToAdd = '<p>Note: it may take a few moments to process your profile picture.</p>';
-      htmlToAdd = htmlToAdd + '<h3>RezWeek 2016</h3>';
+      htmlToAdd = htmlToAdd + '<h4>RezWeek 2016</h4>';
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/d68412a8-2e55-42ca-b734-1e5bbcb4d192?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-      htmlToAdd = htmlToAdd + '<h3>Greater Than Fear</h3>';
+      htmlToAdd = htmlToAdd + '<h4>Greater Than Fear</h4>';
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
 
       document.getElementById('status').innerHTML = htmlToAdd;
@@ -122,13 +122,11 @@
       <h2>Option 2</h2>
       <p>Would you rather upload your own image? Choose a filter first!</p>
       <p>
-        RezWeek 2016:<br>
+        <h4>RezWeek 2016</h4>
         <a href="https://www.wolframcloud.com/objects/12ee30c3-7dd2-46fd-b3a1-fd7c574df784" target="_blank">
           <img src="img/rezweek/rezweek_btn.png" width="300">
         </a>
-        <br>
-        Greater Than Fear:
-        <br>
+        <h4>Greater Than Fear</h4>
         <a href="https://www.wolframcloud.com/objects/6f09dc02-94a8-4d02-a1ab-8366ba1b3a7b" target="_blank">
           <img src="img/rezweek/fear_btn.png" width="300">
         </a>
