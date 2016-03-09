@@ -19,6 +19,7 @@
   <link rel="shortcut icon" href="img/icon.ico">
 </head>
 <body>
+  <div id="fb-root"></div>
   <script>
 
   function statusChangeCallback(response) {
@@ -70,17 +71,16 @@
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/d68412a8-2e55-42ca-b734-1e5bbcb4d192?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
       htmlToAdd = htmlToAdd + '<h3>Greater Than Fear</h3>';
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-      htmlToAdd = htmlToAdd + '<br><br><p>Made with Wolfram Mathematica</p>';
 
       document.getElementById('status').innerHTML = htmlToAdd;
     });
   };
 
-  (function(d, s, id){
+  (function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) {return;}
+    if (d.getElementById(id)) return;
     js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=2000756080149397";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));
   </script>
@@ -133,9 +133,13 @@
         Please wait while we process your profile picture...
       </div>
       <div id="FBbutton">
-        <div class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false"></div>
+        <div class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState()"></div>
       </div>
-
+      <div>
+        <p>
+          Powered by by the Wolfram Language.
+        </p>
+      </div>
     </div>
   </body>
 </html>
