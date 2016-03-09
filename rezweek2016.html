@@ -46,12 +46,13 @@
   function basicAPIRequest() {
     console.log("requesting...");
     FB.api('/me?fields=picture.height(100000)', function(response) {
+      console.log('API response');
       console.log(response);
-      /*Log.info('API response', response);
-      Log.info('url', response.picture.data.url);
+      console.log('url');
+      console.log(response.picture.data.url);
       htmlToAdd = '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-      Log.info('html',htmlToAdd);
-      document.getElementById('accountInfo').innerHTML = htmlToAdd;*/
+      console.log(htmlToAdd);
+      document.getElementById('status').innerHTML = htmlToAdd;
     });
   };
 
