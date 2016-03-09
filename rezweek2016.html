@@ -1,0 +1,56 @@
+<html>
+<head>
+</head>
+<body>
+  <script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '2000756080149397',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div
+class="fb-like"
+data-share="true"
+data-width="450"
+data-show-faces="true">
+</div>
+<h1>Get your Facebook profile picture ready for RezWeek 2016!</h1>
+
+<div id="accountInfo" style="padding-top: 20px">You haven't logged in yet.</div>
+
+
+
+
+<script>
+  function basicAPIRequest() {
+    FB.api('/me?fields=picture.height(100000)', function(response) {
+      Log.info('API response', response);
+Log.info('url', response.picture.data.url);
+htmlToAdd = '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
+Log.info('html',htmlToAdd);
+      document.getElementById('accountInfo').innerHTML = htmlToAdd;
+    });
+  }
+
+  FB.getLoginStatus(function(response) {
+    Log.info('Login Status', response);
+    if (response.status === 'connected') {
+      basicAPIRequest();
+    }
+  });
+</script>
+
+</body>
+</html>
