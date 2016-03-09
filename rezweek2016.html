@@ -22,15 +22,25 @@
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
+      'into this app.';
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
+      'into Facebook.';
     }
   }
 
+  function basicAPIRequest() {
+    FB.api('/me?fields=picture.height(100000)', function(response) {
+      Log.info('API response', response);
+      Log.info('url', response.picture.data.url);
+      htmlToAdd = '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
+      Log.info('html',htmlToAdd);
+      document.getElementById('accountInfo').innerHTML = htmlToAdd;
+    });
+  });
+  
 
   window.fbAsyncInit = function() {
     FB.init({
@@ -39,24 +49,24 @@
       version    : 'v2.5'
     });
     FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-});
+      statusChangeCallback(response);
+    });
 
   };
 
   (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
 
 
-<h1>Get your Facebook profile picture ready for RezWeek 2016!</h1>
+  <h1>Get your Facebook profile picture ready for RezWeek 2016!</h1>
 
-<fb:login-button scope="public_profile" onlogin="checkLoginState();">
+  <fb:login-button scope="public_profile" onlogin="checkLoginState();">
 </fb:login-button>
 
 <div id="status">
@@ -65,16 +75,7 @@
 
 
 <script>
-  function basicAPIRequest() {
-    FB.api('/me?fields=picture.height(100000)', function(response) {
-      Log.info('API response', response);
-Log.info('url', response.picture.data.url);
-htmlToAdd = '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-Log.info('html',htmlToAdd);
-      document.getElementById('accountInfo').innerHTML = htmlToAdd;
-    });
-  }
-  });
+
 </script>
 
 </body>
