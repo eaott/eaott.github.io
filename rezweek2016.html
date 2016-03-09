@@ -3,12 +3,45 @@
 </head>
 <body>
   <script>
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      basicAPIRequest();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into Facebook.';
+    }
+  }
+
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '2000756080149397',
       xfbml      : true,
       version    : 'v2.5'
     });
+    FB.getLoginStatus(function(response) {
+  statusChangeCallback(response);
+});
+
   };
 
   (function(d, s, id){
@@ -20,12 +53,7 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div
-class="fb-like"
-data-share="true"
-data-width="450"
-data-show-faces="true">
-</div>
+
 <h1>Get your Facebook profile picture ready for RezWeek 2016!</h1>
 
 <div id="accountInfo" style="padding-top: 20px">You haven't logged in yet.</div>
@@ -43,12 +71,6 @@ Log.info('html',htmlToAdd);
       document.getElementById('accountInfo').innerHTML = htmlToAdd;
     });
   }
-
-  FB.getLoginStatus(function(response) {
-    Log.info('Login Status', response);
-    if (response.status === 'connected') {
-      basicAPIRequest();
-    }
   });
 </script>
 
