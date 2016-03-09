@@ -48,12 +48,12 @@
     FB.api('/me?fields=picture.height(100000)', function(response) {
       htmlToAdd = '<h2>Your New Profile!</h2>'
       htmlToAdd = htmlToAdd + '<p>Thanks for supporting RezWeek! All you need to do now is choose one of these, download it (right-click, "Save Image As...") then upload it to Facebook as your Profile!</p>';
+      htmlToAdd = htmlToAdd + '<p>Note: it may take a few moments to process your profile picture.</p>';
       htmlToAdd = htmlToAdd + '<h3>RezWeek 2016</h3>';
-      htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-      htmlToAdd = htmlToAdd + '<h3>Greater Than Fear</h3>';
       htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/d68412a8-2e55-42ca-b734-1e5bbcb4d192?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
+      htmlToAdd = htmlToAdd + '<h3>Greater Than Fear</h3>';
+      htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
 
-      console.log(htmlToAdd);
       document.getElementById('status').innerHTML = htmlToAdd;
     });
   };
@@ -68,7 +68,7 @@
   </script>
 
 
-  <h1>Get your FB profile ready for RezWeek 2016!</h1>
+  <h1>Get ready for RezWeek 2016!</h1>
 
   <div id="FBbutton">
     Click here to log in to Facebook.
