@@ -63,10 +63,8 @@
   function basicAPIRequest() {
     FB.api('/me?fields=picture.height(100000)', function(response) {
       htmlToAdd = '<p>Note: it may take a few moments to process your profile picture.</p>';
-      htmlToAdd = htmlToAdd + '<h4>RezWeek 2016</h4>';
-      htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/d68412a8-2e55-42ca-b734-1e5bbcb4d192?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
-      htmlToAdd = htmlToAdd + '<h4>Greater Than Fear</h4>';
-      htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/0b973aac-55e1-4a39-8ff3-eec8b7608a39?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
+      htmlToAdd = htmlToAdd + '<h4>RezWeek 2016: Greater Than Fear</h4>';
+      htmlToAdd = htmlToAdd + '<img src="https://www.wolframcloud.com/objects/843089a2-b275-4543-88cc-2b4bacce14cc?profile=' + encodeURIComponent (response.picture.data.url) + '" width="300"> ';
 
       document.getElementById('status').innerHTML = htmlToAdd;
     });
@@ -111,7 +109,7 @@
       <p>Filter your Facebook profile picture and represent the best week of the year with all your friends!</p>
 
       <h2>Option 1</h2>
-      <p>We’ll filter your current Facebook profile picture for you--all you have to do is choose your filter, save, and upload!</p>
+      <p>We’ll filter your current Facebook profile picture for you--all you have to do is save and upload!</p>
       <div id="status">
         First, log into Facebook so we can create your new FB profile image.
       </div>
@@ -120,15 +118,11 @@
       </div>
 
       <h2>Option 2</h2>
-      <p>Would you rather upload your own image? Choose a filter first!</p>
+      <p>Would you rather upload your own image?</p>
       <p>
-        <h4>RezWeek 2016</h4>
-        <a href="https://www.wolframcloud.com/objects/12ee30c3-7dd2-46fd-b3a1-fd7c574df784" target="_blank">
+        <h4>RezWeek 2016: Greater Than Fear</h4>
+        <a href="https://www.wolframcloud.com/objects/32a921cc-8671-445f-b534-18024113bf7e" target="_blank">
           <img src="img/rezweek/rezweek_btn.png" width="300">
-        </a>
-        <h4>Greater Than Fear</h4>
-        <a href="https://www.wolframcloud.com/objects/6f09dc02-94a8-4d02-a1ab-8366ba1b3a7b" target="_blank">
-          <img src="img/rezweek/fear_btn.png" width="300">
         </a>
       </p>
 
