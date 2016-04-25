@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <title>Projects - Evan Ott</title>
+  <title>Evan Ott - Research Projects, Programming</title>
+
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research">
+    <meta name="description" content="Research Projects and Programming. Statistics, Data Science, and Software Engineering.">
 
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-theme.css">
@@ -99,8 +102,9 @@
   </header>
   <div class="mainBody">
     <hr>
-    <div id="MathematElection">
-      <h3>MathematElection</h3>
+    <div id="MathematElection" itemscope itemtype="http://schema.org/SoftwareApplication">
+      <h3 itemprop="name">MathematElection</h3>
+      <div itemprop="description">
       <p>
         What's in a Like?
       </p>
@@ -128,9 +132,11 @@
           </div>
       </p>
     </div>
+    </div>
     <hr>
-    <div id="Thesis">
-      <h3>Undergraduate Honors Thesis</h3>
+    <div id="Thesis" itemscope itemtype="http://schema.org/SoftwareApplication">
+      <h3 itemprop="name">Undergraduate Honors Thesis</h3>
+      <div itemprop="description">
       <p>
         Over the past 30 years, an average of 85 people died each year in the US
         due to flash-floods, making them the most fatal severe weather condition.
@@ -153,9 +159,11 @@
         goes to Dr. Michael Marder and Dr. Pradeep Ravikumar who supervised my research.
       </p>
     </div>
+    </div>
     <hr>
-    <div id="DataAnalysis">
-      <h3><i>Introduction to Data Analysis for Physics</i></h3>
+    <div id="DataAnalysis" itemscope itemtype="http://schema.org/Book">
+      <h3 itemprop="name"><i>Introduction to Data Analysis for Physics</i></h3>
+      <div itemprop="description">
       <p>
         Data is everything. Even for physics. Especially for physics.
       </p>
@@ -166,7 +174,7 @@
         basis, rather than in a classroom setting.
       </p>
 <p>
-        <a href="https://github.com/willbeason" target="_blank">Will Beason</a> and I set out to
+        <a itemprop="contributor" href="https://github.com/willbeason" target="_blank">Will Beason</a> and I set out to
         correct that.
 </p>
 <p>
@@ -183,6 +191,20 @@
         to Dr. Greg Sitz who handed us the reins for the curriculum in a grand educational experiment.
       </p>
     </div>
+  </div>
+  <hr>
+  <div id="RezWeek2016" itemscope itemtype="http://schema.org/WebSite">
+    <h3 itemprop="name">RezWeek 2016 Profile Filter</h3>
+    <p itemprop="description">
+      Profile filters on social media unite and drive a movement visually. I built a small
+      system to create a custom Facebook profile filter automatically for <a href="http://texasunited.org" target="_blank">Campus Renewal UT's</a>
+      RezWeek 2016. RezWeek celebrates the resurrection of Jesus, and the 2016 theme was "Greater Than Fear." I built the code to
+      allow students to upload a photo, and get it "Ready for RezWeek." I hope to expand on this at a later date.
+    </p>
+  <p>
+    You can still check out what your profile would look like at <a itemprop="url" href="rezweek2016.html">www.evanott.com/rezweek2016.html</a>.
+  </p>
+</div>
   </div>
 </body>
 </html>
