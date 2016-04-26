@@ -52,7 +52,7 @@
     </nav>
   </header>
   <div class="mainBody">
-    <div itemscope itemtype="http://schema.org/Person">
+    <div itemscope itemtype="http://schema.org/Person" id="evan">
     <h1>Welcome!</h1><hr>
     <!-- http://stackoverflow.com/a/9371756 -->
     <div id="About" style="max-width:800px;">
@@ -91,10 +91,14 @@
       Although it is a somewhat old-hat in its simplest form, I've found Hamiltonian (or hybrid) Monte Carlo absolutely fascinating,
       as it connected so well with what I learned as a physics major.
       <br>
+
+
+      <meta itemprop="jobTitle" itemscope itemref="myTitle">
+
       <h3>Education</h3>
       <p itemprop="worksFor" itemscope itemtype="http://schema.org/CollegeOrUniversity">
         <link itemprop="sameAs" href="http://stat.utexas.edu"/>
-        <img src="img/ut.png" itemprop="logo" alt="UT" height="14px" style="padding-right: 4px;"><span itemprop="jobTitle">Statistics PhD Student</span> (Fall 2015 &mdash; Present)<br>
+        <img src="img/ut.png" itemprop="logo" alt="UT" height="14px" style="padding-right: 4px;"><span id="myTitle">Statistics PhD Student</span> (Fall 2015 &mdash; Present)<br>
         <span itemprop="name">The University of Texas at Austin</span>
       </p>
       <p itemprop="alumniOf" itemscope itemtype="http://schema.org/CollegeOrUniversity">
