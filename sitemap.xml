@@ -49,99 +49,229 @@
 
 
 
-
+  <url>
+    <loc>http://www.evanott.com/data_analysis/</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
+  </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/assignments.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/index.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/intro.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/syllabus.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Analysis/approximations.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Analysis/curve_fit.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/fit_curve.png</image:loc>
+       <image:caption>Example of Fitting a Curve to Data</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Analysis/error.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Analysis/gaussian.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/paranormal.jpg</image:loc>
+       <image:caption>Freeman, Matthew. "A visual comparison of normal and paranormal distributions." Journal of Epidemiology and Community Health. 2006 January; 60(1): 6.</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/commands.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/docstructure.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/include.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/installation.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/sidebyside.png</image:loc>
+       <image:caption>Example of the TeXworks Environment</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/latex.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/latexsimple.png</image:loc>
+       <image:caption>Simple LaTeX Document</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/math.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/newcommand.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/hermitian.jpg</image:loc>
+       <image:caption>Example of Creating New Commands</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/packages.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/symbols.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/tables.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/LaTeX/include.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Math/eigenvalues.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Math/logic.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Math/misc.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Math/stats.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/animations.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/animate.gif</image:loc>
+       <image:caption>Example of Animating a Dataset</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/assumptions.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/export.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/export_ani.gif</image:loc>
+       <image:caption>Example of Exported GIF Animation</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/functions_graphs.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_images/listline_interp.png</image:loc>
+       <image:caption>List Line Plot</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/import.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/lists.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/mathematica.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
   <url>
     <loc>http://www.evanott.com/data_analysis/Mathematica/structure.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/data-analysis/_static/img/logo_small.png</image:loc>
+       <image:caption>Data Analysis for Physics</image:caption>
+    </image:image>
   </url>
 
 </urlset>
