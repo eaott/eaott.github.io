@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+  xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+  <url>
+    <loc>http://www.evanott.com/</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/profile.png</image:loc>
+       <image:caption>Evan Ott</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/index.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/profile.png</image:loc>
+       <image:caption>Evan Ott</image:caption>
+    </image:image>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/projects.html</loc>
+    <video:video>
+      <video:content_loc>
+        https://www.youtube.com/embed/JOxR31EUg48?rel=0
+      </video:content_loc>
+      <video:player_loc allow_embed="yes" autoplay="ap=1">
+        https://www.youtube.com/embed/JOxR31EUg48?rel=0
+      </video:player_loc>
+      <video:thumbnail_loc>
+        http://www.evanott.com/img/MathematElection.png
+      </video:thumbnail_loc>
+      <video:title>Computational Politics: The Wolfram Data Drop Meets Election 2016</video:title>
+      <video:description>
+        Recording from my presentation at the 2015 Wolfram Technology Conference on "Computational Politics: The Wolfram Data Drop Meets Election 2016"
+      </video:description>
+    </video:video>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/quick_ventures.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/rezweek2016.html</loc>
+    <image:image>
+       <image:loc>http://www.evanott.com/img/rezweek/rezweek_btn.png</image:loc>
+       <image:caption>RezWeek Button</image:caption>
+    </image:image>
+  </url>
+
+
+
+
+
+
+  <url>
+    <loc>http://www.evanott.com/data_analysis/assignments.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/index.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/intro.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/syllabus.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Analysis/approximations.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Analysis/curve_fit.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Analysis/error.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Analysis/gaussian.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/commands.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/docstructure.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/include.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/installation.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/latex.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/math.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/newcommand.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/packages.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/symbols.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/tables.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/LaTeX/include.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Math/eigenvalues.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Math/logic.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Math/misc.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Math/stats.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/animations.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/assumptions.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/export.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/functions_graphs.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/import.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/lists.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/mathematica.html</loc>
+  </url>
+  <url>
+    <loc>http://www.evanott.com/data_analysis/Mathematica/structure.html</loc>
+  </url>
+
+</urlset>
