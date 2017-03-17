@@ -1,0 +1,305 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Evan Ott - RezWeek 2016</title>
+
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research, RezWeek">
+    <meta name="description" content="Custom Facebook Profile Filter. Contact me to Create Yours.">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/eaott.css">
+  <script src="js/jquery-2.2.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <meta name="viewport" content="width=device-width">
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- http://stackoverflow.com/a/4888458 -->
+  <link rel="shortcut icon" href="img/icon.ico">
+
+  <script>
+  var getUrlParameter = function getUrlParameter(sParam) {
+      var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+          sURLVariables = sPageURL.split('&'),
+          sParameterName,
+          i;
+
+      for (i = 0; i < sURLVariables.length; i++) {
+          sParameterName = sURLVariables[i].split('=');
+
+          if (sParameterName[0] === sParam) {
+              return sParameterName[1] === undefined ? true : sParameterName[1];
+          }
+      }
+  };
+    window.onload = function(){
+      $('#uploadbutton').click(function(){
+    		$('#uploadfile').click();
+  		});
+
+      $('#filterbutton').click(function(){
+    		$('#filterfile').click();
+  		});
+
+      var filter = getUrlParameter('filter');
+      if (filter != undefined) {
+        $('#img1').attr('src', filter);
+        $('#filterThumb').attr('src', filter);
+        $('#filterThumb').show();
+      }
+    };
+
+
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      document.getElementById('FBbutton').innerHTML = "";
+      basicAPIRequest();
+    } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('outputcanvas').innerHTML = 'Please allow this app to have access to your public profile picture.';
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('outputcanvas').innerHTML = 'First, log into Facebook so we can create your new FB profile image.';
+    }
+  };
+
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  };
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1016509215149851',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+    FB.AppEvents.logPageView();
+  };
+
+    /**
+      Basic function to get the right range for pixel values
+      */
+      function correctRange(pixelVal)
+      {
+      	return Math.min(Math.max(Math.round(pixelVal),0), 0xff);
+      }
+
+      /**
+      contrast http://www.dfstudios.co.uk/articles/programming/image-programming-algorithms/image-processing-algorithms-part-5-contrast-adjustment/
+      brightness http://math.stackexchange.com/questions/906240/algorithms-to-increase-or-decrease-the-contrast-of-an-image
+      */
+      function update(pixel, brightness, contrast, gamma) {
+      	var contrastFactor = -((259 * (1 + contrast))/(-259 + 255 * contrast));
+      	var updated = contrastFactor * (pixel - 128) + 128 + 128 * brightness;
+      	pixel = correctRange(updated);
+      	// pixel now in range [0, 0xff].
+      	pixel = correctRange(0xff * Math.pow(pixel / 255.0, gamma));
+
+      	return pixel;
+      }
+
+      function profileFilter(filterId, picId, canvasId, outputId) {
+        var img1 = document.getElementById(filterId);
+        var img2 = document.getElementById(picId);
+        var canvas = document.getElementById(canvasId);
+        var context = canvas.getContext("2d");
+        console.log(img1.width, img1.height,  img2.width, img2.height);
+
+        var width = img1.width;
+        var height = img1.height;
+        if (img2.width < width) {
+          width = img2.width;
+        }
+        if (img2.height < height) {
+          height = img2.height;
+        }
+        var size = Math.min(width, height);
+
+        canvas.width = size;
+        canvas.height = size;
+
+        // crop to biggest central square, then scale to correct size
+        var pixels = 4 * size * size;
+        var img1Size = Math.min(img1.width, img1.height);
+        context.drawImage(img1,
+          (img1.width - img1Size) / 2, (img1.height - img1Size) / 2,
+          img1Size, img1Size,
+          0, 0,
+          size, size);
+        var image1 = context.getImageData(0, 0, size, size);
+        var imageData1 = image1.data;
+
+        var img2Size = Math.min(img2.width, img2.height);
+        context.drawImage(img2,
+          (img2.width - img2Size) / 2, (img2.height - img2Size) / 2,
+          img2Size, img2Size,
+          0, 0,
+          size, size);
+        var image2 = context.getImageData(0, 0, size, size);
+
+
+        var imageData2 = image2.data;
+
+        while (pixels > 0) {
+          //profile
+          var r2 = imageData2[pixels];
+          var a2 = imageData2[pixels - 1];
+          var b2 = imageData2[pixels - 2];
+          var g2 = imageData2[pixels - 3];
+
+          var avg = (r2 + g2 + b2) / 3;
+
+          var mix = 0.55;
+          var brightness = 0.1;
+          var contrast = 0.1;
+          var gamma = 1.05;
+
+          // red
+          imageData1[pixels] = update(avg * (1-mix) + imageData1[pixels] * mix, brightness, contrast, gamma);
+          // alpha
+          imageData1[pixels - 1] = 255;//imageData1[pixels - 1];
+          // blue
+          imageData1[pixels - 2] = update(avg * (1-mix) + imageData1[pixels - 2] * mix, brightness, contrast, gamma);
+          // green
+          imageData1[pixels - 3] = update(avg * (1-mix) + imageData1[pixels - 3] * mix, brightness, contrast, gamma);
+
+          pixels = pixels - 4;
+        }
+        image1.data = imageData1;
+        context.putImageData(image1, 0, 0);
+        var img    = canvas.toDataURL("image/png");
+        $("#placeholder").hide();
+        document.getElementById(outputId).innerHTML = '<img src="'+img+'" width="450"/>';
+      }
+    /**
+    Handles the custom-upload feature
+    */
+    function readURL(input) {
+
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+
+                 reader.onload = function (e) {
+                     $('#customImg')
+                         .attr('src', e.target.result);
+                   $('#customImg')
+                   		.attr('onload', "profileFilter('img1', 'customImg', 'customcanvas', 'customoutputcanvas');");
+
+                 };
+
+                 reader.readAsDataURL(input.files[0]);
+             }
+    }
+    function readFilterURL(input) {
+             if (input.files && input.files[0]) {
+                 var reader = new FileReader();
+                 reader.onload = function (e) {
+                     $('#img1').attr('src', e.target.result);
+                     $('#filterThumb').attr('src', e.target.result);
+                     $('#filterThumb').show();
+                 };
+                 reader.readAsDataURL(input.files[0]);
+             }
+    }
+
+  function basicAPIRequest() {
+    FB.api('/me?fields=picture.height(100000)', function(response) {
+      $("#placeholder").show();
+      $("#fbimage").append('<img id="img2" src="' + response.picture.data.url + '" onload="profileFilter(\'img1\', \'img2\', \'blendedcanvas\', \'outputcanvas\');" crossOrigin="anonymous" style="display:none;" />');
+    });
+  };
+
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=1016509215149851";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+  </script>
+</head>
+<body>
+  <div id="fb-root"></div>
+
+
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="img/lambdasaur.png" alt="Logo" height="25px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Main <span class="sr-only">(current)</span></a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quick_ventures.html">Quick Ventures</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    </header>
+    <div class="mainBody">
+      <h1>Custom Profile Filter</h1>
+      <p>Create a custom Profile Filter</p>
+      <h2>Your image</h2>
+      <!-- TODO: allow user to upload a photo here OR to fill in based on URL query parameters -->
+      <!-- TODO: replace the upload button with a generic one -->
+      <input id="filterbutton" type="image" src="img/upload_filter_btn.png" width="100%"/>
+      <input id='filterfile' type='file' onchange="readFilterURL(this);" style="display:none;" accept="image/*" />
+      <img src="#" id="img1" style="display:none;" crossOrigin="anonymous"/>
+      <img src="#" id="filterThumb" width="50%" style="display:none;" crossOrigin="anonymous" />
+
+
+      <h2>Facebook</h2>
+      <div style="text-align:center;">
+        <!-- TODO: Replace the placeholder with a generic one -->
+        <img id="placeholder" src="img/loading.gif" width="300" style="display:none;"/>
+        <div id="fbimage"></div>
+        <canvas id="blendedcanvas" style="display:none;"></canvas>
+        <div id="outputcanvas">
+        First, log into Facebook so we can create your new FB profile image.
+        </div>
+      </div>
+      <div id="FBbutton" align="center">
+          <div class="fb-login-button" data-size="xlarge" data-show-faces="false" data-auto-logout-link="false" onlogin="checkLoginState()"></div>
+      </div>
+
+      <h2>User Upload</h2>
+      <p>Would you rather your user upload their own image?</p>
+      <div style="text-align:center;">
+        <!-- TODO: replace the upload button with a generic one -->
+        <input id="uploadbutton" type="image" src="img/upload_user_btn.png" width="100%"/>
+        <input id='uploadfile' type='file' onchange="readURL(this);" style="display:none;" accept="image/*" />
+        <img src="#" id="customImg" style="display:none;" />
+        <canvas id="customcanvas" style="display:none;"></canvas>
+        <div id="customoutputcanvas"></div>
+      </div>
+    </div>
+  </body>
+</html>
