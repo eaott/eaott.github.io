@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#"
+  },
+  "@graph": [
+    {
+      "@id": "http://www.evanott.com/schemas/MeasuredIngredient",
+      "@type": "rdfs:Class",
+      "rdfs:comment": "An ingredient to use in a recipe that is capable of being measured.",
+      "rdfs:label": "MeasuredIngredient",
+      "rdfs:subClassOf": {
+        "@id": "http://schema.org/Thing"
+      }
+    },
+    {
+      "@id": "http://www.evanott.com/schemas/scaledIngredient",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://schema.org/Recipe"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://www.evanott.com/schemas/MeasuredIngredient"
+      },
+      "rdfs:comment": "An ingredient for a recipe that can be measured.",
+      "rdfs:label": "scaledIngredient"
+    },
+    {
+      "@id": "http://www.evanott.com/schemas/ingredientQuantity",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://www.evanott.com/schemas/MeasuredIngredient"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/Number"
+      },
+      "rdfs:comment": "Amount of ingredient to be used in the recipe.",
+      "rdfs:label": "ingredientQuantity"
+    },
+    {
+      "@id": "http://www.evanott.com/schemas/ingredientUnit",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://www.evanott.com/schemas/MeasuredIngredient"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "rdfs:comment": "Unit used to measure the ingredient, for example, \"cup\" or \"grams\".",
+      "rdfs:label": "ingredientUnit"
+    },
+    {
+      "@id": "http://www.evanott.com/schemas/ingredientSubstance",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://www.evanott.com/schemas/MeasuredIngredient"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/Text"
+      },
+      "rdfs:comment": "Substance of the ingredient, for example, \"chicken, diced\" or \"extra virgin olive oil\".",
+      "rdfs:label": "ingredientSubstance"
+    },
+    {
+      "@id": "http://www.evanott.com/schemas/isOptional",
+      "@type": "rdf:Property",
+      "http://schema.org/domainIncludes": {
+        "@id": "http://www.evanott.com/schemas/MeasuredIngredient"
+      },
+      "http://schema.org/rangeIncludes": {
+        "@id": "http://schema.org/Boolean"
+      },
+      "rdfs:comment": "Whether something is optional.",
+      "rdfs:label": "isOptional"
+    }
+  ],
+  "@id": "http://www.evanott.com/schemas/#0.1"
+}

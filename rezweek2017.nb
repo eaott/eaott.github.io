@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    173708,       2982]
-NotebookOptionsPosition[    173240,       2962]
-NotebookOutlinePosition[    173596,       2978]
-CellTagsIndexPosition[    173553,       2975]
+NotebookDataLength[    176321,       3044]
+NotebookOptionsPosition[    175853,       3024]
+NotebookOutlinePosition[    176209,       3040]
+CellTagsIndexPosition[    176166,       3037]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -2782,19 +2782,24 @@ Cell[BoxData[{
  RowBox[{"wc", "=", 
   RowBox[{"WordCloud", "[", "\[IndentingNewLine]", 
    RowBox[{
-    RowBox[{"{", " ", 
+    RowBox[{"{", 
      RowBox[{
-      RowBox[{"2", "\[Rule]", "\"\<ACTS College Fellowship\>\""}], ",", 
+      RowBox[{"2", "\[Rule]", "\"\<AACM\>\""}], ",", 
+      RowBox[{"2", "\[Rule]", "\"\<Texas Wesley\>\""}], ",", 
       RowBox[{"2", "\[Rule]", "\"\<Campus Renewal\>\""}], ",", 
-      RowBox[{"7", "\[Rule]", "\"\<Epic Movement\>\""}], ",", 
       RowBox[{"8", "\[Rule]", "\"\<Justice For All\>\""}], ",", 
-      RowBox[{"16", "\[Rule]", "\"\<Bannockburn Baptist\>\""}], ",", 
-      RowBox[{"11", "\[Rule]", "\"\<BSM\>\""}], ",", 
-      RowBox[{"2", "\[Rule]", "\"\<The Well\>\""}], ",", 
-      RowBox[{"4", "\[Rule]", "\"\<Navs\>\""}], ",", 
-      RowBox[{"8", "\[Rule]", "\"\<Lifeway\>\""}], ",", 
+      RowBox[{"17", "\[Rule]", "\"\<BSM\>\""}], ",", 
+      RowBox[{"2", "\[Rule]", "\"\<Chi Alpha\>\""}], ",", 
+      RowBox[{"4", "\[Rule]", "\"\<Access Fellowship\>\""}], ",", 
+      RowBox[{"7", "\[Rule]", "\"\<Epic Movement\>\""}], ",", 
+      RowBox[{"5", "\[Rule]", "\"\<ACTS College Fellowship\>\""}], ",", 
       RowBox[{"1", "\[Rule]", "\"\<AKPC\>\""}], ",", 
-      RowBox[{"1", "\[Rule]", "\"\<Chi Alpha\>\""}]}], "}"}], ",", 
+      RowBox[{"16", "\[Rule]", "\"\<Bannockburn Baptist\>\""}], ",", 
+      RowBox[{"1", "\[Rule]", "\"\<The Well\>\""}], ",", 
+      RowBox[{"10", "\[Rule]", "\"\<Navs\>\""}], ",", 
+      RowBox[{"8", "\[Rule]", "\"\<Lifeway\>\""}], ",", 
+      RowBox[{"6", "\[Rule]", "\"\<The Austin Stone\>\""}], ",", 
+      RowBox[{"1", "\[Rule]", "\"\<IJM\>\""}]}], "}"}], ",", 
     "\[IndentingNewLine]", 
     RowBox[{"Background", "\[Rule]", "Transparent"}], ",", 
     RowBox[{"ColorFunction", "\[Rule]", 
@@ -2833,123 +2838,178 @@ Cell[BoxData[{
    3.698426634783869*^9, 3.698426635062111*^9}, {3.698426783778083*^9, 
    3.698426808006439*^9}, {3.698456645411791*^9, 3.698456676899085*^9}, {
    3.6985416766408863`*^9, 3.698541676994399*^9}, {3.698603571208939*^9, 
-   3.698603576400599*^9}}],
+   3.698603576400599*^9}, {3.698780754230905*^9, 3.698780757649967*^9}, {
+   3.698845023958147*^9, 3.6988450244146214`*^9}, {3.698856305669345*^9, 
+   3.698856390824375*^9}, {3.698891998429721*^9, 3.698891999454892*^9}, {
+   3.698958314316731*^9, 3.698958314561569*^9}, {3.6989701348403387`*^9, 
+   3.698970135327249*^9}}],
 
 Cell[BoxData[
  GraphicsBox[{{}, {InsetBox[
      StyleBox["\<\"Bannockburn Baptist\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.10719754977029097`],
+      FontSize->Scaled[0.10720064724919094`],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
-       0.858156, 0.3311605, 0.33629450000000005`]], {0, 0}], InsetBox[
+       0.8184122, 0.24727920000000003`, 0.2506064]], {0, 0}], InsetBox[
+     StyleBox["\<\"BSM\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.11326860841423948`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.858156, 0.3311605, 0.33629450000000005`]], {-0.5, 61.}], InsetBox[
+     StyleBox["\<\"ACTS College Fellowship\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.04045307443365696],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.7562669, 0.18717090000000003`, 0.18906380000000003`]], {-0.5, -43.}],
+     InsetBox[
      StyleBox["\<\"Justice For All\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.05819295558958652],
+      FontSize->Scaled[0.05865695792880259],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
-       0.7562669, 0.18717090000000003`, 0.18906380000000003`]], {0., -48.5}], 
-    InsetBox[
+       0.6372950000000001, 0.164985, 0.166055]], {0.5, -80.}], InsetBox[
      StyleBox["\<\"Epic Movement\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.05206738131699847],
+      FontSize->Scaled[0.052588996763754045`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.858156, 0.3311605, 0.33629450000000005`]], {-0.5, 116.}], InsetBox[
+     StyleBox["\<\"The Austin Stone\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.046521035598705504`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.8184122, 0.24727920000000003`, 0.2506064]], {-0.5, -116.}], 
+    InsetBox[
+     StyleBox["\<\"Access Fellowship\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.034385113268608415`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.6372950000000001, 0.164985, 0.166055]], {169.5, 53.}], InsetBox[
+     StyleBox["\<\"Lifeway\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.05865695792880259],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
        0.45943510000000004`, 0.17384909999999998`, 
-        0.17430969999999998`]], {-5., 54.5}], InsetBox[
-     StyleBox["\<\"Lifeway\"\>",
+        0.17430969999999998`]], {-145.5, 48.}], InsetBox[
+     StyleBox["\<\"Navs\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.05819295558958652],
-      FontWeight->Plain,
-      FontSlant->Plain,
-      FontTracking->"Plain",
-      FontColor->RGBColor[
-       0.6372950000000001, 0.164985, 0.166055]], {0., -89.5}], InsetBox[
-     StyleBox["\<\"BSM\"\>",
-      StripOnInput->False,
-      FontFamily->"Helvetica",
-      FontSize->Scaled[0.0765696784073507],
-      FontWeight->Plain,
-      FontSlant->Plain,
-      FontTracking->"Plain",
-      FontColor->RGBColor[
-       0.8184122, 0.24727920000000003`, 0.2506064]], {2., 94.5}], InsetBox[
-     StyleBox["\<\"ACTS College Fellowship\"\>",
-      StripOnInput->False,
-      FontFamily->"Helvetica",
-      FontSize->Scaled[0.021439509954058193`],
-      FontWeight->Plain,
-      FontSlant->Plain,
-      FontTracking->"Plain",
-      FontColor->RGBColor[
-       0.8184122, 0.24727920000000003`, 0.2506064]], {-44., -119.5}], InsetBox[
-     StyleBox["\<\"Campus Renewal\"\>",
-      StripOnInput->False,
-      FontFamily->"Helvetica",
-      FontSize->Scaled[0.021439509954058193`],
+      FontSize->Scaled[0.07079288025889968],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
        0.7562669, 0.18717090000000003`, 
-        0.18906380000000003`]], {-115., 85.5}], InsetBox[
-     StyleBox["\<\"Navs\"\>",
+        0.18906380000000003`]], {-171.5, -75.}], InsetBox[
+     StyleBox["\<\"Campus Renewal\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.033690658499234305`],
+      FontSize->Scaled[0.022249190938511326`],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
-       0.858156, 0.3311605, 0.33629450000000005`]], {88., 86.5}], InsetBox[
-     StyleBox["\<\"The Well\"\>",
+       0.858156, 0.3311605, 0.33629450000000005`]], {135.5, 78.}], InsetBox[
+     StyleBox["\<\"Texas Wesley\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.021439509954058193`],
+      FontSize->Scaled[0.022249190938511326`],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
-       0.6372950000000001, 0.164985, 0.166055]], {-101., -78.5}], InsetBox[
+       0.7562669, 0.18717090000000003`, 0.18906380000000003`]], {36.5, 142.}],
+     InsetBox[
      StyleBox["\<\"Chi Alpha\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.015313935681470138`],
+      FontSize->Scaled[0.022249190938511326`],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
-       0.858156, 0.3311605, 0.33629450000000005`]], {97., -75.5}], InsetBox[
-     StyleBox["\<\"AKPC\"\>",
+       0.8184122, 0.24727920000000003`, 0.2506064]], {-114.5, 76.}], 
+    InsetBox[
+     StyleBox["\<\"AACM\"\>",
       StripOnInput->False,
       FontFamily->"Helvetica",
-      FontSize->Scaled[0.015313935681470138`],
+      FontSize->Scaled[0.022249190938511326`],
       FontWeight->Plain,
       FontSlant->Plain,
       FontTracking->"Plain",
       FontColor->RGBColor[
        0.45943510000000004`, 0.17384909999999998`, 
-        0.17430969999999998`]], {87., -96.5}]}},
+        0.17430969999999998`]], {145.5, -75.}], InsetBox[
+     StyleBox["\<\"The Well\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.016181229773462785`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.858156, 0.3311605, 0.33629450000000005`]], {-0.5, -142.}], InsetBox[
+     StyleBox["\<\"AKPC\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.016181229773462785`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.6372950000000001, 0.164985, 0.166055]], {44.5, -142.}], InsetBox[
+     StyleBox["\<\"IJM\"\>",
+      StripOnInput->False,
+      FontFamily->"Helvetica",
+      FontSize->Scaled[0.016181229773462785`],
+      FontWeight->Plain,
+      FontSlant->Plain,
+      FontTracking->"Plain",
+      FontColor->RGBColor[
+       0.45943510000000004`, 0.17384909999999998`, 
+        0.17430969999999998`]], {-39.5, -142.}]}},
   Background->GrayLevel[0, 0],
   ImageSize->1260,
   Method->{
    "DefaultBoundaryStyle" -> Automatic, "DefaultPlotStyle" -> Automatic},
-  PlotRange->{{-325.5, 327.5}, {-133., 125.}}]], "Output",
+  PlotRange->{{-308., 310.}, {-151.5, 155.5}}]], "Output",
  CellChangeTimes->{
   3.6984264679410973`*^9, {3.6984265174994783`*^9, 3.69842653914318*^9}, 
    3.698426583595406*^9, 3.6984266353484297`*^9, {3.698426786942973*^9, 
    3.698426808312964*^9}, {3.698456665920726*^9, 3.698456677604507*^9}, 
-   3.698541679603611*^9, 3.6986035780258503`*^9}],
+   3.698541679603611*^9, 3.6986035780258503`*^9, 3.698780760415566*^9, 
+   3.6988450254505453`*^9, {3.698856306758851*^9, 3.698856391099815*^9}, 
+   3.698892002156671*^9, 3.6989583174112387`*^9, 3.698970137857348*^9}],
 
 Cell[BoxData["\<\"/Users/Evan/GitProjects/campusmap/RezWeekCal/wordcloud.png\"\
 \>"], "Output",
@@ -2957,11 +3017,13 @@ Cell[BoxData["\<\"/Users/Evan/GitProjects/campusmap/RezWeekCal/wordcloud.png\"\
   3.6984264679410973`*^9, {3.6984265174994783`*^9, 3.69842653914318*^9}, 
    3.698426583595406*^9, 3.6984266353484297`*^9, {3.698426786942973*^9, 
    3.698426808312964*^9}, {3.698456665920726*^9, 3.698456677604507*^9}, 
-   3.698541679603611*^9, 3.6986035782739353`*^9}]
+   3.698541679603611*^9, 3.6986035780258503`*^9, 3.698780760415566*^9, 
+   3.6988450254505453`*^9, {3.698856306758851*^9, 3.698856391099815*^9}, 
+   3.698892002156671*^9, 3.6989583174112387`*^9, 3.698970138128956*^9}]
 }, Open  ]]
 },
 WindowSize->{720, 851},
-WindowMargins->{{0, Automatic}, {Automatic, 0}},
+WindowMargins->{{Automatic, 0}, {Automatic, 0}},
 FrontEndVersion->"10.4 for Mac OS X x86 (32-bit, 64-bit Kernel) (February 25, \
 2016)",
 StyleDefinitions->"Default.nb"
@@ -2980,9 +3042,9 @@ Notebook[{
 Cell[558, 20, 80267, 1339, 429, "Input"],
 Cell[80828, 1361, 84784, 1415, 429, "Input"],
 Cell[CellGroupData[{
-Cell[165637, 2780, 3034, 55, 199, "Input"],
-Cell[168674, 2837, 4162, 114, 547, "Output"],
-Cell[172839, 2953, 385, 6, 28, "Output"]
+Cell[165637, 2780, 3628, 64, 233, "Input"],
+Cell[169268, 2846, 6013, 165, 641, "Output"],
+Cell[175284, 3013, 553, 8, 86, "Output"]
 }, Open  ]]
 }
 ]
