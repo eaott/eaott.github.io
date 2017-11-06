@@ -43,6 +43,7 @@
             <li><a href="index.html">Main <span class="sr-only">(current)</span></a></li>
             <li class="active"><a href="#">Projects</a></li>
             <li><a href="quick_ventures.html">Quick Ventures</a></li>
+            <li><a href="restaurants.html">Restaurant Generator</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -57,11 +58,21 @@
         <li data-target="#carousel-example-generic" data-slide-to="1"></li>
         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
         <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
       </ol>
 
       <!-- Wrapper for slides -->
       <div class="carousel-inner" role="listbox">
         <div class="item active">
+          <!-- FIXME: update image-->
+          <a href="#Restaurants"><img src="img/rezweek/me_filter.png" alt="Restaurant Generator"></a>
+          <div class="carousel-caption">
+            <h2>Restaurant Generator</h2>
+            <br>
+            <p>Find a restaurant in central Austin</p>
+          </div>
+        </div>
+        <div class="item">
           <a href="#RezWeek2016"><img src="img/rezweek/me_filter.png" alt="RezWeek Filter"></a>
           <div class="carousel-caption">
             <h2>UT RezWeek Filter</h2>
@@ -111,6 +122,19 @@
   </header>
   <div class="mainBody">
     <hr>
+    <div id="Restaurants" itemscope itemtype="http://schema.org/WebSite">
+      <h3 itemprop="name">Restaurant Generator</h3>
+      <p itemprop="description">
+        To help simplify the constant decision process for eating out, I built my own
+        <a href="restaurants.html">restaurant generator</a>. It's doubtful that it's
+        helpful to anyone outside central Austin, perhaps only useful to me. But, I had fun
+        putting it together and use it regularly. It's an idea completely taken from
+        <a href="http://www.restaurantgenerator.com" target="_blank">restaurantgenerator.com</a>
+        which works seemingly anywhere in the USA, and pulls live data from Yelp. It's great,
+        but kept suggesting places that I didn't want after using it for many months.
+      </p>
+  </div>
+  <hr>
     <div id="MathematElection" itemscope itemtype="http://schema.org/SoftwareApplication">
       <h3 itemprop="name">MathematElection</h3>
       <div itemprop="description">

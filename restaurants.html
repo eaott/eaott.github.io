@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Restaurant Generator</title>
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research, Restaurant, Generator">
+    <meta name="description" content="Restaurant Generator.">
+
+<!--- NEXT THINGS ARE FOR VERIFICATION OF INDEXING --->
+<meta name="msvalidate.01" content="CE505AF07ADB21A7EDCB77F1E3F8F041" />
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/eaott.css">
+  <style>
+  </style>
+  <style media="screen">
+    canvas {
+      width: 80px !important;
+      height: 80px !important;
+      display: inline;
+    }
+    @media screen and (max-width: 350px) {
+      #resultsContainer {
+        width: 80%;
+        min-width: 80%;
+        max-width: 80%;
+        font-size: 150%;
+      }
+      #filterContainer {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+    @media screen and (min-width: 351px) {
+      #resultsContainer {
+        font-size:150%;
+        display: inline-block;
+      }
+      #filterContainer {
+        width: 30%;
+        max-width: 30%;
+        float: left;
+        margin-right: 30px;
+      }
+    }
+  </style>
+  <script src="js/jquery-2.2.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="js/restaurants.js"></script>
+  <meta name="viewport" content="width=device-width">
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- http://stackoverflow.com/a/4888458 -->
+  <link rel="shortcut icon" href="img/icon.ico">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/lambdasaur.png" alt="Logo" height="25px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Main</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quick_ventures.html">Quick Ventures</a></li>
+            <li class="active"><a href="#">Restaurant Generator <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
+
+
+
+  <div class="mainBody">
+    <!--
+    A: place - name of restaurant
+    ~~~~~~~B: descriptors - csv of terms describing restaurant
+    C: favorite dishes - for specific entrees
+    D: local - Y/N for a local or chain restaurant
+    ~~~~~~~E: cost - 1-5, 1 for cheap, 5 for expensive
+    F: healthiness - 1-5, 1 for grease, 5 for celery
+    ~~~~~~~G: rating - 1-5, our own review ranking
+    H: distance - 1-5, 5 being ~Waco, 1 being next door
+    I: parking - 1-5, 5 being easy, 1 being downtown
+    J: wait - 1-5, 1 being no wait, 5 being reservations only
+    K: closed - None or day, if restaurant is closed one day of the week
+    L: early only - rough "breakfast/brunch" indicator
+    ~~~~~~~M: been before - whether E|M have tried it
+    -->
+    <div id="resultsContainer">
+      <h2>Results</h2>
+      <div id="results">
+      </div>
+    </div>
+
+    <div id="filterContainer">
+      <h2>Filters</h2>
+
+      <div id="newContainer">
+        <h4><a data-toggle="collapse" href="#new" aria-expanded="false" aria-controls="new">New</a></h4>
+        <div class="collapse in" id="new">
+          <input type="checkbox" id="beenNew" name="beenNew" checked onclick="display()">
+          <label for="beenNew">New</label>
+          <input type="checkbox" id="beenOld" name="beenOld" checked onclick="display()">
+          <label for="beenOld">Old</label>
+        </div>
+      </div>
+
+      <div id="localContainer">
+        <h4><a data-toggle="collapse" href="#local" aria-expanded="false" aria-controls="local">Local</a></h4>
+        <div class="collapse in" id="local">
+          <input type="checkbox" id="localLocal" name="localLocal" checked onclick="display()">
+          <label for="localLocal">Local</label>
+          <input type="checkbox" id="localChain" name="localChain" onclick="display()">
+          <label for="localChain">Chain</label>
+        </div>
+      </div>
+
+      <div id="costContainer">
+        <h4><a data-toggle="collapse" href="#cost" aria-expanded="false" aria-controls="cost">Cost</a></h4>
+        <div class="collapse in" id="cost">
+          <input type="checkbox" id="cost1" name="cost1" checked onclick="display()">
+          <label for="cost1">1</label>
+
+          <input type="checkbox" id="cost2" name="cost2" checked onclick="display()">
+          <label for="cost2">2</label>
+
+          <input type="checkbox" id="cost3" name="cost3" checked onclick="display()">
+          <label for="cost3">3</label>
+
+          <input type="checkbox" id="cost4" name="cost4" onclick="display()">
+          <label for="cost4">4</label>
+
+          <input type="checkbox" id="cost5" name="cost5" onclick="display()">
+          <label for="cost5">5</label>
+        </div>
+      </div>
+
+      <div id="ratingContainer">
+        <h4><a data-toggle="collapse" href="#rating" aria-expanded="false" aria-controls="rating">Rating</a></h4>
+        <div class="collapse in" id="rating">
+          <input type="checkbox" id="rating1" name="rating1" onclick="display()">
+          <label for="rating1">1</label>
+
+          <input type="checkbox" id="rating2" name="rating2" onclick="display()">
+          <label for="rating2">2</label>
+
+          <input type="checkbox" id="rating3" name="rating3" checked onclick="display()">
+          <label for="rating3">3</label>
+
+          <input type="checkbox" id="rating4" name="rating4" checked onclick="display()">
+          <label for="rating4">4</label>
+
+          <input type="checkbox" id="rating5" name="rating5" checked onclick="display()">
+          <label for="rating5">5</label>
+        </div>
+      </div>
+
+      <div id="healthinessContainer">
+        <h4><a data-toggle="collapse" href="#healthiness" aria-expanded="false" aria-controls="healthiness">Healthiness</a></h4>
+        <div class="collapse in" id="healthiness">
+          <input type="checkbox" id="healthiness1" name="healthiness1" onclick="display()">
+          <label for="healthiness1">1</label>
+
+          <input type="checkbox" id="healthiness2" name="healthiness2" checked onclick="display()">
+          <label for="healthiness2">2</label>
+
+          <input type="checkbox" id="healthiness3" name="healthiness3" checked onclick="display()">
+          <label for="healthiness3">3</label>
+
+          <input type="checkbox" id="healthiness4" name="healthiness4" checked onclick="display()">
+          <label for="healthiness4">4</label>
+
+          <input type="checkbox" id="healthiness5" name="healthiness5" checked onclick="display()">
+          <label for="healthiness5">5</label>
+        </div>
+      </div>
+
+      <div id="distanceContainer">
+        <h4><a data-toggle="collapse" href="#distance" aria-expanded="false" aria-controls="distance">Distance</a></h4>
+        <div class="collapse" id="distance">
+          <input type="checkbox" id="distance1" name="distance1" checked onclick="display()">
+          <label for="distance1">1</label>
+
+          <input type="checkbox" id="distance2" name="distance2" checked onclick="display()">
+          <label for="distance2">2</label>
+
+          <input type="checkbox" id="distance3" name="distance3" checked onclick="display()">
+          <label for="distance3">3</label>
+
+          <input type="checkbox" id="distance4" name="distance4" onclick="display()">
+          <label for="distance4">4</label>
+
+          <input type="checkbox" id="distance5" name="distance5" onclick="display()">
+          <label for="distance5">5</label>
+        </div>
+      </div>
+
+      <div id="parkingContainer">
+        <h4><a data-toggle="collapse" href="#parking" aria-expanded="false" aria-controls="parking">Parking</a></h4>
+        <div class="collapse" id="parking">
+          <input type="checkbox" id="parking1" name="parking1" checked onclick="display()">
+          <label for="parking1">1</label>
+
+          <input type="checkbox" id="parking2" name="parking2" checked onclick="display()">
+          <label for="parking2">2</label>
+
+          <input type="checkbox" id="parking3" name="parking3" checked onclick="display()">
+          <label for="parking3">3</label>
+
+          <input type="checkbox" id="parking4" name="parking4" checked onclick="display()">
+          <label for="parking4">4</label>
+
+          <input type="checkbox" id="parking5" name="parking5" checked onclick="display()">
+          <label for="parking5">5</label>
+        </div>
+      </div>
+
+      <div id="descriptorContainer">
+        <h4><a data-toggle="collapse" href="#descriptors" aria-expanded="false" aria-controls="descriptors">Descriptors</a></h4>
+        <div style="max-height:200px; overflow:auto;" class="collapse" id="descriptors"> <!-- FIXME: must be created dynamically, or at least loaded from a .json -->
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
