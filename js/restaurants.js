@@ -183,7 +183,7 @@ function updateGraphs() {
             drawTicks: false
           },
           pointLabels: {
-            fontSize: 30
+            fontSize: 15
           },
           gridLines: {
             drawTicks: false
@@ -203,17 +203,18 @@ function display() {
   );
   displayRestaurants.sort(restaurantSorter);
 
-  var text = '<ul>';
+  var text = '';
   var counter = 0;
   for (let r of displayRestaurants) {
-    var t = "<li>";
+    var t = '<div class="container"><div class="place"><br>';
     t = t + r.place;
+    t = t + '&nbsp;&nbsp;&nbsp;&nbsp;</div><div style="display:inline-block; font-size:20%;">';
     t = t + '<canvas id="resultCanvas' + counter + '" height="80" width="80"></canvas>';
-    t = t + "</li>";
+    t = t + "</div></div>";
     text = text + t;
     counter = counter + 1;
   }
-  text = text + "</ul>";
+  text = text + "";
   document.getElementById("results").innerHTML = text;
   $("#results").ready(updateGraphs);
 }
