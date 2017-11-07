@@ -143,10 +143,19 @@ function getRestaurantFilter() {
   };
 }
 
+function restaurantSorter(a, b) {
+  var x = a.place.toLowerCase();
+  var y = b.place.toLowerCase();
+  if (x < y) return -1;
+  if (y < x) return 1;
+  return 0;
+}
+
 function updateGraphs() {
   var displayRestaurants = restaurants.filter(
     getRestaurantFilter()
   );
+  displayRestaurants.sort(restaurantSorter);
   var counter = displayRestaurants.length;
   for (var i = 0; i < counter; i++) {
     var marksCanvas = document.getElementById("resultCanvas" + i);
@@ -192,7 +201,7 @@ function display() {
   var displayRestaurants = restaurants.filter(
     getRestaurantFilter()
   );
-  // FIXME: should probably sort these by something....
+  displayRestaurants.sort(restaurantSorter);
 
   var text = '<ul>';
   var counter = 0;
