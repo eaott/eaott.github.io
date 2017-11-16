@@ -1,0 +1,167 @@
+diff --git a/js/restaurants.js b/js/restaurants.js
+index ae49982..31bd15a 100644
+--- a/js/restaurants.js
++++ b/js/restaurants.js
+@@ -5,20 +5,25 @@ function getRestaurantFilter() {
+   // Filter by whether we've been ther
+   var beenNew = document.getElementById("beenNew");
+   var beenOld = document.getElementById("beenOld");
+-  var beenFilter = function(b){
++  // Separate function to ignore missing metadata when we allow for new places.
++  // var newFilter = function(r) {
++  //   return (beenNew.checked && r.beenBefore == "N");
++  // };
++  var beenFilter = function(r){
+     return (
+-      (beenNew.checked && b == "N") ||
+-      (beenOld.checked && b == "Y")
++      (beenNew.checked && r.beenBefore === "N") ||
++      (beenOld.checked && r.beenBefore === "Y")
+     );
+   };
+ 
+   // Filter by local/chain
+   var localLocal = document.getElementById("localLocal");
+   var localChain = document.getElementById("localChain");
+-  var localFilter = function(l){
++  var localFilter = function(r){
+     return (
+-      (localLocal.checked && l == "Y") ||
+-      (localChain.checked && l == "N")
++      (localLocal.checked && r.local === "Y") ||
++      (localChain.checked && r.local === "N") //||
++      //(newFilter(r) && r.local == "")
+     );
+   };
+ 
+@@ -28,13 +33,14 @@ function getRestaurantFilter() {
+   var cost3 = document.getElementById("cost3");
+   var cost4 = document.getElementById("cost4");
+   var cost5 = document.getElementById("cost5");
+-  var costFilter = function(c){
++  var costFilter = function(r){
+     return (
+-      (cost1.checked && c == "1") ||
+-      (cost2.checked && c == "2") ||
+-      (cost3.checked && c == "3") ||
+-      (cost4.checked && c == "4") ||
+-      (cost5.checked && c == "5")
++      (cost1.checked && r.cost === "1") ||
++      (cost2.checked && r.cost === "2") ||
++      (cost3.checked && r.cost === "3") ||
++      (cost4.checked && r.cost === "4") ||
++      (cost5.checked && r.cost === "5")// ||
++      //(newFilter(r) && r.cost == "")
+     );
+   };
+ 
+@@ -46,11 +52,12 @@ function getRestaurantFilter() {
+   var rating5 = document.getElementById("rating5");
+   var ratingFilter = function(r){
+     return (
+-      (rating1.checked && r == "1") ||
+-      (rating2.checked && r == "2") ||
+-      (rating3.checked && r == "3") ||
+-      (rating4.checked && r == "4") ||
+-      (rating5.checked && r == "5")
++      (rating1.checked && r.rating === "1") ||
++      (rating2.checked && r.rating === "2") ||
++      (rating3.checked && r.rating === "3") ||
++      (rating4.checked && r.rating === "4") ||
++      (rating5.checked && r.rating === "5") //||
++      //(newFilter(r) && r.rating == "")
+     );
+   };
+ 
+@@ -62,11 +69,12 @@ function getRestaurantFilter() {
+   var healthiness5 = document.getElementById("healthiness5");
+   var healthinessFilter = function(r){
+     return (
+-      (healthiness1.checked && r == "1") ||
+-      (healthiness2.checked && r == "2") ||
+-      (healthiness3.checked && r == "3") ||
+-      (healthiness4.checked && r == "4") ||
+-      (healthiness5.checked && r == "5")
++      (healthiness1.checked && r.heathiness === "1") ||
++      (healthiness2.checked && r.heathiness === "2") ||
++      (healthiness3.checked && r.heathiness === "3") ||
++      (healthiness4.checked && r.heathiness === "4") ||
++      (healthiness5.checked && r.heathiness === "5")// ||
++      //(newFilter(r) && r.healthiness == "")
+     );
+   };
+ 
+@@ -79,11 +87,12 @@ function getRestaurantFilter() {
+   var distance5 = document.getElementById("distance5");
+   var distanceFilter = function(r){
+     return (
+-      (distance1.checked && r == "1") ||
+-      (distance2.checked && r == "2") ||
+-      (distance3.checked && r == "3") ||
+-      (distance4.checked && r == "4") ||
+-      (distance5.checked && r == "5")
++      (distance1.checked && r.distance === "1") ||
++      (distance2.checked && r.distance === "2") ||
++      (distance3.checked && r.distance === "3") ||
++      (distance4.checked && r.distance === "4") ||
++      (distance5.checked && r.distance === "5") //||
++    //  (newFilter(r) && r.distance == "")
+     );
+   };
+ 
+@@ -95,11 +104,12 @@ function getRestaurantFilter() {
+   var parking5 = document.getElementById("parking5");
+   var parkingFilter = function(r){
+     return (
+-      (parking1.checked && r == "1") ||
+-      (parking2.checked && r == "2") ||
+-      (parking3.checked && r == "3") ||
+-      (parking4.checked && r == "4") ||
+-      (parking5.checked && r == "5")
++      (parking1.checked && r.parking === "1") ||
++      (parking2.checked && r.parking === "2") ||
++      (parking3.checked && r.parking === "3") ||
++      (parking4.checked && r.parking === "4") ||
++      (parking5.checked && r.parking === "5")// ||
++      //(newFilter(r) && r.parking == "")
+     );
+   };
+ 
+@@ -111,26 +121,27 @@ function getRestaurantFilter() {
+       enabledDescriptors.add(d);
+     }
+   }
+-  var descriptorFilter = function(dArr){
+-    for (let d of dArr) {
++  var descriptorFilter = function(r){
++    for (let d of r.descriptors) {
+       if (enabledDescriptors.has(d)) {
+         return true;
+       }
+     }
++    // return (newFilter(r) && r.descriptors.length == 0);
+     return false;
+   }
+ 
+   // Construct full filter
+   return function(r){
+     return (
+-      beenFilter(r.beenBefore) &&
+-      localFilter(r.local) &&
+-      costFilter(r.cost) &&
+-      ratingFilter(r.rating) &&
+-      healthinessFilter(r.healthiness) &&
+-      distanceFilter(r.distance) &&
+-      parkingFilter(r.parking) &&
+-      descriptorFilter(r.descriptors)
++      beenFilter(r) &&
++      localFilter(r) &&
++      costFilter(r) &&
++      ratingFilter(r) &&
++      healthinessFilter(r) &&
++      distanceFilter(r) &&
++      parkingFilter(r) &&
++      descriptorFilter(r)
+     );
+   };
+ }
