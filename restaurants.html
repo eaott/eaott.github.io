@@ -32,6 +32,10 @@
       max-width: 450px;
       min-width: 380px;
     }
+    .glyphicon {
+      font-size: 80%;
+
+    }
 
     @media screen and (max-width: 350px) {
       #resultsContainer {
@@ -63,6 +67,7 @@
   <script src="js/jquery-2.2.0.min.js"></script>
   <script src="js/bootstrap.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="js/typeahead.bundle.js"></script>
   <script src="js/restaurants.js"></script>
   <meta name="viewport" content="width=device-width">
 
@@ -121,8 +126,17 @@
     ~~~~~~~M: been before - whether E|M have tried it
     -->
     <div id="resultsContainer">
-      <h2>Results</h2>
-      <div id="results">
+      <h2>Selections</h2>
+      <div id="randomResults">
+      </div>
+
+      <h2>
+        <a data-toggle="collapse" href="#results" aria-expanded="false" aria-controls="results">
+        Full Results
+        <span class="glyphicon glyphicon-chevron-down"></span>
+        </a>
+      </h2>
+      <div class="collapse" id="results">
       </div>
     </div>
 
@@ -130,9 +144,10 @@
       <h2>Filters</h2>
 
       <div id="newContainer">
-        <h4><a data-toggle="collapse" href="#new" aria-expanded="false" aria-controls="new">New</a></h4>
+        <h4><a data-toggle="collapse" href="#new" aria-expanded="false" aria-controls="new">
+          New&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
         <div class="collapse in" id="new">
-          <input type="checkbox" id="beenNew" name="beenNew" checked onclick="display()">
+          <input type="checkbox" id="beenNew" name="beenNew" onclick="display()">
           <label for="beenNew">New</label>
           <input type="checkbox" id="beenOld" name="beenOld" checked onclick="display()">
           <label for="beenOld">Old</label>
@@ -140,17 +155,19 @@
       </div>
 
       <div id="localContainer">
-        <h4><a data-toggle="collapse" href="#local" aria-expanded="false" aria-controls="local">Local</a></h4>
+        <h4><a data-toggle="collapse" href="#local" aria-expanded="false" aria-controls="local">
+          Local&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
         <div class="collapse in" id="local">
           <input type="checkbox" id="localLocal" name="localLocal" checked onclick="display()">
           <label for="localLocal">Local</label>
-          <input type="checkbox" id="localChain" name="localChain" onclick="display()">
+          <input type="checkbox" id="localChain" name="localChain" checked onclick="display()">
           <label for="localChain">Chain</label>
         </div>
       </div>
 
       <div id="costContainer">
-        <h4><a data-toggle="collapse" href="#cost" aria-expanded="false" aria-controls="cost">Cost</a></h4>
+        <h4><a data-toggle="collapse" href="#cost" aria-expanded="false" aria-controls="cost">
+          Cost&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
         <div class="collapse in" id="cost">
           <input type="checkbox" id="cost1" name="cost1" checked onclick="display()">
           <label for="cost1">1</label>
@@ -170,12 +187,13 @@
       </div>
 
       <div id="ratingContainer">
-        <h4><a data-toggle="collapse" href="#rating" aria-expanded="false" aria-controls="rating">Rating</a></h4>
+        <h4><a data-toggle="collapse" href="#rating" aria-expanded="false" aria-controls="rating">
+          Rating&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
         <div class="collapse in" id="rating">
           <input type="checkbox" id="rating1" name="rating1" onclick="display()">
           <label for="rating1">1</label>
 
-          <input type="checkbox" id="rating2" name="rating2" onclick="display()">
+          <input type="checkbox" id="rating2" name="rating2" checked onclick="display()">
           <label for="rating2">2</label>
 
           <input type="checkbox" id="rating3" name="rating3" checked onclick="display()">
@@ -190,7 +208,8 @@
       </div>
 
       <div id="healthinessContainer">
-        <h4><a data-toggle="collapse" href="#healthiness" aria-expanded="false" aria-controls="healthiness">Healthiness</a></h4>
+        <h4><a data-toggle="collapse" href="#healthiness" aria-expanded="false" aria-controls="healthiness">
+          Healthiness&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
         <div class="collapse in" id="healthiness">
           <input type="checkbox" id="healthiness1" name="healthiness1" onclick="display()">
           <label for="healthiness1">1</label>
@@ -210,15 +229,16 @@
       </div>
 
       <div id="distanceContainer">
-        <h4><a data-toggle="collapse" href="#distance" aria-expanded="false" aria-controls="distance">Distance</a></h4>
-        <div class="collapse" id="distance">
+        <h4><a data-toggle="collapse" href="#distance" aria-expanded="false" aria-controls="distance">
+          Distance&nbsp;<span class="glyphicon glyphicon-chevron-up"></span></a></h4>
+        <div class="collapse in" id="distance">
           <input type="checkbox" id="distance1" name="distance1" checked onclick="display()">
           <label for="distance1">1</label>
 
           <input type="checkbox" id="distance2" name="distance2" checked onclick="display()">
           <label for="distance2">2</label>
 
-          <input type="checkbox" id="distance3" name="distance3" checked onclick="display()">
+          <input type="checkbox" id="distance3" name="distance3" onclick="display()">
           <label for="distance3">3</label>
 
           <input type="checkbox" id="distance4" name="distance4" onclick="display()">
@@ -230,7 +250,8 @@
       </div>
 
       <div id="parkingContainer">
-        <h4><a data-toggle="collapse" href="#parking" aria-expanded="false" aria-controls="parking">Parking</a></h4>
+        <h4><a data-toggle="collapse" href="#parking" aria-expanded="false" aria-controls="parking">
+          Parking&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></h4>
         <div class="collapse" id="parking">
           <input type="checkbox" id="parking1" name="parking1" checked onclick="display()">
           <label for="parking1">1</label>
@@ -250,9 +271,23 @@
       </div>
 
       <div id="descriptorContainer">
-        <h4><a data-toggle="collapse" href="#descriptors" aria-expanded="false" aria-controls="descriptors">Descriptors</a></h4>
-        <div style="max-height:200px; overflow:auto;" class="collapse" id="descriptors"> <!-- FIXME: must be created dynamically, or at least loaded from a .json -->
+        <h4><a data-toggle="collapse" href="#descriptorDiv" aria-expanded="false" aria-controls="descriptorDiv">
+          Descriptors&nbsp;<span class="glyphicon glyphicon-chevron-down"></span></a></h4>
+        <div class="collapse" id="descriptorDiv">
+          <button class="btn btn-xs" id="clearDescriptors">Clear All</button>
+          <button class="btn btn-xs" id="selectDescriptors">Select All</button>
+          <div id="descriptorSearch" class="form-group has-feedback">
+            <input class="typeahead form-control" type="text" placeholder="Search...">
+          </div>
+          <div style="max-height:200px; overflow:auto;" id="descriptors"> <!-- FIXME: must be created dynamically, or at least loaded from a .json -->
+          </div>
         </div>
+      </div>
+
+      <div id="quickSettingsContainer">
+        <h4>Presets</h4>
+        <button class="btn btn-xs btn-info" id="touristBtn">Tourist</button>
+        <button class="btn btn-xs btn-warning" id="adventureBtn">Adventurous</button>
       </div>
     </div>
 
