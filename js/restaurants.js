@@ -359,6 +359,19 @@ window.onload = function() {
       $(this).parent().find(".glyphicon-chevron-up").removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
   });
 
+  $("#refreshBtn").on('click', function(e){
+    randomRestaurants = displayRestaurants.sort(restaurantRandomSorter).slice(0, 3).sort(restaurantSorter);
+    let text = '';
+    let counter = 0;
+    for (let r of randomRestaurants) {
+      let t = restaurantDiv(r, 'Random' + counter);
+      text = text + t;
+      counter += 1;
+    }
+    document.getElementById("randomResults").innerHTML = text;
+    updateGraphHelper(randomRestaurants, "resultCanvasRandom");
+  });
+
   /*
    * Section for common-use-case filters. This helps with certain scenarios
    * like entertaining visitors (Tourist), etc.
