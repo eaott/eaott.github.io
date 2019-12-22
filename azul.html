@@ -1,0 +1,321 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Azul Scorekeeper</title>
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research, Restaurant, Generator">
+    <meta name="description" content="Azul Scorekeeper.">
+
+<!--- NEXT THINGS ARE FOR VERIFICATION OF INDEXING --->
+<meta name="msvalidate.01" content="CE505AF07ADB21A7EDCB77F1E3F8F041" />
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/eaott.css">
+  <style>
+  </style>
+  <style media="screen">
+    canvas {
+      width: 80px !important;
+      height: 80px !important;
+      display: inline-block;
+    }
+    .place {
+      display:inline-block;
+      vertical-align:middle;
+      height:70px;
+      float:left;
+    }
+    .container {
+      border: 1px solid #cccccc;
+      max-width: 450px;
+      min-width: 380px;
+    }
+    .glyphicon {
+      font-size: 80%;
+
+    }
+
+    @media screen and (max-width: 350px) {
+      #resultsContainer {
+        width: 60%;
+        min-width: 200px;
+        font-size: 150%;
+      }
+      #filterContainer {
+        width: 100%;
+        max-width: 100%;
+      }
+      .place {
+        height: 30px;
+      }
+    }
+    @media screen and (min-width: 351px) {
+      #resultsContainer {
+        font-size:1.5em;
+        display: inline-block;
+      }
+      #filterContainer {
+        width: 30%;
+        max-width: 30%;
+        float: left;
+        margin-right: 80px;
+      }
+    }
+  </style>
+  <script src="js/jquery-2.2.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+  <script src="js/typeahead.bundle.js"></script>
+  <meta name="viewport" content="width=device-width">
+
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <style>
+    td {
+      opacity: 0.2;
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript">
+    var nextTile = 1;
+    var score = 0;
+    var bonusScore = 0;
+    var board = [
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0]
+    ];
+
+    function updateScore(starti, startj) {
+      var rowSum = 0;
+      var colSum = 0;
+      for (var i = starti + 1; i < 5; i++) {
+        if (board[i][startj] > 0) {
+          colSum++;
+        }
+        else {
+          break;
+        }
+      }
+      for (var i = starti - 1; i >= 0; i--) {
+        if (board[i][startj] > 0) {
+          colSum++;
+        }
+        else {
+          break;
+        }
+      }
+
+      for (var j = startj + 1; j < 5; j++) {
+        if (board[starti][j] > 0) {
+          rowSum++;
+        }
+        else {
+          break;
+        }
+      }
+      for (var j = startj - 1; j >= 0; j--) {
+        if (board[starti][j] > 0) {
+          rowSum++;
+        }
+        else {
+          break;
+        }
+      }
+      if ((rowSum + colSum) == 0) {
+        return 1;
+      }
+      if (rowSum > 0) rowSum++;
+      if (colSum > 0) colSum++;
+      return rowSum + colSum;
+    }
+
+    function checkForBonuses(startr, startc) {
+      var row = 1;
+      var col = 1;
+      var color = 1;
+      for (var i = 0; i < 5; i++) {
+        // row
+        var c = (startc + i) % 5;
+        if (board[startr][c] == 0) row = 0;
+
+        // col
+        var r = (startr + i) % 5;
+        if (board[r][startc] == 0) col = 0;
+
+        // color
+        if (board[r][c] == 0) color = 0;
+      }
+      var newScore = row * 2 + col * 7 + color * 10;
+      if (newScore == 0) return;
+
+      bonusScore += row * 2 + col * 7 + color * 10;
+      for (var i = 0; i < 5; i++) {
+        // row
+        var c = (startc + i) % 5;
+        if (row == 1) {
+          var cell = document.getElementById('' + startr + "" + c);
+          var overlayImg = document.createElement("img");
+          overlayImg.src = "/img/azul/row.png";
+          overlayImg.width = 100;
+          overlayImg.style.position = "absolute";
+          overlayImg.style.top = 0;
+          overlayImg.style.left = 0;
+          cell.appendChild(overlayImg);
+        }
+
+        // col
+        var r = (startr + i) % 5;
+        if (col == 1) {
+          var cell = document.getElementById('' + r + "" + startc);
+          var overlayImg = document.createElement("img");
+          overlayImg.src = "/img/azul/column.png";
+          overlayImg.width = 100;
+          overlayImg.style.position = "absolute";
+          overlayImg.style.top = 0;
+          overlayImg.style.left = 0;
+          cell.appendChild(overlayImg);
+        }
+
+        // color
+        if (color == 1) {
+          var cell = document.getElementById('' + r + "" + c);
+          var overlayImg = document.createElement("img");
+          overlayImg.src = "/img/azul/color.png";
+          overlayImg.width = 100;
+          overlayImg.style.position = "absolute";
+          overlayImg.style.top = 0;
+          overlayImg.style.left = 0;
+          cell.appendChild(overlayImg);
+        }
+      }
+    }
+
+    function clickCellFactory(i, j) {
+      return function() {
+        if (board[i][j] > 0) return;
+        var cell = document.getElementById('' + i + "" + j);
+        cell.style.opacity = 1.0;
+
+        // var overlayImg = document.createElement("img");
+        // overlayImg.src = "/img/azul/row.png";
+        // overlayImg.width = 100;
+        // overlayImg.style.position = "absolute";
+        // overlayImg.style.top = 0;
+        // overlayImg.style.left = 0;
+        // cell.appendChild(overlayImg);
+
+        board[i][j] = nextTile;
+        // Do it this way to allow for possible backtracking
+        nextTile++;
+        score += updateScore(i, j);
+        checkForBonuses(i, j);
+        if (bonusScore == 0) {
+          document.getElementById("score").innerHTML = score;
+        }
+        else {
+          document.getElementById("score").innerHTML = score + " + " + bonusScore;
+        }
+      }
+    }
+
+    function clickCell() {
+      var row = document.getElementById('myTable').rows;
+
+      for (var i = 0; i < row.length; i++) {
+          for (var j = 0; j < row[i].cells.length; j++ ) {
+              row[i].cells[j].id = "" + i + "" + j;
+              row[i].cells[j].addEventListener('click',
+                clickCellFactory(i, j))
+          }
+      }
+    }
+  </script>
+  <!-- http://stackoverflow.com/a/4888458 -->
+  <link rel="shortcut icon" href="img/icon.ico">
+</head>
+<body onload="clickCell()">
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><img src="img/lambdasaur.png" alt="Logo" height="25px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Main</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="quick_ventures.html">Quick Ventures</a></li>
+            <li><a href="restaurants.html">Restaurant Generator</a></li>
+            <li class="active"><a href="#">Azul Scorekeeper <span class="sr-only">(current)</span></a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  </header>
+
+
+
+  <div class="mainBody">
+    <div>
+      Score: <span id="score">0</span>
+    </div>
+    <div>
+      <table id="myTable">
+        <tr>
+          <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
+          <td><img src="img/azul/orange.png" alt='orange' width='100'></td>
+          <td><img src="img/azul/red.png" alt='red' width='100'></td>
+          <td><img src="img/azul/black.png" alt='black' width='100'></td>
+          <td><img src="img/azul/teal.png" alt='teal' width='100'></td>
+        </tr>
+        <tr>
+          <td><img src="img/azul/teal.png" alt='teal' width='100'></td>
+          <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
+          <td><img src="img/azul/orange.png" alt='orange' width='100'></td>
+          <td><img src="img/azul/red.png" alt='red' width='100'></td>
+          <td><img src="img/azul/black.png" alt='black' width='100'></td>
+        </tr>
+        <tr>
+          <td><img src="img/azul/black.png" alt='black' width='100'></td>
+          <td><img src="img/azul/teal.png" alt='teal' width='100'></td>
+          <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
+          <td><img src="img/azul/orange.png" alt='orange' width='100'></td>
+          <td><img src="img/azul/red.png" alt='red' width='100'></td>
+        </tr>
+        <tr>
+          <td><img src="img/azul/red.png" alt='red' width='100'></td>
+          <td><img src="img/azul/black.png" alt='black' width='100'></td>
+          <td><img src="img/azul/teal.png" alt='teal' width='100'></td>
+          <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
+          <td><img src="img/azul/orange.png" alt='orange' width='100'></td>
+        </tr>
+        <tr>
+          <td><img src="img/azul/orange.png" alt='orange' width='100'></td>
+          <td><img src="img/azul/red.png" alt='red' width='100'></td>
+          <td><img src="img/azul/black.png" alt='black' width='100'></td>
+          <td><img src="img/azul/teal.png" alt='teal' width='100'></td>
+          <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
+        </tr>
+      </table>
+
+      <div> TODO: add a place for subtracting floor tiles</div>
+    </div>
+  </div>
+</body>
+</html>
