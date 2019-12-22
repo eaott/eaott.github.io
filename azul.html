@@ -75,7 +75,7 @@
   <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
   <style>
-    td {
+    #myTable tr td {
       opacity: 0.2;
       position: relative;
     }
@@ -203,19 +203,26 @@
         var cell = document.getElementById('' + i + "" + j);
         cell.style.opacity = 1.0;
 
-        // var overlayImg = document.createElement("img");
-        // overlayImg.src = "/img/azul/row.png";
-        // overlayImg.width = 100;
-        // overlayImg.style.position = "absolute";
-        // overlayImg.style.top = 0;
-        // overlayImg.style.left = 0;
-        // cell.appendChild(overlayImg);
-
         board[i][j] = nextTile;
         // Do it this way to allow for possible backtracking
         nextTile++;
         score += updateScore(i, j);
         checkForBonuses(i, j);
+        if (bonusScore == 0) {
+          document.getElementById("score").innerHTML = score;
+        }
+        else {
+          document.getElementById("score").innerHTML = score + " + " + bonusScore;
+        }
+      }
+    }
+
+    function minusCellFactory(value) {
+      return function() {
+
+        // Do it this way to allow for possible backtracking
+        score -= value;
+        if (score < 0) score = 0;
         if (bonusScore == 0) {
           document.getElementById("score").innerHTML = score;
         }
@@ -232,8 +239,25 @@
           for (var j = 0; j < row[i].cells.length; j++ ) {
               row[i].cells[j].id = "" + i + "" + j;
               row[i].cells[j].addEventListener('click',
-                clickCellFactory(i, j))
+                clickCellFactory(i, j));
           }
+      }
+
+      var row = document.getElementById('minusTable').rows;
+
+      for (var j = 0; j < row[0].cells.length; j++ ) {
+        var minus = 0;
+        if (j < 2) {
+          minus = 1;
+        }
+        else if (j < 5) {
+          minus = 2;
+        }
+        else {
+          minus = 3;
+        }
+        row[0].cells[j].addEventListener('click',
+          minusCellFactory(minus))
       }
     }
   </script>
@@ -313,8 +337,17 @@
           <td><img src="img/azul/blue.png" alt='blue' width='100'></td>
         </tr>
       </table>
-
-      <div> TODO: add a place for subtracting floor tiles</div>
+      <table id="minusTable">
+        <tr>
+          <td><img src="img/azul/one.png" alt='one' width='71'></td>
+          <td><img src="img/azul/one.png" alt='one' width='71'></td>
+          <td><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td><img src="img/azul/three.png" alt='three' width='71'></td>
+          <td><img src="img/azul/three.png" alt='three' width='71'></td>
+        </tr>
+      </table>
     </div>
   </div>
 </body>
