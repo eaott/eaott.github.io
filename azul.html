@@ -200,6 +200,10 @@
     function clickCellFactory(i, j) {
       return function() {
         if (board[i][j] > 0) return;
+        var row = document.getElementById('minusTable').rows;
+        for (var idx = 0; idx < 7; idx++) {
+          row[0].cells[idx].style.opacity = 1;
+        }
         var cell = document.getElementById('' + i + "" + j);
         cell.style.opacity = 1.0;
 
@@ -217,9 +221,12 @@
       }
     }
 
-    function minusCellFactory(value) {
+    function minusCellFactory(idx, value) {
       return function() {
+        var row = document.getElementById('minusTable').rows;
 
+        // if (row[0].cells[idx].style.opacity != 1) return;
+        row[0].cells[idx].style.opacity = 0.5;
         // Do it this way to allow for possible backtracking
         score -= value;
         if (score < 0) score = 0;
@@ -257,7 +264,7 @@
           minus = 3;
         }
         row[0].cells[j].addEventListener('click',
-          minusCellFactory(minus))
+          minusCellFactory(j, minus))
       }
     }
   </script>
@@ -339,13 +346,13 @@
       </table>
       <table id="minusTable">
         <tr>
-          <td><img src="img/azul/one.png" alt='one' width='71'></td>
-          <td><img src="img/azul/one.png" alt='one' width='71'></td>
-          <td><img src="img/azul/two.png" alt='two' width='71'></td>
-          <td><img src="img/azul/two.png" alt='two' width='71'></td>
-          <td><img src="img/azul/two.png" alt='two' width='71'></td>
-          <td><img src="img/azul/three.png" alt='three' width='71'></td>
-          <td><img src="img/azul/three.png" alt='three' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/one.png" alt='one' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/one.png" alt='one' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/two.png" alt='two' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/three.png" alt='three' width='71'></td>
+          <td style="opacity: 1;"><img src="img/azul/three.png" alt='three' width='71'></td>
         </tr>
       </table>
     </div>
