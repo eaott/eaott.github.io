@@ -83,7 +83,6 @@
   <script type="text/javascript">
     var nextTile = 1;
     var score = 0;
-    var bonusScore = 0;
     var board = [
       [0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0],
@@ -136,67 +135,6 @@
       return rowSum + colSum;
     }
 
-    function checkForBonuses(startr, startc) {
-      var row = 1;
-      var col = 1;
-      var color = 1;
-      for (var i = 0; i < 5; i++) {
-        // row
-        var c = (startc + i) % 5;
-        if (board[startr][c] == 0) row = 0;
-
-        // col
-        var r = (startr + i) % 5;
-        if (board[r][startc] == 0) col = 0;
-
-        // color
-        if (board[r][c] == 0) color = 0;
-      }
-      var newScore = row * 2 + col * 7 + color * 10;
-      if (newScore == 0) return;
-
-      bonusScore += row * 2 + col * 7 + color * 10;
-      for (var i = 0; i < 5; i++) {
-        // row
-        var c = (startc + i) % 5;
-        if (row == 1) {
-          var cell = document.getElementById('' + startr + "" + c);
-          var overlayImg = document.createElement("img");
-          overlayImg.src = "/img/azul/row.png";
-          overlayImg.width = 100;
-          overlayImg.style.position = "absolute";
-          overlayImg.style.top = 0;
-          overlayImg.style.left = 0;
-          cell.appendChild(overlayImg);
-        }
-
-        // col
-        var r = (startr + i) % 5;
-        if (col == 1) {
-          var cell = document.getElementById('' + r + "" + startc);
-          var overlayImg = document.createElement("img");
-          overlayImg.src = "/img/azul/column.png";
-          overlayImg.width = 100;
-          overlayImg.style.position = "absolute";
-          overlayImg.style.top = 0;
-          overlayImg.style.left = 0;
-          cell.appendChild(overlayImg);
-        }
-
-        // color
-        if (color == 1) {
-          var cell = document.getElementById('' + r + "" + c);
-          var overlayImg = document.createElement("img");
-          overlayImg.src = "/img/azul/color.png";
-          overlayImg.width = 100;
-          overlayImg.style.position = "absolute";
-          overlayImg.style.top = 0;
-          overlayImg.style.left = 0;
-          cell.appendChild(overlayImg);
-        }
-      }
-    }
-
     function clickCellFactory(i, j) {
       return function() {
         if (board[i][j] > 0) return;
@@ -208,16 +146,10 @@
         cell.style.opacity = 1.0;
 
         board[i][j] = nextTile;
-        // Do it this way to allow for possible backtracking
+        // Do it this way to allow for backtracking
         nextTile++;
         score += updateScore(i, j);
-        checkForBonuses(i, j);
-        if (bonusScore == 0) {
-          document.getElementById("score").innerHTML = score;
-        }
-        else {
-          document.getElementById("score").innerHTML = score + " + " + bonusScore + " = " + (score + bonusScore);
-        }
+        document.getElementById("score").innerHTML = score;
       }
     }
 
@@ -230,12 +162,7 @@
         // Do it this way to allow for possible backtracking
         score -= value;
         if (score < 0) score = 0;
-        if (bonusScore == 0) {
-          document.getElementById("score").innerHTML = score;
-        }
-        else {
-          document.getElementById("score").innerHTML = score + " + " + bonusScore + " = " + (score + bonusScore);
-        }
+        document.getElementById("score").innerHTML = score;
       }
     }
 
@@ -266,6 +193,87 @@
         row[0].cells[j].addEventListener('click',
           minusCellFactory(j, minus))
       }
+    }
+
+    function undo() {
+      if (nextTile == 1) return;
+      var row = -1;
+      var col = -1;
+      for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 5; j++) {
+          if (board[i][j] == (nextTile - 1)) {
+            row = i;
+            col = j;
+          }
+        }
+      }
+      score -= updateScore(row, col);
+      board[row][col] = 0;
+      nextTile--;
+      var cell = document.getElementById('' + row + "" + col);
+      cell.style.opacity = 0.2;
+      document.getElementById("score").innerHTML = score
+    }
+
+    function endgame() {
+      var bonusScore = 0;
+
+      for (var i = 0; i < 5; i++) {
+        var row = true;
+        var col = true;
+        var color = true;
+        for (var j = 0; j < 5; j++) {
+          // check row i
+          if (board[i][j] == 0) row = false;
+          // check col i
+          if (board[j][i] == 0) col = false;
+          // check color i (from row 0)
+          if (board[j][(i + j) % 5] == 0) color = false;
+        }
+
+        // score first
+        if (row) {
+          bonusScore += 2;
+          for (var j = 0; j < 5; j++) {
+            var cell = document.getElementById('' + i + "" + j);
+            var overlayImg = document.createElement("img");
+            overlayImg.src = "/img/azul/row.png";
+            overlayImg.width = 100;
+            overlayImg.style.position = "absolute";
+            overlayImg.style.top = 0;
+            overlayImg.style.left = 0;
+            cell.appendChild(overlayImg);
+          }
+        }
+        if (col) {
+          bonusScore += 7;
+          for (var j = 0; j < 5; j++) {
+            var cell = document.getElementById('' + j + "" + i);
+            var overlayImg = document.createElement("img");
+            overlayImg.src = "/img/azul/column.png";
+            overlayImg.width = 100;
+            overlayImg.style.position = "absolute";
+            overlayImg.style.top = 0;
+            overlayImg.style.left = 0;
+            cell.appendChild(overlayImg);
+          }
+        }
+        if (color) {
+          bonusScore += 10;
+          for (var j = 0; j < 5; j++) {
+            var a = (i + j) % 5;
+            var cell = document.getElementById('' + j + "" + a);
+            var overlayImg = document.createElement("img");
+            overlayImg.src = "/img/azul/color.png";
+            overlayImg.width = 100;
+            overlayImg.style.position = "absolute";
+            overlayImg.style.top = 0;
+            overlayImg.style.left = 0;
+            cell.appendChild(overlayImg);
+          }
+        }
+      }
+      document.getElementById("score").innerHTML = score + " + " + bonusScore + " = " + (score + bonusScore);
     }
   </script>
   <!-- http://stackoverflow.com/a/4888458 -->
@@ -303,8 +311,10 @@
 
 
   <div class="mainBody">
-    <div>
+    <div style="font-size: 20px;">
       Score: <span id="score">0</span>
+      &nbsp;&nbsp;&nbsp;<button onclick="undo()">Undo</button>
+      &nbsp;&nbsp;&nbsp;<button onclick="endgame()">End Game</button>
     </div>
     <div>
       <table id="myTable">
