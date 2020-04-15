@@ -1,0 +1,200 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Evan Ott - Quick Ventures Statistics Blog</title>
+
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research, Blog">
+    <meta name="description" content="Take a random sample from a spreadsheet">
+
+  <link rel="stylesheet" href="/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="/css/eaott.css">
+  <script src="/js/jquery-2.2.0.min.js"></script>
+  <script src="/js/bootstrap.js"></script>
+  <script src="/js/xlsx.full.min.js"></script>
+  <script src="/js/underscore-min.js"></script>
+  <meta name="viewport" content="width=device-width">
+
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- http://stackoverflow.com/a/4888458 -->
+  <link rel="shortcut icon" href="/img/icon.ico">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/index.html"><img src="/img/lambdasaur.png" alt="Logo" height="25px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="/index.html">Main <span class="sr-only">(current)</span></a></li>
+            <li><a href="/projects.html">Projects</a></li>
+            <li><a href="/quick_ventures.html">Quick Ventures</a></li>
+            <li><a href="/restaurants.html">Restaurant Generator</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+    </header>
+    <div class="mainBody">
+      <h1>Random Sample from Spreadsheet</h1>
+      <p>This is a simple service to select a simple random sample of rows from a spreadsheet. <i>All work is done on your computer and never sent to
+      any other computer. This has only been tested on Google Chrome on a Mac, but should work on any modern (non-mobile) browser.</i></p>
+      <br />
+      <p><b>Critical Note</b> This project assumes that the "first" sheet of a multi-sheet workbook
+        is the correct one — please edit your file if this is not correct.</p>
+       <div>
+         <label for="file">Choose spreadsheet to upload (XLSX, XLS, CSV, etc.)</label>
+         <input class="btn btn-lg" type="file" id="file" name="file">
+         <label for="samplesize">How many rows?</label>
+         <input type="text" id="samplesize" name="samplesize" value="75">
+         <br>
+         <label for="headers">Data has headers?</label>
+         <input type="checkbox" id="headers" name="headers" checked>
+       </div>
+       <div>
+         <button type="button" class="btn btn-primary" id="submitbutton" onclick="handleFile()">Submit</button>
+         <button type="button" class="btn btn-primary" id="xlsxbutton" disabled onclick="exportXLSX()">Download XLSX</button>
+         <button type="button" class="btn btn-primary" id="xlsbutton" disabled onclick="exportXLS()">Download XLS</button>
+         <button type="button" class="btn btn-primary" id="csvbutton" disabled onclick="exportCSV()">Download CSV</button>
+       </div>
+       <div>
+         <br />
+         <p>Here's a preview of the output:</p>
+         <div id="preview"></div>
+       </div>
+    </div>
+    <script type="text/javascript">
+    var array_of_arrays_out = [];
+    var newWorkbook = null;
+    function exportXLSX() {
+      XLSX.writeFile(newWorkbook, "random_sample.xlsx");
+    }
+    function exportXLS() {
+      XLSX.writeFile(newWorkbook, "random_sample.xls");
+
+    }
+    function exportCSV() {
+      XLSX.writeFile(newWorkbook, "random_sample.csv");
+    }
+
+    function getColName(colId) {
+      // colID must be 1-indexed
+      var col = "";
+      while (colId > 0) {
+        var letter = String.fromCharCode(65 + ((colId - 1) % 26));
+        col = letter + col;
+        colId = Math.floor((colId - 1) / 26)
+      }
+      return col;
+    }
+
+    function getColNames(lastCol) {
+      var i = 1;
+      var arr = [];
+      var name = "";
+      while (name != lastCol) {
+        name = getColName(i);
+        arr.push(name);
+        i++;
+      }
+      return arr;
+    }
+
+    function getRow(data, allCols, rowId) {
+      // rowId is 1-indexed
+      var arr = [];
+      for (var col of allCols) {
+        var cell = col + rowId;
+        var value = data[cell];
+        arr.push(value);
+      }
+      return arr;
+    }
+
+    function handleFile() {
+      document.getElementById('file').disabled = true;
+      document.getElementById('samplesize').disabled = true;
+      document.getElementById('headers').disabled = true;
+      document.getElementById('submitbutton').disabled = true;
+
+      document.getElementById("preview").innerHTML = "<p>If this is a large file, this may take a long time to run.</p>";
+
+      var files = document.getElementById('file').files, f = files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        var data = new Uint8Array(e.target.result);
+        var workbook = XLSX.read(data, {type: 'array'});
+        var sheet = workbook.Sheets[workbook.SheetNames[0]];
+
+        var rows = 0;
+        var cols = "";
+        for (var cell in sheet) {
+          if (cell.startsWith("!")) { continue; }
+          var digit = cell.search(/\d/);
+          var c = cell.substr(0, digit);
+          var r = parseInt(cell.substr(digit));
+          if (r > rows) { rows = r; }
+          if (c.length > cols.length) { cols = c; }
+          else if (c.length < cols.length) { continue; }
+          else {
+            c = c.toUpperCase();
+            cols = cols.toUpperCase();
+            for (var i = 0; i < c.length; i++) {
+              if (c[i] > cols[i]) {
+                cols = c;
+                break;
+              }
+            }
+          }
+        }
+
+        var allColumns = getColNames(cols);
+        var firstRow = 1;
+        array_of_arrays_out = [];
+        if (document.getElementById('headers').checked) {
+          firstRow = 2;
+          array_of_arrays_out.push(getRow(sheet, allColumns, 1));
+        }
+        var allRows = _.range(firstRow, rows + 1);
+        var samplesize = parseInt(document.getElementById('samplesize').value);
+        var sample = _.sample(allRows, samplesize)
+
+        for (var idx of sample) {
+          var arr = getRow(sheet, allColumns, idx);
+          array_of_arrays_out.push(arr);
+        }
+        var newSheet = XLSX.utils.aoa_to_sheet(array_of_arrays_out);
+        newWorkbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(newWorkbook, newSheet, "random_sample");
+
+        var headOnly = array_of_arrays_out.filter(function(dummy, idx) { return idx < 6; });
+        headOnly = XLSX.utils.aoa_to_sheet(headOnly);
+        document.getElementById("preview").innerHTML = XLSX.utils.sheet_to_html(headOnly);
+        $("#preview table").addClass("table");
+        document.getElementById('xlsxbutton').disabled = false;
+        document.getElementById('xlsbutton').disabled = false;
+        document.getElementById('csvbutton').disabled = false;
+      };
+      reader.readAsArrayBuffer(f);
+    }
+
+
+    </script>
+  </body>
+</html>
