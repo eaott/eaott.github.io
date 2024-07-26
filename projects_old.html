@@ -1,0 +1,243 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Evan Ott - Research Projects, Programming</title>
+
+    <meta name="keywords" content="Evan, Ott, Statistics, Austin, Texas, Software, Research">
+    <meta name="description" content="Research Projects and Programming. Statistics, Data Science, and Software Engineering.">
+
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap-theme.css">
+  <link rel="stylesheet" href="css/eaott.css">
+  <script src="js/jquery-2.2.0.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <meta name="viewport" content="width=device-width">
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <!-- http://stackoverflow.com/a/4888458 -->
+  <link rel="shortcut icon" href="img/icon.ico">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html"><img src="img/lambdasaur.png" alt="Logo" height="25px"></a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Main <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="#">Projects</a></li>
+            <li><a href="quick_ventures.html">Quick Ventures</a></li>
+            <li><a href="restaurants.html">Restaurant Generator</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel" data-interval="4500">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <!-- FIXME: update image-->
+          <a href="#Restaurants"><img src="img/restaurant.jpg" alt="Restaurant Generator"></a>
+          <div class="carousel-caption">
+            <h2>Restaurant Generator</h2>
+            <br>
+            <p>Find a restaurant in central Austin</p>
+          </div>
+        </div>
+        <div class="item">
+          <a href="#RezWeek2016"><img src="img/rezweek/me_filter.png" alt="RezWeek Filter"></a>
+          <div class="carousel-caption">
+            <h2>UT RezWeek Filter</h2>
+            <br>
+            <p>Automatically generate FB profile filters</p>
+          </div>
+        </div>
+        <div class="item">
+          <a href="#MathematElection"><img src="img/MathematElection.png" alt="MathematElection"></a>
+          <div class="carousel-caption">
+            <h2>MathematElection</h2>
+            <br>
+            <p>Using Facebook "Likes" to Predict Elections</p>
+          </div>
+        </div>
+        <div class="item ">
+          <a href="#Thesis"><img src="img/Thesis.png" alt="Undergraduate Thesis"></a>
+          <div class="carousel-caption">
+            <h2>Undergraduate Honors Thesis</h2>
+            <br>
+            <p>Estimating Rainfall with Neural Networks</p>
+          </div>
+        </div>
+        <div class="item ">
+          <a href="#DataAnalysis"><img src="img/DataAnalysis.png" alt="Data Analysis"></a>
+          <div class="carousel-caption">
+            <h2><i>Introduction to Data Analysis for Physics</i></h2>
+            <br>
+            <p>Online Textbook for <i>Mathematica</i>, <i>LaTeX</i>, and Statistics</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+
+
+
+  </header>
+  <div class="mainBody">
+    <hr>
+    <div id="Restaurants" itemscope itemtype="http://schema.org/WebSite">
+      <h3 itemprop="name">Restaurant Generator</h3>
+      <p itemprop="description">
+        To help simplify the constant decision process for eating out, I built my own
+        <a href="restaurants.html">restaurant generator</a>. It's doubtful that it's
+        helpful to anyone outside central Austin, perhaps only useful to me. But, I had fun
+        putting it together and use it regularly. It's an idea completely taken from
+        <a href="http://www.restaurantgenerator.com" target="_blank">restaurantgenerator.com</a>
+        which works seemingly anywhere in the USA, and pulls live data from Yelp. It's great,
+        but kept suggesting places that I didn't want after using it for many months.
+      </p>
+  </div>
+  <hr>
+    <div id="MathematElection" itemscope itemtype="http://schema.org/SoftwareApplication">
+      <h3 itemprop="name">MathematElection</h3>
+      <div itemprop="description">
+      <p>
+        What's in a Like?
+      </p>
+      <p>
+        <a href="http://MathematElection.blogspot.com/" target="_blank">MathematElection</a> is a computational politics blog that uses Like data
+        from Facebook to predict Election 2016. My goal is to provide exploratory
+        data analysis and (admittedly lighthearted) predictions, delivering
+        insights from data to a broad audience. So if you want to know who our
+        next president will be, want to learn some coding or statistics, or even become
+        the next Nate Silver, this is the blog for you!
+      </p>
+      <p>
+        In addition to the creating the blog itself, I've presented on this project
+        at the 2015 Wolfram Technology Conference, as Wolfram technologies comprise
+        the computational backbone for my work. The code is available on
+        <a href="https://github.com/eaott/election" target="_blank">GitHub</a>.
+        My presentation may be found
+        <a href="https://dl.dropboxusercontent.com/u/4972364/WTC_2015/Presentation_beta.nb.pdf" target="_blank">here (PDF)</a>,
+        <a href="https://dl.dropboxusercontent.com/u/4972364/WTC_2015/Presentation_beta.nb" target="_blank">here (<i>Mathematica</i> Notebook)</a>,
+        and on YouTube:
+      </p>
+      <p>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/JOxR31EUg48?rel=0" frameborder="0" allowfullscreen></iframe>
+          </div>
+      </p>
+    </div>
+    </div>
+    <hr>
+    <div id="Thesis" itemscope itemtype="http://schema.org/SoftwareApplication">
+      <h3 itemprop="name">Undergraduate Honors Thesis</h3>
+      <div itemprop="description">
+      <p>
+        Over the past 30 years, an average of 85 people died each year in the US
+        due to flash-floods, making them the most fatal severe weather condition.
+        Particularly in Central Texas, the "most flash-flood prone area in the
+        United States," we need to accurately predict rainfall.
+        However, meteorologists continue to manually adjust state-of-the-art
+        physical models based on experience, rather than objective methods.
+      </p>
+      <p>
+        This is where I come in.
+      </p>
+      <p>
+        My undergraduate thesis project uses neural networks and conditional random fields to better
+        estimate rainfall in the Central Texas area. Rather than making
+        future predictions, my project aims at determining the precise
+        relationship between Doppler radar data and rainfall on the ground. For
+        more details, be sure to check out the full write-up
+        <a href="https://repositories.lib.utexas.edu/handle/2152/29981" target="_blank">here</a>
+        and the code on <a href="https://github.com/eaott/weather-prediction" target="_blank">GitHub</a>. Special thanks
+        goes to Dr. Michael Marder and Dr. Pradeep Ravikumar who supervised my research.
+      </p>
+    </div>
+    </div>
+    <hr>
+    <div id="DataAnalysis" itemscope itemtype="http://schema.org/Book">
+      <h3 itemprop="name"><i>Introduction to Data Analysis for Physics</i></h3>
+      <div itemprop="description">
+      <p>
+        Data is everything. Even for physics. Especially for physics.
+      </p>
+      <p>
+        Physicists (both praciticing and in training) rely on data for insight into the
+        laws of the universe. However, processing data effectively, analyzing data
+        correctly, and presenting data elegantly are skills often learned on an <i>ad hoc</i>
+        basis, rather than in a classroom setting.
+      </p>
+<p>
+        <a itemprop="contributor" href="https://github.com/willbeason" target="_blank">Will Beason</a> and I set out to
+        correct that.
+</p>
+<p>
+        Will and I co-wrote <i>Data Analysis for Physics</i> as an online
+        introductory textbook using Brad Miller's <a href="http://runestoneinteractive.org/" target="_blank">runestone</a> system.
+        In it, we cover the basics of using Wolfram <i>Mathematica</i>, LaTeX, and basic statistics
+        as a bare-bones introduction to professional physics (really, professional research).
+        Though many of the examples come from a physics perspective, the techniques are far more general.
+      </p>
+      <p>
+        The course materials (available at <a href="http://eaott.github.io/data-analysis/">eaott.github.io/data-analysis</a>)
+        have been used for multiple 1-hour, for-credit, student-led classes at UT-Austin
+        since Will and I co-led the first iteration in Spring 2014. I'm especially thankful
+        to Dr. Greg Sitz who handed us the reins for the curriculum in a grand educational experiment.
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div id="RezWeek2016" itemscope itemtype="http://schema.org/WebSite">
+    <h3 itemprop="name">RezWeek 2016 Profile Filter</h3>
+    <p itemprop="description">
+      Profile filters on social media unite and drive a movement visually. I built a small
+      system to create a custom Facebook profile filter automatically for <a href="http://texasunited.org" target="_blank">Campus Renewal UT's</a>
+      RezWeek 2016. RezWeek celebrates the resurrection of Jesus, and the 2016 theme was "Greater Than Fear." I built the code to
+      allow students to upload a photo, and get it "Ready for RezWeek." I hope to expand on this at a later date.
+    </p>
+  <p>
+    You can still check out what your profile would look like at <a itemprop="url" href="rezweek2016.html">www.evanott.com/rezweek2016.html</a>.
+  </p>
+</div>
+  </div>
+</body>
+</html>

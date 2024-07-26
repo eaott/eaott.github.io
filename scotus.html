@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html  >
+<head>
+  <!-- Site made with Mobirise Website Builder v5.9.18, https://mobirise.com -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.18, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="assets/images/test-227x151.png" type="image/x-icon">
+  <meta name="description" content="Visualizing patterns in SCOTUS voting behavior.">
+  
+  
+  <title>SCOTUS</title>
+  <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+  <link rel="stylesheet" href="assets/web/assets/gdpr-plugin/gdpr-styles.css">
+  <link rel="stylesheet" href="assets/dropdown/css/style.css">
+  <link rel="stylesheet" href="assets/socicon/css/styles.css">
+  <link rel="stylesheet" href="assets/theme/css/style.css">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;700&display=swap&display=swap"></noscript>
+  <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css?v=ajumEG"><link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css?v=ajumEG" type="text/css">
+
+  <script type="text/javascript" src="/js/plotly-2.32.0.min.js"></script>
+    <script type="text/javascript" src="/js/svd-js.min.js"></script>
+    <script type="text/javascript" src="/js/math.js"></script>
+
+    <script type="text/javascript">
+            function plot() {
+                const form = document.getElementById("dataForm");
+                const year = form.year.value;
+                const option = form.option.value;
+                var filename = "/data/scotus/" + year + ".json";
+                fetch(filename).then(response => response.json()).then(json => {
+                    if (option == "percentage") {
+                        var justices = json[2];
+                        var votemat = json[3];
+                        var title = "Percentage Agreement";
+                    }
+                    else {
+                        var justices = json[0];
+                        var votemat = json[1];
+                        var title = "Vote Count";
+                    }
+                    var data = [
+                        {
+                            z: votemat,
+                            x: justices,
+                            y: justices,
+                            type: "heatmap",
+                            hoverongaps: false,
+                            colorscale: "YlGnBu",
+                            reversescale: true,
+                        }
+                    ];
+                    var layout = {
+                        title: title + ' Heatmap - ' + year + ' Term',
+                        font: {
+                            size: 16,
+                        },
+                        margin: {
+                            t: 40,
+                            l: 150,  // may need to make larger to account for longer Justice names
+                        },
+                        
+                    };
+                    fig = Plotly.newPlot('heatmap', data, layout);
+
+                    const {u, v, q} = SVDJS.SVD(votemat);
+                    const umat = math.matrix(u);
+                    x = math.subset(umat, math.index(math.range(0, justices.length), 0));
+                    x = math.flatten(x).toArray();
+                    y = math.subset(umat, math.index(math.range(0, justices.length), 1));
+                    y = math.flatten(y).toArray();
+                    
+                    // Attempt to fix the overlapping text... it's a hack and helps a bit...
+                    var textposition = new Array(x.length);
+                    // https://stackoverflow.com/a/48758512 for sort indices in a JS one-line
+                    const parity = Array.from(x.keys()).sort((a, b) => x[a] - x[b]);
+                    for (var i = 0; i < x.length; i++) {
+                        if (i % 2 == 1) {
+                            textposition[parity[i]] = "top center";
+                        }
+                        else {
+                            textposition[parity[i]] = "bottom center";
+                        }
+                    }
+                    data = [
+                        {
+                            x: x,
+                            y: y,
+                            text: justices,
+                            type: "scatter",
+                            mode: "markers+text",
+                            textposition: textposition,
+                        }
+                    ];
+                    var layout = {
+                        title: title + ' SVD - ' + year + ' Term',
+                        font: {
+                            size: 16,
+                        },
+                        margin: {
+                            t: 40,
+                        }
+                    };
+                    Plotly.newPlot('SVD', data, layout);
+                })
+            }
+    </script>
+    <style type="text/css">
+        #container {
+            height: 100%;
+            width: 100%;
+            font-size:0;
+        }
+        #heatmap, #SVD {
+            display: inline-block;
+            width: 100%;
+            vertical-align: top;
+            *display: inline;
+            height: 600px;
+            zoom: 1;
+            font-size:12;
+        }
+    </style>
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="menu menu2 cid-uet7DSu0gv" once="menu" id="menu02-s">
+	
+
+	<nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+		<div class="container">
+			<div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="/index.html">
+						<img src="assets/images/test-227x151.png" alt="Logo" style="height: 4.3rem;">
+					</a>
+				</span>
+				<span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4" href="index.html">Evan Ott</a></span>
+			</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+				<div class="hamburger">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
+				</div>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="research.html" aria-expanded="false">Research</a>
+					</li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="teaching.html">Teaching</a></li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="projects.html">Projects</a></li>
+					<li class="nav-item">
+						<a class="nav-link link text-black text-primary display-4" href="https://quickventures.blogspot.com/" target="_blank">Blog</a>
+					</li><li class="nav-item"><a class="nav-link link text-black text-primary display-4" href="/cv.pdf" target="_blank">CV</a></li></ul>
+				
+				<div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="index.html#social02-9">Contact</a></div>
+			</div>
+		</div>
+	</nav>
+</section>
+
+<section data-bs-version="5.1" class="start article2 cid-ujzsvFBCLg" style="padding-bottom:0;" id="article02-1a">
+	
+
+	
+	
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-4 image-wrapper">
+				<img class="w-100" src="assets/images/screen-shot-2024-07-25-at-3.46.54-pm-511x472.png" alt="Mobirise Website Builder">
+			</div>
+			<div class="col-12 col-md-12 col-lg">
+				<div class="text-wrapper align-left">
+					<h1 class="mbr-section-title mbr-fonts-style mb-4 display-2">
+						<strong>SCOTUS Vote Analysis</strong></h1>
+					<p class="mbr-text align-left mbr-fonts-style mb-4 display-7">Inspired by the <a href="https://www.politico.com/news/magazine/2024/06/02/supreme-court-justice-math-00152188" class="text-primary" target="_blank">analysis</a> of Sarah Isgur and Dean Jens over at Politico, I thought it'd be nice to have access to the same analysis for different SCOTUS terms.<br></p>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="content4 cid-ujzsMz9rmT"  style="padding-top: 2rem;" id="list02-1b">
+    
+
+    
+    
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="item features-without-image col-12 active">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <form id="dataForm" onsubmit="plot(); return false;">
+                                <label for="year">Select Year:</label>
+                                <select id="year" name="year">
+                                    <!-- JavaScript will populate this dropdown -->
+                                </select>
+                        
+                                <br><br>
+                        
+                                <label>Select Option:</label><br>
+                                <input type="radio" id="percentage" name="option" value="percentage">
+                                <label for="percentage">Percentage</label><br>
+                                <input type="radio" id="vote" name="option" value="vote">
+                                <label for="vote">Vote</label><br><br>
+                        
+                                <input type="submit" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div>Note: best viewed on large screens or horizontally (may need to reload page).</div>
+                <div id="heatmap"></div>
+                <div id="SVD"></div>
+                <div class="item features-without-image col-12 active">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>What is this?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                This is a visualization of votes on the Supreme Court of the United States (SCOTUS) from 1946-2022. The goal is to see if and how Justices on the Court appear to relate to one another – do they form voting blocs, and if so, do they appear meaningful?<br><br>This work is replicating work done by&nbsp;Sarah Isgur and Dean Jens in their <a href="https://www.politico.com/news/magazine/2024/06/02/supreme-court-justice-math-00152188" class="text-primary">Politico piece</a>&nbsp;that discussed Isgur's 3-3-3 court theory for the 2022 term. Additionally, this allows you to view similar analysis for different years (back to 1946).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5"><strong>Where is the data from?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">
+                                The <a href="http://scdb.wustl.edu/data.php" class="text-primary">Supreme Court Database</a> curated by Washington University Law proved to be an invaluable resource and powers this visualization. This work uses their Justice Centered data from the 2023 Release 01, covering the 1946-2022 terms. For all decisions available, I used the <a href="http://scdb.wustl.edu/documentation.php?var=majority" class="text-primary">"majority"</a> variable (i.e., whether a Justice was in the majority/minority) to define groupings for individual cases.<br><br> SCOTUS experts, I know this is a <em>massive</em> simplification (e.g., concurring in part and dissenting in part, spicy Alito concurrences, etc.), but my expertise is statistics, not SCOTUS analysis. Want to look at a different construction? You can find the code here to start you off, or reach out.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>What do these plots mean?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">The first plot is a heatmap, showing how likely each Justice was to be in the same group as any other for that term (i.e., were they in the majority/minority <em>together</em>, or not). The ordering of Justices generally shows groupings (like 2022's 3-3-3 Court) by identifying blocs of Justices who vote similarly. This is an automated process based <em>only</em> on agreement/disagreement with other Justices with no notion of Justice's ideology or the politics relevant in each decision.<br><br>The second plot is a visualization to help observe the variation we see in votes. The specific values aren't as meaningful as the patterns we observe. The horizontal axis should explain most of the variation, the vertical axis will explain a bit more. We could keep this going in 3D (or 4D, ...), but this should let us see the broad patterns. The left-right (or up-down) placement of each Justice is an artifact of the algorithm and doesn't necessarily correspond to things like ideology. Again, this is determined&nbsp;<em>only</em>&nbsp;from whether Justices agreed or disagreed with each other on particular decisions, with equal weight to all decisions.<br><br><em>As a technical note, this is a scatterplot of the first two columns of the U matrix from a singular value decomposition of the heatmap data.</em><br></p>
+                        </div>
+                    </div>
+                </div><div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>What does it mean?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">Let's take a look at the 2022 example, where we see Sarah Isgur's now-famous 3-3-3 Court. As discussed in the Politico piece and elsewhere, the 2022 Court appears to have three blocks of three Justices each, breaking the 6 conservative-appointed Justices into two blocs – the high and low institutionalists. <br><br>The first plot shows how often Justices voted with one another. We see that just by how often Justices voted with or against each other, they tend to fall into three blocs:<br>Bloc 1: Justices Barrett, Kavanaugh, and Roberts<br>Bloc 2: Justices Alito, Gorsuch, and Thomas<br>Bloc 3: Justices Kagan, Jackson, and Sotomayor<br><br>We can see, for example, that members of each bloc tend to agree with each other more than they agree with the other 6 Justices. We also see that Blocs 2 and 3 tend to disagree with each other more than Blocs 1 and 2 or Blocs 1 and 3.<br><br>As for the scatterplot, SCOTUS experts have assessed the horizontal axis of the second plot as roughly aligned with "institutionalism" (left being more institutional, right being less) while the vertical aligns with "ideology" (up being more conservative, down being more liberal). Again, the statistical technique at play here knows nothing of politics, judicial philosophy, or anything of the sort. But, it happens to be that when trying to explain differences between how Justices vote, we find that familiar, understandable explanations map well onto the analysis.<br><br>Moving to different terms, these axes will need entirely new explanations -- even just moving to 2021, the horizontal may correspond to an entirely different explanation. The meaning (if indeed there is one) is best left to the SCOTUS experts.</p>
+                        </div>
+                    </div>
+                </div><div class="item features-without-image col-12">
+                    <div class="item-wrapper">
+                        <div class="card-box align-left">
+                            <h5 class="card-title mbr-fonts-style mb-3 display-5">
+                                <strong>Any last thoughts?</strong></h5>
+                            <p class="card-text mbr-fonts-style mb-5 display-7">In addition to looking at the percent agreement of Justices, you can also look at the number of times they voted together. This technique struggles when Justices do not sit the full term (the incoming or outgoing Justice is often in a "bloc" alone).<br><br>Finally, as a footnote to <a href="https://thedispatch.com/podcast/advisoryopinions/" class="text-primary">Advisory Opinions</a> listeners (we really need a name – AOers?), processing the data from the Supreme Court Database took longer at first then started to speed up as it moved from the '40s to the most recent data. Why? Because SCOTUS is deciding fewer cases. Faster code: the one upside to a slowing Court, I guess.<br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="footer3 cid-uet7DSANUh" once="footers" id="footer03-t">
+
+        
+
+    
+
+    <div class="container">
+        <div class="row">
+
+            <div class="col-12 mt-4">
+                <div class="social-row">
+                    <div class="soc-item">
+                        <a href="https://github.com/eaott" target="_blank">
+                            <span class="mbr-iconfont display-7 mobi-mbri-github mobi-mbri"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://www.youtube.com/@evanott" target="_blank">
+                            <span class="mbr-iconfont socicon-youtube socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="http://www.linkedin.com/in/evanott" target="_blank">
+                            <span class="mbr-iconfont socicon-linkedin socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="mailto:evan@evanott.com">
+                            <span class="mbr-iconfont socicon-mail socicon"></span>
+                        </a>
+                    </div>
+                    <div class="soc-item">
+                        <a href="https://scholar.google.com/citations?hl=en&user=BrK1-1sAAAAJ&view_op=list_works&gmla=AOAOcb1AMSpO0On0k4eJXcFJUgkq7DKc0MYcG-TDyC1Zu9ZRMDJmIlTaNpuBRfa50mnmgbFeV-z9II80aYUXsl6N" target="_blank">
+                            <span class="mbr-iconfont socicon-googlescholar socicon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-5">
+                <p class="mbr-fonts-style copyright display-7"></p>
+            </div>
+        </div>
+    </div>
+</section><script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>  <script src="assets/smoothscroll/smooth-scroll.js"></script>  <script src="assets/ytplayer/index.js"></script>  <script src="assets/dropdown/js/navbar-dropdown.js"></script>  <script src="assets/theme/js/script.js"></script>  
+  
+  
+</body>
+<script>
+    // Function to populate the year dropdown
+    window.onload = function() {
+        const yearSelect = document.getElementById("year");
+        for (let year = 2022; year >= 1946; year--) {
+            let option = document.createElement("option");
+            option.value = year;
+            option.text = year;
+            yearSelect.add(option);
+        }
+    };
+
+</script>
+</html>
