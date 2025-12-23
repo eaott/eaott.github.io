@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating Comparison</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
+        .home-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .home-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Rating Comparison</h1>
+    <div class="form-container">
+        <div class="input-row">
+            <input type="number" id="averageRating" placeholder="Average Rating" step="0.1" min="0" max="5">
+            <input type="number" id="numberOfRatings" placeholder="Number of Ratings" min="0">
+            <input type="text" id="identifier" placeholder="Optional Name">
+        </div>
+        <button onclick="addComparison()">Submit</button>
+    </div>
+    <div class="results" id="results">
+        <!-- Results will be displayed here -->
+    </div>
+    <a href="https://evanott.com" class="home-link">Home</a>
+
+    <script>
+        const comparisons = [];
+
+        function calculateScore(averageRating, numberOfRatings) {
+            return averageRating - (1 / Math.sqrt(numberOfRatings/16));
+            // Stub function: Replace with your formula
+        }
+
+        function addComparison() {
+            const averageRating = parseFloat(document.getElementById('averageRating').value);
+            const numberOfRatings = parseInt(document.getElementById('numberOfRatings').value, 10);
+            const identifier = document.getElementById('identifier').value || 'Unnamed';
+
+            if (isNaN(averageRating) || isNaN(numberOfRatings)) {
+                alert('Please enter valid numbers for average rating and number of ratings.');
+                return;
+            }
+
+            const score = calculateScore(averageRating, numberOfRatings);
+            comparisons.push({ averageRating, numberOfRatings, identifier, score });
+
+            displayResults();
+            // Reset inputs to show placeholders again
+            document.getElementById('averageRating').value = '';
+            document.getElementById('numberOfRatings').value = '';
+            document.getElementById('identifier').value = '';
+            // focus first input for quicker entry
+            document.getElementById('averageRating').focus();
+        }
+
+        function displayResults() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '';
+
+            comparisons.sort((a, b) => b.score - a.score);
+
+            comparisons.forEach((comparison, index) => {
+                const div = document.createElement('div');
+                div.textContent = `${index + 1}. ${comparison.identifier} ${comparison.averageRating}(${comparison.numberOfRatings}) - Score: ${comparison.score.toFixed(2)}`;
+                resultsDiv.appendChild(div);
+            });
+        }
+
+        // Allow pressing Enter in any input to submit the comparison
+        document.addEventListener('DOMContentLoaded', () => {
+            const ids = ['averageRating', 'numberOfRatings', 'identifier'];
+            ids.forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addComparison();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
