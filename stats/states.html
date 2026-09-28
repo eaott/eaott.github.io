@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random US State Sample</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --ink: #1f2937;
+        --muted: #5b6474;
+        --brand: #1a4d8f;
+        --brand-2: #5fa8ff;
+        --border: #dfe6ee;
+        --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--ink);
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 1.25rem 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--ink);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.6rem 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .brand-logo {
+        width: 5.1rem;
+        height: auto;
+        display: block;
+        border-radius: 0.5rem;
+      }
+
+      .brand-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+      }
+
+      .action {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.9rem 1.3rem;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(26, 77, 143, 0.25);
+      }
+
+      .action:hover {
+        filter: brightness(1.04);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.2rem;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+
+      .flag-wrap {
+        background: #edf3fa;
+        padding: 0.75rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 140px;
+      }
+
+      .flag-wrap img {
+        width: 100%;
+        max-width: 280px;
+        max-height: 180px;
+        object-fit: contain;
+        border-radius: 12px;
+        border: 1px solid rgba(17, 24, 39, 0.08);
+      }
+
+      .card h2 {
+        margin: 0;
+        padding: 1rem 1rem 1.2rem;
+        text-align: center;
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 600px) {
+        .header-row {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Return to the homepage">
+        <img class="brand-logo" src="/assets/images/test-227x151.png" alt="Homepage logo" />
+        <span class="brand-name">Homepage</span>
+      </a>
+    </header>
+
+    <main class="container">
+      <div class="header-row">
+        <h1>Random US State Sample</h1>
+        <button id="regenBtn" class="action" type="button">Generate new sample</button>
+      </div>
+
+      <section id="stateGrid" class="grid" aria-live="polite"></section>
+    </main>
+
+    <script>
+      const states = [
+        { name: 'Alabama', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Alabama.svg' },
+        { name: 'Alaska', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Alaska.svg' },
+        { name: 'Arizona', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Arizona.svg' },
+        { name: 'Arkansas', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Arkansas.svg' },
+        { name: 'California', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_California.svg' },
+        { name: 'Colorado', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Colorado.svg' },
+        { name: 'Connecticut', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Connecticut.svg' },
+        { name: 'Delaware', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Delaware.svg' },
+        { name: 'Florida', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Florida.svg' },
+        { name: 'Georgia', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Georgia.svg' },
+        { name: 'Hawaii', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Hawaii.svg' },
+        { name: 'Idaho', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Idaho.svg' },
+        { name: 'Illinois', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Illinois.svg' },
+        { name: 'Indiana', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Indiana.svg' },
+        { name: 'Iowa', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Iowa.svg' },
+        { name: 'Kansas', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Kansas.svg' },
+        { name: 'Kentucky', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Kentucky.svg' },
+        { name: 'Louisiana', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Louisiana.svg' },
+        { name: 'Maine', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Maine.svg' },
+        { name: 'Maryland', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Maryland.svg' },
+        { name: 'Massachusetts', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Massachusetts.svg' },
+        { name: 'Michigan', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Michigan.svg' },
+        { name: 'Minnesota', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Minnesota.svg' },
+        { name: 'Mississippi', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Mississippi.svg' },
+        { name: 'Missouri', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Missouri.svg' },
+        { name: 'Montana', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Montana.svg' },
+        { name: 'Nebraska', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Nebraska.svg' },
+        { name: 'Nevada', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Nevada.svg' },
+        { name: 'New Hampshire', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_Hampshire.svg' },
+        { name: 'New Jersey', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_Jersey.svg' },
+        { name: 'New Mexico', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_Mexico.svg' },
+        { name: 'New York', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_New_York.svg' },
+        { name: 'North Carolina', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Carolina.svg' },
+        { name: 'North Dakota', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_North_Dakota.svg' },
+        { name: 'Ohio', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Ohio.svg' },
+        { name: 'Oklahoma', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Oklahoma.svg' },
+        { name: 'Oregon', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Oregon.svg' },
+        { name: 'Pennsylvania', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Pennsylvania.svg' },
+        { name: 'Rhode Island', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Rhode_Island.svg' },
+        { name: 'South Carolina', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_South_Carolina.svg' },
+        { name: 'South Dakota', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_South_Dakota.svg' },
+        { name: 'Tennessee', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Tennessee.svg' },
+        { name: 'Texas', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Texas.svg' },
+        { name: 'Utah', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Utah.svg' },
+        { name: 'Vermont', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Vermont.svg' },
+        { name: 'Virginia', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Virginia.svg' },
+        { name: 'Washington', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Washington.svg' },
+        { name: 'West Virginia', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_West_Virginia.svg' },
+        { name: 'Wisconsin', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wisconsin.svg' },
+        { name: 'Wyoming', flag: 'https://commons.wikimedia.org/wiki/Special:FilePath/Flag_of_Wyoming.svg' }
+      ];
+
+      function pickRandomStates(list, count) {
+        const pool = [...list];
+        const selected = [];
+
+        while (selected.length < count && pool.length > 0) {
+          const index = Math.floor(Math.random() * pool.length);
+          selected.push(pool.splice(index, 1)[0]);
+        }
+
+        return selected;
+      }
+
+      function renderSample() {
+        const sample = pickRandomStates(states, 4);
+        const grid = document.getElementById('stateGrid');
+
+        grid.innerHTML = sample.map((state) => `
+          <article class="card">
+            <div class="flag-wrap">
+              <img src="${state.flag}" alt="Flag of ${state.name}" loading="lazy" />
+            </div>
+            <h2>${state.name}</h2>
+          </article>
+        `).join('');
+      }
+
+      document.getElementById('regenBtn').addEventListener('click', () => {
+        renderSample();
+      });
+
+      renderSample();
+    </script>
+  </body>
+</html>
