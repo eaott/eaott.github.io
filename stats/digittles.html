@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digittles Sample</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --ink: #1f2937;
+        --muted: #5b6474;
+        --brand: #1a4d8f;
+        --brand-2: #5fa8ff;
+        --border: #dfe6ee;
+        --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--ink);
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 1.25rem 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--ink);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.6rem 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .brand-logo {
+        width: 5.1rem;
+        height: auto;
+        display: block;
+        border-radius: 0.5rem;
+      }
+
+      .brand-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+      }
+
+      .action {
+        appearance: none;
+        border: none;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--brand) 0%, var(--brand-2) 100%);
+        color: white;
+        font-size: 1rem;
+        font-weight: 700;
+        padding: 0.9rem 1.3rem;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(26, 77, 143, 0.25);
+      }
+
+      .action:hover { filter: brightness(1.04); }
+      .action:focus-visible { outline: 3px solid #f4b942; outline-offset: 3px; }
+
+      .sample-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.65fr) minmax(260px, 0.9fr);
+        gap: 1.2rem;
+        align-items: stretch;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .pile-card {
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-width: 0;
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: 1.15rem;
+      }
+
+      .piece-total {
+        color: var(--muted);
+        font-size: 0.9rem;
+        white-space: nowrap;
+      }
+
+      .pile-stage {
+        min-height: 300px;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border: 1px solid #e5e9ef;
+        border-radius: 14px;
+        background:
+          radial-gradient(ellipse at 50% 80%, rgba(114, 86, 53, 0.1), transparent 60%),
+          repeating-linear-gradient(0deg, transparent, transparent 25px, rgba(67, 86, 105, 0.035) 26px),
+          #f8fafc;
+      }
+
+      .candy-pile {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.28rem;
+        padding: 1rem 0.35rem;
+        width: 100%;
+      }
+
+      .candy-row {
+        display: flex;
+        justify-content: center;
+        gap: 0.3rem;
+      }
+
+      .candy {
+        --candy: #ed2636;
+        position: relative;
+        display: block;
+        width: clamp(48px, 9vw, 76px);
+        height: clamp(30px, 5.4vw, 43px);
+        flex: 0 0 auto;
+        border: 1px solid rgba(70, 38, 25, 0.25);
+        border-radius: 55% 48% 52% 46% / 52% 55% 45% 48%;
+        background: linear-gradient(155deg, rgba(255,255,255,0.48), transparent 34%),
+          linear-gradient(180deg, color-mix(in srgb, var(--candy), white 12%), var(--candy) 58%, color-mix(in srgb, var(--candy), black 12%));
+        box-shadow: 0 4px 5px rgba(29, 34, 39, 0.2), inset 0 -2px 3px rgba(0, 0, 0, 0.12);
+      }
+
+      .candy::after {
+        content: "";
+        position: absolute;
+        left: 20%;
+        top: 16%;
+        width: 34%;
+        height: 18%;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        transform: rotate(-13deg);
+      }
+
+      .pile-caption {
+        margin: 0.85rem 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        text-align: center;
+      }
+
+      .summary-card { padding: 1.25rem; }
+
+      .summary-card h2 { margin-bottom: 0.35rem; }
+
+      .summary-note {
+        margin: 0 0 1rem;
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .color-list {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .color-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 3.2rem 4.2rem;
+        align-items: center;
+        gap: 0.5rem;
+        min-height: 46px;
+        border-top: 1px solid #edf0f4;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .color-name {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 600;
+      }
+
+      .swatch {
+        width: 1rem;
+        height: 1rem;
+        flex: 0 0 auto;
+        border: 1px solid rgba(0, 0, 0, 0.18);
+        border-radius: 50%;
+        background: var(--candy);
+      }
+
+      .count, .proportion { text-align: right; }
+      .count { font-weight: 700; }
+      .proportion { color: var(--muted); }
+
+      .summary-footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.5rem;
+        margin-top: 0.8rem;
+        padding-top: 0.85rem;
+        border-top: 1px solid var(--border);
+        font-weight: 700;
+        font-variant-numeric: tabular-nums;
+      }
+
+      @media (max-width: 760px) {
+        .sample-layout { grid-template-columns: 1fr; }
+        .pile-stage { min-height: 260px; }
+        .candy { width: clamp(48px, 12vw, 72px); height: clamp(30px, 7vw, 41px); }
+      }
+
+      @media (max-width: 600px) {
+        .header-row { align-items: flex-start; flex-direction: column; }
+        .action { width: 100%; }
+        .container { padding-top: 1.5rem; }
+        .pile-card, .summary-card { padding: 1rem; }
+        .pile-stage { min-height: 235px; }
+        .candy-pile { gap: 0.2rem; }
+        .candy-row { gap: 0.18rem; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Return to the homepage">
+        <img class="brand-logo" src="/assets/images/test-227x151.png" alt="Homepage logo" />
+        <span class="brand-name">Homepage</span>
+      </a>
+    </header>
+
+    <main class="container">
+      <div class="header-row">
+        <h1>Digittles Sample</h1>
+        <button id="regenBtn" class="action" type="button">Generate new set</button>
+      </div>
+
+      <div class="sample-layout" aria-live="polite">
+        <section class="card pile-card" aria-labelledby="pileHeading">
+          <div class="section-heading">
+            <h2 id="pileHeading">Your packet</h2>
+            <span class="piece-total">15 Digittles</span>
+          </div>
+          <div class="pile-stage">
+            <div id="candyPile" class="candy-pile" aria-hidden="true"></div>
+          </div>
+          <p class="pile-caption">A fresh fun-size sample, one piece at a time.</p>
+        </section>
+
+        <section class="card summary-card" aria-labelledby="summaryHeading">
+          <h2 id="summaryHeading">Color breakdown</h2>
+          <p class="summary-note">Each color has a 20% chance per Digittle.</p>
+          <div id="colorList" class="color-list"></div>
+          <div class="summary-footer">
+            <span>Total sample</span>
+            <span>15 · 100%</span>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script>
+      const colors = [
+        { name: 'Red', value: '#ed2636' },
+        { name: 'Yellow', value: '#f4c928' },
+        { name: 'Green', value: '#28a957' },
+        { name: 'Purple', value: '#773f9b' },
+        { name: 'Orange', value: '#f18424' }
+      ];
+      const packetSize = 15;
+      const rowSizes = [3, 4, 5, 3];
+
+      function drawPacket() {
+        return Array.from({ length: packetSize }, () =>
+          colors[Math.floor(Math.random() * colors.length)]
+        );
+      }
+
+      function renderSample() {
+        const sample = drawPacket();
+        const counts = Object.fromEntries(colors.map(({ name }) => [name, 0]));
+        const pile = document.getElementById('candyPile');
+        const colorList = document.getElementById('colorList');
+        let offset = 0;
+
+        sample.forEach(({ name }) => { counts[name] += 1; });
+        pile.innerHTML = rowSizes.map((rowSize) => {
+          const candies = sample.slice(offset, offset + rowSize).map(({ name, value }) => {
+            const rotation = Math.floor(Math.random() * 31) - 15;
+            return `<span class="candy" style="--candy: ${value}; transform: rotate(${rotation}deg)" title="${name}"></span>`;
+          }).join('');
+          offset += rowSize;
+          return `<div class="candy-row">${candies}</div>`;
+        }).join('');
+
+        colorList.innerHTML = colors.map(({ name, value }) => {
+          const proportion = (counts[name] / packetSize * 100).toFixed(1);
+          return `
+            <div class="color-row">
+              <span class="color-name"><span class="swatch" style="--candy: ${value}" aria-hidden="true"></span>${name}</span>
+              <span class="count">${counts[name]}</span>
+              <span class="proportion">${proportion}%</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      document.getElementById('regenBtn').addEventListener('click', renderSample);
+      renderSample();
+    </script>
+  </body>
+</html>
