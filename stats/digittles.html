@@ -210,14 +210,25 @@
         gap: 0.2rem;
       }
 
+      .color-header,
       .color-row {
         display: grid;
         grid-template-columns: minmax(0, 1fr) 3.2rem 4.2rem;
         align-items: center;
         gap: 0.5rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .color-header {
+        padding: 0.4rem 0;
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .color-row {
         min-height: 46px;
         border-top: 1px solid #edf0f4;
-        font-variant-numeric: tabular-nums;
       }
 
       .color-name {
@@ -251,6 +262,63 @@
         font-variant-numeric: tabular-nums;
       }
 
+      .plot-card {
+        margin-top: 1.2rem;
+        padding: 1.25rem;
+      }
+
+      .plot-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .plot-controls {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .plot-controls label {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .plot-select {
+        min-width: 7.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: white;
+        color: var(--ink);
+        font: inherit;
+        padding: 0.45rem 0.6rem;
+      }
+
+      .plot-select:focus-visible { outline: 3px solid #f4b942; outline-offset: 2px; }
+
+      .plot-count, .plot-note {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .plot-note { margin: 0 0 0.5rem; }
+
+      .dotplot {
+        display: block;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+      }
+
+      .plot-grid { stroke: #dfe6ee; stroke-width: 1; }
+      .plot-axis { stroke: #8793a2; stroke-width: 1.4; }
+      .plot-label { fill: #5b6474; font: 12px Arial, Helvetica, sans-serif; }
+      .plot-color-label { fill: #1f2937; font: 600 13px Arial, Helvetica, sans-serif; }
+      .plot-dot { stroke: rgba(31, 41, 55, 0.5); stroke-width: 1; }
+      .plot-overflow { stroke: #fff; stroke-width: 1; }
+
       @media (max-width: 760px) {
         .sample-layout { grid-template-columns: 1fr; }
         .pile-stage { min-height: 260px; }
@@ -261,7 +329,9 @@
         .header-row { align-items: flex-start; flex-direction: column; }
         .action { width: 100%; }
         .container { padding-top: 1.5rem; }
-        .pile-card, .summary-card { padding: 1rem; }
+        .pile-card, .summary-card, .plot-card { padding: 1rem; }
+        .plot-label { font-size: 11px; }
+        .plot-color-label { font-size: 12px; }
         .pile-stage { min-height: 235px; }
         .candy-pile { gap: 0.2rem; }
         .candy-row { gap: 0.18rem; }
@@ -296,14 +366,37 @@
 
         <section class="card summary-card" aria-labelledby="summaryHeading">
           <h2 id="summaryHeading">Color breakdown</h2>
-          <p class="summary-note">Each color has a 20% chance per Digittle.</p>
+          <p class="summary-note">Each color has a 0.200 chance per Digittle.</p>
           <div id="colorList" class="color-list"></div>
           <div class="summary-footer">
             <span>Total sample</span>
-            <span>15 · 100%</span>
+            <span>15 · 1.000</span>
           </div>
         </section>
       </div>
+
+      <section class="card plot-card" aria-labelledby="plotHeading">
+        <div class="plot-heading">
+          <h2 id="plotHeading">Dotplot</h2>
+          <div class="plot-controls">
+            <label for="plotColor">Color</label>
+            <select id="plotColor" class="plot-select">
+              <option value="Red" selected>Red</option>
+              <option value="Yellow">Yellow</option>
+              <option value="Green">Green</option>
+              <option value="Purple">Purple</option>
+              <option value="Orange">Orange</option>
+            </select>
+          </div>
+        </div>
+        <p class="plot-note">One dot per packet; repeated proportions stack. Values above 0.600 are marked at the right edge.</p>
+        <span id="plotCount" class="plot-count">0 packets</span>
+        <svg id="dotplot" class="dotplot" viewBox="0 0 960 400" role="img" aria-labelledby="plotTitle plotDescription">
+          <title id="plotTitle">Red proportion dotplot</title>
+          <desc id="plotDescription">One dot for each packet's Red proportion. The horizontal axis runs from 0 to 0.600.</desc>
+          <g id="plotContent"></g>
+        </svg>
+      </section>
     </main>
 
     <script>
@@ -316,6 +409,7 @@
       ];
       const packetSize = 15;
       const rowSizes = [3, 4, 5, 3];
+      const sampleHistory = [];
 
       function drawPacket() {
         return Array.from({ length: packetSize }, () =>
@@ -340,19 +434,86 @@
           return `<div class="candy-row">${candies}</div>`;
         }).join('');
 
-        colorList.innerHTML = colors.map(({ name, value }) => {
-          const proportion = (counts[name] / packetSize * 100).toFixed(1);
+        sampleHistory.push(Object.fromEntries(colors.map(({ name }) => [name, counts[name]])));
+        colorList.innerHTML = `
+          <div class="color-header" aria-hidden="true">
+            <span>Color</span><span class="count">Count</span><span class="proportion">Proportion</span>
+          </div>
+        ` + colors.map(({ name, value }) => {
+          const proportion = (counts[name] / packetSize).toFixed(3);
           return `
             <div class="color-row">
               <span class="color-name"><span class="swatch" style="--candy: ${value}" aria-hidden="true"></span>${name}</span>
               <span class="count">${counts[name]}</span>
-              <span class="proportion">${proportion}%</span>
+              <span class="proportion">${proportion}</span>
             </div>
           `;
         }).join('');
+
+        renderDotplot();
+      }
+
+      function renderDotplot() {
+        const plotContent = document.getElementById('plotContent');
+        const plotCount = document.getElementById('plotCount');
+        const plotTitle = document.getElementById('plotTitle');
+        const plotDescription = document.getElementById('plotDescription');
+        const plot = document.getElementById('dotplot');
+        const selectedName = document.getElementById('plotColor').value;
+        const selectedColor = colors.find(({ name }) => name === selectedName) || colors[0];
+        const plotLeft = 105;
+        const plotRight = 920;
+        const plotWidth = plotRight - plotLeft;
+        const axisMaximum = 0.6;
+        const frequencies = {};
+        sampleHistory.forEach((sample) => {
+          frequencies[sample[selectedColor.name]] = (frequencies[sample[selectedColor.name]] || 0) + 1;
+        });
+        const laneHeight = Math.max(98, Math.max(...Object.values(frequencies)) * 10 + 26);
+        const plotHeight = 18 + laneHeight + 44;
+        const axisY = plotHeight - 28;
+        const laneTop = 18;
+        const marks = [];
+
+        plot.setAttribute('viewBox', `0 0 960 ${plotHeight}`);
+        plotCount.textContent = `${sampleHistory.length} ${sampleHistory.length === 1 ? 'packet' : 'packets'}`;
+        plotTitle.textContent = `${selectedColor.name} proportion dotplot, ${sampleHistory.length} ${sampleHistory.length === 1 ? 'packet' : 'packets'}`;
+        plotDescription.textContent = `Each dot shows one packet's ${selectedColor.name} proportion. Matching values stack vertically. The horizontal axis runs from 0.000 to 0.600.`;
+
+        for (let tick = 0; tick <= 6; tick += 1) {
+          const value = tick / 10;
+          const x = plotLeft + value / axisMaximum * plotWidth;
+          marks.push(`<line class="plot-grid" x1="${x}" y1="18" x2="${x}" y2="${axisY}" />`);
+          marks.push(`<text class="plot-label" x="${x}" y="${axisY + 19}" text-anchor="middle">${value.toFixed(3)}</text>`);
+        }
+        marks.push(`<line class="plot-axis" x1="${plotLeft}" y1="${axisY}" x2="${plotRight}" y2="${axisY}" />`);
+
+        const baseline = laneTop + laneHeight - 12;
+        const seen = {};
+        marks.push(`<line class="plot-grid" x1="${plotLeft}" y1="${baseline}" x2="${plotRight}" y2="${baseline}" />`);
+        marks.push(`<text class="plot-color-label" x="0" y="${baseline + 4}">${selectedColor.name}</text>`);
+
+        sampleHistory.forEach((sample, sampleIndex) => {
+          const count = sample[selectedColor.name];
+          const stackIndex = seen[count] || 0;
+          seen[count] = stackIndex + 1;
+          const proportion = count / packetSize;
+          const y = baseline - 5 - stackIndex * 10;
+          const title = `${selectedColor.name}: ${proportion.toFixed(3)} in packet ${sampleIndex + 1}`;
+
+          if (proportion > axisMaximum) {
+            marks.push(`<path class="plot-overflow" fill="${selectedColor.value}" d="M ${plotRight - 2} ${y} l -9 -5 v 10 z"><title>${title}, above 0.600</title></path>`);
+          } else {
+            const x = plotLeft + proportion / axisMaximum * plotWidth;
+            marks.push(`<circle class="plot-dot" cx="${x}" cy="${y}" r="5" fill="${selectedColor.value}"><title>${title}</title></circle>`);
+          }
+        });
+
+        plotContent.innerHTML = marks.join('');
       }
 
       document.getElementById('regenBtn').addEventListener('click', renderSample);
+      document.getElementById('plotColor').addEventListener('change', renderDotplot);
       renderSample();
     </script>
   </body>
