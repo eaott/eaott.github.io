@@ -521,11 +521,13 @@
       }
 
       function updateLowestExam(scores) {
-        const completed = scores.filter((score) => score !== null);
-        const lowest = completed.length ? Math.min(...completed) : null;
-        document.querySelectorAll('.exam-field').forEach((field) => {
-          const score = scores[Number(field.dataset.exam) - 1];
-          field.classList.toggle('is-lowest', lowest !== null && score === lowest);
+        const lowestIndex = scores.reduce((lowestSoFar, score, index) =>
+          score !== null && (lowestSoFar === -1 || score < scores[lowestSoFar])
+            ? index
+            : lowestSoFar, -1
+        );
+        document.querySelectorAll('.exam-field').forEach((field, index) => {
+          field.classList.toggle('is-lowest', index === lowestIndex);
         });
       }
 
