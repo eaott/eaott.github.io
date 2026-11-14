@@ -640,7 +640,10 @@
               ? (examScores.some((score) => score === null)
                 ? '<p class="result-note">Enter at least one exam score to estimate your grade if you keep the same exam average.</p>'
                 : '')
-              : `<p class="result-note">If your remaining exams average ${formatPercent(currentExamAverage(examScores))}, your course grade would be ${formatPercent(projectedGrade)} (${letterGrade(projectedGrade)}).</p>`;
+              : `
+                <p class="current-grade">Estimated* grade: ${formatPercent(projectedGrade)} (${letterGrade(projectedGrade)})</p>
+                <p class="result-note">* Assumes your remaining exams average ${formatPercent(currentExamAverage(examScores))}.</p>
+              `;
           const targetResults = inputsValid && otherPoints !== null
             ? targets.map((target) => ({ target, ...scoreNeeded(grade, examScores, otherPoints, target) }))
             : [];
