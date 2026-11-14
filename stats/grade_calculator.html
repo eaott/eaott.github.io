@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Grade Calculator</title>
+    <style>
+      :root {
+        --bg: #f4f7fb;
+        --panel: #ffffff;
+        --ink: #1f2937;
+        --muted: #5b6474;
+        --brand: #1a4d8f;
+        --brand-2: #5fa8ff;
+        --border: #dfe6ee;
+        --shadow: 0 12px 30px rgba(17, 24, 39, 0.08);
+        --highlight: #fff3cc;
+      }
+
+      * { box-sizing: border-box; }
+
+      body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(180deg, #eef4ff 0%, var(--bg) 100%);
+        color: var(--ink);
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 1.25rem 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--ink);
+        background: rgba(255,255,255,0.7);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 0.6rem 1rem;
+        box-shadow: var(--shadow);
+      }
+
+      .brand-logo {
+        width: 5.1rem;
+        height: auto;
+        display: block;
+        border-radius: 0.5rem;
+      }
+
+      .brand-name {
+        font-size: 1.05rem;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+      }
+
+      .container {
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 2rem 1.25rem 3rem;
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+      }
+
+      .intro {
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+      }
+
+      .selector-card,
+      .course-details,
+      .input-card,
+      .result-card {
+        padding: 1.25rem;
+        margin-top: 1rem;
+      }
+
+      label,
+      legend {
+        font-weight: 700;
+      }
+
+      select,
+      input {
+        font: inherit;
+        color: var(--ink);
+        border: 1px solid #b9c5d4;
+        border-radius: 8px;
+        background: #fff;
+        padding: 0.65rem 0.75rem;
+      }
+
+      select:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #91c2ff;
+        outline-offset: 2px;
+      }
+
+      #courseSelect {
+        display: block;
+        width: 100%;
+        max-width: 620px;
+        margin-top: 0.55rem;
+      }
+
+      .course-heading,
+      .section-heading {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+      }
+
+      h2 {
+        margin: 0 0 0.6rem;
+        font-size: 1.2rem;
+      }
+
+      h3 {
+        margin: 0 0 0.6rem;
+        font-size: 1.05rem;
+      }
+
+      .schedule,
+      .help,
+      .muted {
+        color: var(--muted);
+      }
+
+      .schedule { margin: 0; }
+
+      .grade-breakdowns {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .breakdown {
+        padding: 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .breakdown ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .breakdown li {
+        display: flex;
+        justify-content: space-between;
+        gap: 0.75rem;
+        padding: 0.28rem 0;
+        border-bottom: 1px solid #edf0f4;
+      }
+
+      .breakdown li:last-child { border-bottom: 0; }
+      .weight { font-weight: 700; white-space: nowrap; }
+
+      fieldset {
+        min-width: 0;
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .exam-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+        gap: 0.7rem;
+        margin-top: 0.85rem;
+      }
+
+      .exam-field,
+      .average-field {
+        display: grid;
+        gap: 0.35rem;
+      }
+
+      .exam-field label,
+      .average-field label {
+        font-size: 0.92rem;
+      }
+
+      .exam-field input,
+      .average-field input {
+        width: 100%;
+      }
+
+      .exam-field.is-lowest input {
+        background: var(--highlight);
+        border-color: #e6c45f;
+      }
+
+      .help {
+        margin: 0.75rem 0 0;
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      .warning {
+        color: #8a4b00;
+        font-weight: 700;
+      }
+
+      .average-fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .average-field small {
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      .results {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .grade-result {
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+      }
+
+      .current-grade {
+        margin: 0.65rem 0 1rem;
+        font-size: 1.2rem;
+        font-weight: 700;
+      }
+
+      .targets {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 0.5rem;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .targets th,
+      .targets td {
+        padding: 0.55rem 0.35rem;
+        text-align: center;
+        border-bottom: 1px solid #edf0f4;
+      }
+
+      .targets th {
+        color: var(--muted);
+        font-size: 0.9rem;
+      }
+
+      .targets td {
+        font-weight: 700;
+      }
+
+      .result-note {
+        margin: 0.65rem 0 0;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.45;
+      }
+
+      [hidden] { display: none !important; }
+
+      @media (max-width: 600px) {
+        .container { padding: 1.5rem 1rem 2rem; }
+        .brand-logo { width: 4.4rem; }
+        .selector-card,
+        .course-details,
+        .input-card,
+        .result-card { padding: 1rem; }
+        .exam-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Return to the homepage">
+        <img class="brand-logo" src="/assets/images/test-227x151.png" alt="Homepage logo" />
+        <span class="brand-name">Homepage</span>
+      </a>
+    </header>
+
+    <main class="container">
+      <h1>Exam Grade Calculator</h1>
+      <p class="intro">Choose your class to see the grade breakdown and calculate what you need on your last exam.</p>
+
+      <section class="card selector-card" aria-labelledby="courseLabel">
+        <label id="courseLabel" for="courseSelect">Select your class</label>
+        <select id="courseSelect">
+          <option value="">Choose a class…</option>
+        </select>
+      </section>
+
+      <section id="courseDetails" class="card course-details" aria-live="polite" hidden>
+        <div class="course-heading">
+          <div>
+            <h2 id="courseName"></h2>
+            <p id="courseSchedule" class="schedule"></p>
+          </div>
+        </div>
+        <div id="gradeBreakdowns" class="grade-breakdowns"></div>
+      </section>
+
+      <section id="inputsCard" class="card input-card" hidden>
+        <h2>Your current grades</h2>
+        <fieldset>
+          <legend>Exam scores</legend>
+          <div id="examFields" class="exam-grid"></div>
+          <p id="currentExamAverage" class="help" aria-live="polite"></p>
+          <p id="examHelp" class="help"></p>
+          <p id="examWarning" class="help warning" role="status" hidden></p>
+        </fieldset>
+        <div id="averageFields" class="average-fields"></div>
+      </section>
+
+      <section id="resultsCard" class="card result-card" aria-live="polite" hidden>
+        <h2>Grade outlook</h2>
+        <p id="resultsHelp" class="help"></p>
+        <div id="results" class="results"></div>
+      </section>
+    </main>
+
+    <script>
+      // Edit course details, exam counts, and weights here when course offerings change.
+      const courses = [
+        {
+          id: 'math-1342-002',
+          name: 'Elementary Statistics, MATH 1342-002',
+          schedule: 'MW 12:00–1:20pm',
+          examCount: 4,
+          grades: [
+            {
+              name: 'MATH 1342 course grade',
+              weights: [
+                { key: 'exams', label: 'Exams', percent: 75 },
+                { key: 'wiley', label: 'WileyPLUS Online HW', percent: 10 },
+                { key: 'problemSets', label: 'Take-Home Problem Sets', percent: 15 },
+                { key: 'extraCredit', label: 'Extra Credit', percent: 5, extraCredit: true }
+              ]
+            }
+          ]
+        },
+        {
+          id: 'statistics-express',
+          name: 'Statistics Express, MATH 1342-035 and MATD 0342-008',
+          schedule: 'MW 1:30–4:20pm',
+          examCount: 4,
+          grades: [
+            {
+              name: 'MATH 1342 course grade',
+              weights: [
+                { key: 'exams', label: 'Exams', percent: 70 },
+                { key: 'wiley', label: 'WileyPLUS Online HW', percent: 10 },
+                { key: 'problemSets', label: 'Take-Home Problem Sets', percent: 15 },
+                { key: 'quizzes', label: 'Quick Quizzes', percent: 5 }
+              ]
+            },
+            {
+              name: 'MATD 0342 course grade',
+              weights: [
+                { key: 'exams', label: 'Exams', percent: 50 },
+                { key: 'wiley', label: 'WileyPLUS Online HW', percent: 15 },
+                { key: 'problemSets', label: 'Take-Home Problem Sets', percent: 15 },
+                { key: 'quizzes', label: 'Quick Quizzes', percent: 10 },
+                { key: 'groupWork', label: 'Group Work / Participation', percent: 10 }
+              ]
+            }
+          ]
+        }
+      ];
+
+      const targets = [90, 80, 70, 60];
+      const categoryLabels = {
+        wiley: 'WileyPLUS Online HW average',
+        problemSets: 'Take-Home Problem Sets average',
+        quizzes: 'Quick Quizzes average',
+        groupWork: 'Group Work / Participation average'
+      };
+      const courseSelect = document.getElementById('courseSelect');
+      const courseDetails = document.getElementById('courseDetails');
+      const inputsCard = document.getElementById('inputsCard');
+      const resultsCard = document.getElementById('resultsCard');
+      let selectedCourse = null;
+
+      function formatPercent(value) {
+        return `${value.toFixed(1)}%`;
+      }
+
+      function letterGrade(value) {
+        if (value >= 90) return 'A';
+        if (value >= 80) return 'B';
+        if (value >= 70) return 'C';
+        if (value >= 60) return 'D';
+        return 'F';
+      }
+
+      function renderCourse(course) {
+        selectedCourse = course;
+        courseDetails.hidden = !course;
+        inputsCard.hidden = !course;
+        resultsCard.hidden = !course;
+        if (!course) return;
+
+        document.getElementById('courseName').textContent = course.name;
+        document.getElementById('courseSchedule').textContent = course.schedule;
+        document.getElementById('gradeBreakdowns').innerHTML = course.grades.map((grade) => `
+          <section class="breakdown" aria-label="${grade.name} grade breakdown">
+            <h3>${grade.name}</h3>
+            <ul>
+              ${grade.weights.map(({ label, percent, extraCredit }) => `
+                <li>
+                  <span>${label}${extraCredit ? ' (points added)' : ''}</span>
+                  <span class="weight">${percent}%</span>
+                </li>
+              `).join('')}
+            </ul>
+          </section>
+        `).join('');
+
+        document.getElementById('examFields').innerHTML = Array.from({ length: course.examCount }, (_, index) => {
+          const examNumber = index + 1;
+          return `
+            <div class="exam-field" data-exam="${examNumber}">
+              <label for="exam${examNumber}">Exam ${examNumber}</label>
+              <input id="exam${examNumber}" type="number" min="0" step="0.1"
+                data-entered="false" inputmode="decimal" autocomplete="off" />
+            </div>
+          `;
+        }).join('');
+
+        const categoryKeys = [...new Set(course.grades.flatMap(({ weights }) =>
+          weights.map(({ key }) => key).filter((key) => key !== 'exams' && key !== 'extraCredit')
+        ))];
+        const hasExtraCredit = course.grades.some(({ weights }) =>
+          weights.some(({ key }) => key === 'extraCredit')
+        );
+        document.getElementById('averageFields').innerHTML = categoryKeys.map((key) => `
+          <div class="average-field">
+            <label for="average-${key}">${categoryLabels[key]}</label>
+            <input id="average-${key}" type="number" min="0" max="100" step="0.1"
+              inputmode="decimal" autocomplete="off" placeholder="0–100%" />
+          </div>
+        `).join('') + (hasExtraCredit ? `
+          <div class="average-field">
+            <label for="extraCreditPoints">Points of Extra Credit <small>(from your gradebook)</small></label>
+            <input id="extraCreditPoints" type="number" min="0" step="0.1" value="0"
+              inputmode="decimal" autocomplete="off" />
+          </div>
+        ` : '');
+
+        document.getElementById('examHelp').textContent =
+          `Enter each exam score when available. Blank exam scores count as 0 toward your earned grade. Exam ${course.examCount} counts as its own exam and can also replace the lowest score if it is higher.`;
+        document.getElementById('currentExamAverage').textContent = 'Current exam average (entered scores only): —';
+        document.getElementById('resultsHelp').textContent =
+          `Blank category averages count as 0; blank exam scores count as 0 toward your earned grade.${course.grades.length > 1 ? ' The shared scores above are used for both course grades.' : ''}`;
+        document.querySelectorAll('#inputsCard input').forEach((input) => {
+          input.addEventListener('input', () => {
+            if (input.id.startsWith('exam')) input.dataset.entered = 'true';
+            updateResults();
+          });
+        });
+        updateResults();
+      }
+
+      function readNumber(id) {
+        const input = document.getElementById(id);
+        if (!input || input.value.trim() === '') return null;
+        const value = Number(input.value);
+        if (!Number.isFinite(value)) return null;
+        const minimum = input.min === '' ? -Infinity : Number(input.min);
+        const maximum = input.max === '' ? Infinity : Number(input.max);
+        return value >= minimum && value <= maximum ? value : null;
+      }
+
+      function getExamScores(course) {
+        return Array.from({ length: course.examCount }, (_, index) =>
+          readNumber(`exam${index + 1}`)
+        );
+      }
+
+      function hasInvalidInputs() {
+        return [...document.querySelectorAll('#inputsCard input')].some((input) =>
+          input.value.trim() !== '' && readNumber(input.id) === null
+        );
+      }
+
+      function examAverage(scores, lastExamScore) {
+        const allExams = [...scores.slice(0, -1).map((score) => score ?? 0), lastExamScore];
+        const sum = allExams.reduce((total, score) => total + score, 0);
+        return (sum + lastExamScore - Math.min(...allExams)) / allExams.length;
+      }
+
+      function adjustedExamAverage(scores) {
+        const allExams = scores.map((score) => score ?? 0);
+        const lastExamScore = allExams[allExams.length - 1];
+        const sum = allExams.reduce((total, score) => total + score, 0);
+        return (sum + lastExamScore - Math.min(...allExams)) / allExams.length;
+      }
+
+      function updateLowestExam(scores) {
+        const completed = scores.filter((score) => score !== null);
+        const lowest = completed.length ? Math.min(...completed) : null;
+        document.querySelectorAll('.exam-field').forEach((field) => {
+          const score = scores[Number(field.dataset.exam) - 1];
+          field.classList.toggle('is-lowest', lowest !== null && score === lowest);
+        });
+      }
+
+      function getOtherWeightedPoints(grade) {
+        let points = 0;
+        for (const { key, percent, extraCredit } of grade.weights) {
+          if (key === 'exams' || extraCredit) continue;
+          const input = document.getElementById(`average-${key}`);
+          const average = input.value.trim() === '' ? 0 : readNumber(`average-${key}`);
+          if (average === null) return null;
+          points += average * percent / 100;
+        }
+        if (grade.weights.some(({ extraCredit }) => extraCredit)) {
+          const extraCreditPoints = document.getElementById('extraCreditPoints').value.trim() === ''
+            ? 0
+            : readNumber('extraCreditPoints');
+          if (extraCreditPoints === null) return null;
+          points += extraCreditPoints;
+        }
+        return points;
+      }
+
+      function hasAllGradeInputs(grade, scores) {
+        const allExamsEntered = scores.every((score, index) =>
+          score !== null && document.getElementById(`exam${index + 1}`).dataset.entered === 'true'
+        );
+        const allCategoriesEntered = grade.weights
+          .filter(({ key, extraCredit }) => key !== 'exams' && !extraCredit)
+          .every(({ key }) => document.getElementById(`average-${key}`).value.trim() !== '');
+        const extraCreditEntered = !grade.weights.some(({ extraCredit }) => extraCredit) ||
+          document.getElementById('extraCreditPoints').value.trim() !== '';
+        return allExamsEntered && allCategoriesEntered && extraCreditEntered;
+      }
+
+      function currentExamAverage(scores) {
+        const enteredScores = scores.filter((score, index) => {
+          const input = document.getElementById(`exam${index + 1}`);
+          return score !== null && (input.dataset.entered === 'true' || score > 0);
+        });
+        if (enteredScores.length === 0) return null;
+        return enteredScores.reduce((sum, score) => sum + score, 0) / enteredScores.length;
+      }
+
+      function projectedExamScores(scores) {
+        const average = currentExamAverage(scores);
+        return average === null ? null : scores.map((score) => score ?? average);
+      }
+
+      function courseGrade(grade, scores, otherPoints) {
+        const examWeight = grade.weights.find(({ key }) => key === 'exams').percent;
+        return otherPoints + adjustedExamAverage(scores) * examWeight / 100;
+      }
+
+      function scoreNeeded(grade, scores, otherPoints, target) {
+        const examWeight = grade.weights.find(({ key }) => key === 'exams').percent;
+        const overallGrade = (lastExamScore) =>
+          otherPoints + examAverage(scores, lastExamScore) * examWeight / 100;
+
+        if (overallGrade(0) >= target) return { value: 'Met', over110: false };
+        let low = 0;
+        let high = 100;
+        while (overallGrade(high) < target) high *= 2;
+        for (let iteration = 0; iteration < 60; iteration += 1) {
+          const mid = (low + high) / 2;
+          if (overallGrade(mid) >= target) high = mid;
+          else low = mid;
+        }
+        const needed = Math.ceil(high * 10) / 10;
+        return { value: formatPercent(needed), over110: needed > 110 };
+      }
+
+      function updateResults() {
+        if (!selectedCourse) return;
+        const examScores = getExamScores(selectedCourse);
+        const inputsValid = !hasInvalidInputs();
+        updateLowestExam(examScores);
+        const examAverageSoFar = currentExamAverage(examScores);
+        document.getElementById('currentExamAverage').textContent =
+          `Current exam average (entered scores only): ${examAverageSoFar === null ? '—' : formatPercent(examAverageSoFar)}`;
+        const highExamScores = examScores.flatMap((score, index) =>
+          score !== null && score > 110 ? [index + 1] : []
+        );
+        const examWarning = document.getElementById('examWarning');
+        examWarning.hidden = highExamScores.length === 0;
+        examWarning.textContent = highExamScores.length
+          ? `Are you sure? Exam ${highExamScores.join(' and ')} ${highExamScores.length === 1 ? 'score is' : 'scores are'} over 110%.`
+          : '';
+
+        document.getElementById('results').innerHTML = selectedCourse.grades.map((grade) => {
+          const otherPoints = getOtherWeightedPoints(grade);
+          const complete = inputsValid && hasAllGradeInputs(grade, examScores);
+          const earnedGrade = inputsValid && otherPoints !== null
+            ? courseGrade(grade, examScores, otherPoints)
+            : null;
+          const projectedScores = examScores.some((score) => score === null)
+            ? projectedExamScores(examScores)
+            : null;
+          const projectedGrade = inputsValid && otherPoints !== null && projectedScores
+            ? courseGrade(grade, projectedScores, otherPoints)
+            : null;
+          const gradeTitle = selectedCourse.grades.length > 1 ? `<h3>${grade.name}</h3>` : '';
+          const gradeSummary = !inputsValid || otherPoints === null
+            ? '<p class="current-grade muted">Check your entries: exam scores and category averages must be 0–100; extra-credit points cannot be negative.</p>'
+            : complete
+              ? `<p class="current-grade">Final course grade: ${formatPercent(earnedGrade)} (${letterGrade(earnedGrade)})</p>`
+              : `<p class="current-grade">Current earned grade: ${formatPercent(earnedGrade)} (${letterGrade(earnedGrade)})</p>`;
+          const projection = !inputsValid || otherPoints === null
+            ? ''
+            : projectedGrade === null
+              ? (examScores.some((score) => score === null)
+                ? '<p class="result-note">Enter at least one exam score to estimate your grade if you keep the same exam average.</p>'
+                : '')
+              : `<p class="result-note">If your remaining exams average ${formatPercent(currentExamAverage(examScores))}, your course grade would be ${formatPercent(projectedGrade)} (${letterGrade(projectedGrade)}).</p>`;
+          const targetResults = inputsValid && otherPoints !== null
+            ? targets.map((target) => ({ target, ...scoreNeeded(grade, examScores, otherPoints, target) }))
+            : [];
+          const hasOver110Target = targetResults.some(({ over110 }) => over110);
+          const targetTable = !inputsValid || otherPoints === null
+            ? '<p class="result-note">Correct invalid entries to calculate Exam targets.</p>'
+            : `
+              <table class="targets">
+                <thead><tr>${targetResults.map(({ target, over110 }) =>
+                  `<th scope="col">${letterGrade(target)}${over110 ? '**' : ''}</th>`
+                ).join('')}</tr></thead>
+                <tbody><tr>${targetResults.map(({ value }) =>
+                  `<td>${value}</td>`
+                ).join('')}</tr></tbody>
+              </table>
+              ${hasOver110Target ? '<p class="result-note">** Likely not achievable: required score is over 110%.</p>' : ''}
+            `;
+          const hasExtraCredit = grade.weights.some(({ extraCredit }) => extraCredit);
+          return `
+            <article class="grade-result">
+              ${gradeTitle}
+              ${gradeSummary}
+              ${projection}
+              ${hasExtraCredit ? '<p class="result-note">Extra-credit points are added after the weighted grade.</p>' : ''}
+              <h3>Exam ${selectedCourse.examCount} needed for each grade</h3>
+              ${targetTable}
+            </article>
+          `;
+        }).join('');
+
+        resultsCard.hidden = false;
+      }
+
+      courses.forEach((course) => {
+        const option = document.createElement('option');
+        option.value = course.id;
+        option.textContent = `${course.name} — ${course.schedule}`;
+        courseSelect.append(option);
+      });
+
+      courseSelect.addEventListener('change', () => {
+        renderCourse(courses.find(({ id }) => id === courseSelect.value) || null);
+      });
+    </script>
+  </body>
+</html>
