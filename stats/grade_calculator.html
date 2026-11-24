@@ -472,10 +472,10 @@
         ` : '');
 
         document.getElementById('examHelp').textContent =
-          `Enter each exam score when available. Blank exam scores count as 0 toward your earned grade. Exam ${course.examCount} counts as its own exam and can also replace the lowest score if it is higher.`;
-        document.getElementById('currentExamAverage').textContent = 'Current exam average (entered scores only): —';
+          `Before Exam ${course.examCount}, the current overall grade uses the raw average of entered exam scores. Once Exam ${course.examCount} is entered, the updated average includes all exams and replaces the lowest earlier score if the last exam is higher.`;
+        document.getElementById('currentExamAverage').textContent = 'Current exam average: —';
         document.getElementById('resultsHelp').textContent =
-          `Blank category averages count as 0; blank exam scores count as 0 toward your earned grade.${course.grades.length > 1 ? ' The shared scores above are used for both course grades.' : ''}`;
+          `Blank category averages count as 0. Before Exam ${course.examCount}, the current exam average uses entered scores only; after it is entered, the last-exam replacement rule is applied.${course.grades.length > 1 ? ' The shared scores above are used for both course grades.' : ''}`;
         document.querySelectorAll('#inputsCard input').forEach((input) => {
           input.addEventListener('input', () => {
             if (input.id.startsWith('exam')) input.dataset.entered = 'true';
@@ -521,13 +521,19 @@
       }
 
       function updateLowestExam(scores) {
-        const lowestIndex = scores.reduce((lowestSoFar, score, index) =>
-          score !== null && (lowestSoFar === -1 || score < scores[lowestSoFar])
-            ? index
-            : lowestSoFar, -1
-        );
+        const lastExamScore = scores[scores.length - 1];
+        const lowestIndex = lastExamScore === null
+          ? -1
+          : scores.slice(0, -1).reduce((lowestSoFar, score, index) =>
+            score !== null && (lowestSoFar === -1 || score < scores[lowestSoFar])
+              ? index
+              : lowestSoFar, -1
+          );
+        const replaceableIndex = lowestIndex !== -1 && scores[lowestIndex] < lastExamScore
+          ? lowestIndex
+          : -1;
         document.querySelectorAll('.exam-field').forEach((field, index) => {
-          field.classList.toggle('is-lowest', index === lowestIndex);
+          field.classList.toggle('is-lowest', index === replaceableIndex);
         });
       }
 
@@ -571,6 +577,12 @@
         return enteredScores.reduce((sum, score) => sum + score, 0) / enteredScores.length;
       }
 
+      function currentOverallExamAverage(scores) {
+        return scores[scores.length - 1] === null
+          ? currentExamAverage(scores.slice(0, -1))
+          : adjustedExamAverage(scores);
+      }
+
       function projectedExamScores(scores) {
         const average = currentExamAverage(scores);
         return average === null ? null : scores.map((score) => score ?? average);
@@ -578,7 +590,8 @@
 
       function courseGrade(grade, scores, otherPoints) {
         const examWeight = grade.weights.find(({ key }) => key === 'exams').percent;
-        return otherPoints + adjustedExamAverage(scores) * examWeight / 100;
+        const examAverage = currentOverallExamAverage(scores) ?? 0;
+        return otherPoints + examAverage * examWeight / 100;
       }
 
       function scoreNeeded(grade, scores, otherPoints, target) {
@@ -604,9 +617,9 @@
         const examScores = getExamScores(selectedCourse);
         const inputsValid = !hasInvalidInputs();
         updateLowestExam(examScores);
-        const examAverageSoFar = currentExamAverage(examScores);
+        const examAverageSoFar = currentOverallExamAverage(examScores);
         document.getElementById('currentExamAverage').textContent =
-          `Current exam average (entered scores only): ${examAverageSoFar === null ? '—' : formatPercent(examAverageSoFar)}`;
+          `Current exam average: ${examAverageSoFar === null ? '—' : formatPercent(examAverageSoFar)}`;
         const highExamScores = examScores.flatMap((score, index) =>
           score !== null && score > 110 ? [index + 1] : []
         );
@@ -633,7 +646,7 @@
             ? '<p class="current-grade muted">Check your entries: exam scores and category averages must be 0–100; extra-credit points cannot be negative.</p>'
             : complete
               ? `<p class="current-grade">Final course grade: ${formatPercent(earnedGrade)} (${letterGrade(earnedGrade)})</p>`
-              : `<p class="current-grade">Current earned grade: ${formatPercent(earnedGrade)} (${letterGrade(earnedGrade)})</p>`;
+              : `<p class="current-grade">Current Overall Grade: ${formatPercent(earnedGrade)} (${letterGrade(earnedGrade)})</p>`;
           const projection = !inputsValid || otherPoints === null
             ? ''
             : projectedGrade === null
